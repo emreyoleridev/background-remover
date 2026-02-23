@@ -44,7 +44,7 @@ export const siteConfig = {
     // - Neutrals: "slate", "gray", "zinc", "neutral", "stone"
     // - Colors: "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
     // Note: Ensure the color is defined in src/lib/theme.ts to apply specific styles.
-    accentColor: "violet" as const,
+    accentColor: "cyan" as const,
 
     // ---------------------------------------------------------------------------
     // 6. Links & Author

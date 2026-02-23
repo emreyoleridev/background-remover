@@ -32,10 +32,10 @@ export function ProjectBadge() {
             )}
         >
             <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80">
                     Project NO
                 </span>
-                <span className={`text-sm font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>
+                <span className={cn("text-sm font-black tracking-tight", theme.text)}>
                     {buildMeta.buildDay}
                 </span>
             </div>
@@ -43,10 +43,10 @@ export function ProjectBadge() {
             <div className="w-[1px] h-4 bg-border/60" />
 
             <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/80">
                     Date
                 </span>
-                <span className={`text-sm font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>
+                <span className={cn("text-sm font-bold tracking-tight", theme.text)}>
                     {formattedDate}
                 </span>
             </div>

@@ -18,7 +18,7 @@ export function SiteHeader() {
                         <HeaderIcon className="h-5 w-5" />
                         <span className="font-bold sm:inline-block">
                             {siteConfig.siteName.split("_")[0]}
-                            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>
+                            <span className={theme.text}>
                                 {siteConfig.siteName.split("_")[1]}
                             </span>
                         </span>

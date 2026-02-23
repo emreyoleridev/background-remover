@@ -66,7 +66,7 @@ export function DevSignature() {
 
 
     return (
-        <div className="relative h-0 w-full z-20 pointer-events-none">
+        <div className="relative h-0 w-full z-[60] pointer-events-none">
             <Container className="relative pointer-events-none">
                 <div className="absolute top-[6px] left-4 md:left-6 lg:left-8 pointer-events-auto">
                     <Link
@@ -81,7 +81,11 @@ export function DevSignature() {
                     >
                         <div className="flex">
 
-                            <pre className={cn("whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-80 brightness-125 italic animate-blink", theme.text)} >
+                            <pre className={cn(
+                                "whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased brightness-125 italic animate-blink",
+                                "bg-gradient-to-br bg-clip-text text-transparent opacity-90",
+                                theme.gradientText
+                            )} >
                                 {asciiChunk}
                             </pre>
 
@@ -89,7 +93,11 @@ export function DevSignature() {
                                 {asciiMiddle}
                             </pre>
 
-                            <pre className={cn("whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-80 brightness-125 italic", theme.text)} >
+                            <pre className={cn(
+                                "whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased brightness-125 italic",
+                                "bg-gradient-to-br bg-clip-text text-transparent opacity-90",
+                                theme.gradientText
+                            )} >
                                 {asciiEnd}
                             </pre>
                         </div>

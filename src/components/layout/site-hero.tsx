@@ -7,7 +7,7 @@ export function SiteHero() {
     const theme = getThemeClasses();
 
     return (
-        <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
+        <section className="relative pt-24 pb-16 md:pt-32 md:pb-24">
             {/* Subtle background glow */}
             <div className="absolute inset-x-0 top-32 -z-10 flex justify-center opacity-30 dark:opacity-20 pointer-events-none">
                 <div className={`h-[300px] w-[500px] sm:w-[800px] rounded-full blur-[100px] md:blur-[120px] ${theme.bg}`} />
