@@ -12,7 +12,7 @@ export default function PrivacyPage() {
 
             <div className="prose prose-zinc dark:prose-invert max-w-none">
                 <section className="mt-8">
-                    <h2 className="text-2xl font-semibold text-foreground border-b pb-2">100% Privacy</h2>
+                    <h2 className="text-2xl font-semibold text-foreground border-b pb-2">Private by Design</h2>
                     <p className="text-muted-foreground mt-4 leading-relaxed">
                         At {cleanName}, we take your privacy seriously. All of our tools are designed to run entirely within your web browser. This means that your data is processed locally on your machine and is never transmitted to our servers for processing.
                     </p>
