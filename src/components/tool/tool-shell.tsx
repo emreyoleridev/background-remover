@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -6,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Container } from "@/components/common/container";
 import { Section } from "@/components/common/section";
 import { getThemeClasses } from "@/lib/theme";
+import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
 
 export function ToolShell() {
     const theme = getThemeClasses();
@@ -31,7 +34,11 @@ export function ToolShell() {
                                     <Label htmlFor="demo-input">Sample Input</Label>
                                     <Input id="demo-input" placeholder="Type something to generate..." />
                                 </div>
-                                <Button className={`w-full ${theme.bg} hover:opacity-90 text-primary-foreground border-none`} variant="default">
+                                <Button
+                                    className={`w-full ${theme.bg} hover:opacity-90 text-primary-foreground border-none`}
+                                    variant="default"
+                                    onClick={() => triggerSubscribeModal()}
+                                >
                                     Generate Output
                                 </Button>
                             </TabsContent>

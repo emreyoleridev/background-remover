@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { BuyMeACoffeeWidget } from "@/components/common/buymeacoffee-widget";
+import { ModalProvider } from "@/components/common/modal-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +45,8 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
+          <ModalProvider />
+          <Toaster position="top-center" />
         </ThemeProvider>
 
         <BuyMeACoffeeWidget />
