@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/common/theme-provider";
+import { BuyMeACoffeeWidget } from "@/components/common/buymeacoffee-widget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,8 @@ export default function RootLayout({
             <SiteFooter />
           </div>
         </ThemeProvider>
+
+        <BuyMeACoffeeWidget />
       </body>
     </html>
   );
