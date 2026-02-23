@@ -38,14 +38,14 @@ describe("ShareModal", () => {
     it("should open when triggerShareModal is called", async () => {
         render(<ShareModal />);
 
-        expect(screen.queryByText(/Share this tool/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/SHARE THIS TOOL WITH YOUR/i)).not.toBeInTheDocument();
 
         await act(async () => {
             triggerShareModal("https://example.com");
         });
 
         expect(await screen.findByText((content, element) => {
-            return element?.tagName.toLowerCase() === 'h2' && /Share this tool/i.test(element.textContent || '');
+            return element?.tagName.toLowerCase() === 'h2' && /SHARE THIS TOOL WITH YOUR/i.test(element.textContent || '');
         })).toBeInTheDocument();
         const input = screen.getByRole("textbox");
         expect(input).toHaveValue("https://example.com");

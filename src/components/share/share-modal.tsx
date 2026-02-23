@@ -74,16 +74,16 @@ export function ShareModal() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent
-                className="!max-w-[95vw] sm:!max-w-2xl w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
+                className="!max-w-[95vw] sm:!max-w-[850px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-6 md:p-10 shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-10 md:p-16 shadow-2xl">
                     {/* Background Glow - Theme aware */}
-                    <div className={cn("absolute -bottom-24 -right-24 h-[300px] w-[300px] rounded-full opacity-5 dark:opacity-10 blur-[80px] pointer-events-none", theme.bg)}></div>
+                    <div className={cn("absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-10 dark:opacity-20 blur-[100px] pointer-events-none", theme.bg)}></div>
 
                     <div className="relative z-10 flex flex-col items-start text-left w-full">
-                        <DialogHeader className="space-y-2 mb-6 text-left items-start w-full">
-                            <DialogTitle className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                                <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>Share</span> this tool.
+                        <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
+                            <DialogTitle className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
+                                <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>SHARE</span> THIS TOOL WITH YOUR <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">FRIENDS</span>.
                             </DialogTitle>
                             <DialogDescription className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
                                 Everything is free, unlimited, and runs locally in your browser. Share it anywhere in seconds.
