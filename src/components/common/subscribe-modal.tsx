@@ -98,52 +98,68 @@ export function SubscribeModal() {
                 onInteractOutside={(e) => e.preventDefault()}
                 className="!max-w-[95vw] sm:!max-w-[1200px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-12 md:p-24 text-center shadow-2xl`}>
+                <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0f1a] p-12 md:p-24 shadow-2xl">
+                    {/* Background Glow */}
+                    <div className={`absolute -bottom-24 -right-24 h-[600px] w-[600px] rounded-full ${theme.bg} opacity-10 blur-[120px] pointer-events-none`}></div>
 
-                    {/* Decorative gradient orb */}
-                    <div className={`absolute -top-32 -right-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
-                    <div className={`absolute -bottom-32 -left-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
+                    <div className="relative z-10 flex flex-col items-start text-left max-w-5xl">
+                        <DialogHeader className="space-y-6 mb-16 text-left items-start w-full">
+                            <DialogTitle className="text-6xl md:text-[100px] font-black tracking-tighter text-white leading-[0.95] uppercase">
+                                Never miss out <br />
+                                on <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>new tools!</span>
+                            </DialogTitle>
+                            <DialogDescription className="text-xl md:text-3xl text-zinc-400 max-w-2xl leading-relaxed mt-4">
+                                Subscribe to our newsletter to be informed whenever <br className="hidden md:block" />
+                                we publish something new!
+                            </DialogDescription>
+                        </DialogHeader>
 
-                    <DialogHeader className="space-y-6 mb-10 text-center relative z-10">
-                        <DialogTitle className="text-4xl text-centerşu m md:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                            Don&apos;t miss the <br className="hidden md:block" />
-                            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>next free tool.</span>
-                        </DialogTitle>
-                        <DialogDescription className="text-lg md:text-xl text-zinc-400 max-w-xl mx-auto leading-relaxed">
-                            I build a new free, fast, and secure client-side tool every single day.
-                            Subscribe to get notified. If you close this, we won&apos;t ask again.
-                        </DialogDescription>
-                    </DialogHeader>
-
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10 max-w-lg mx-auto w-full">
-                            <FormField
-                                control={form.control}
-                                name="email"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <Input
-                                                placeholder="you@awesome.com"
-                                                className="h-16 px-6 text-lg md:text-xl rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-zinc-600 text-white placeholder:text-zinc-500 shadow-inner"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage className="text-red-400 text-base" />
-                                    </FormItem>
-                                )}
-                            />
-                            <Button
-                                type="submit"
-                                size="lg"
-                                className={`w-full h-16 text-lg md:text-xl font-bold rounded-xl ${theme.bg} text-white shadow-lg transition-transform hover:scale-[1.02] hover:opacity-90 active:scale-[0.98] border border-white/10`}
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting && <Loader2 className="mr-3 h-6 w-6 animate-spin" />}
-                                {isSubmitting ? "Subscribing..." : "Join the Daily List"}
-                            </Button>
-                        </form>
-                    </Form>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem className="w-full">
+                                            <FormControl>
+                                                <div className="relative group max-w-3xl">
+                                                    <Input
+                                                        placeholder="EMAIL"
+                                                        className="h-28 px-10 text-2xl md:text-4xl font-black uppercase tracking-widest rounded-3xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
+                                                        {...field}
+                                                    />
+                                                    <button
+                                                        type="submit"
+                                                        disabled={isSubmitting}
+                                                        className={`absolute right-8 top-1/2 -translate-y-1/2 p-4 rounded-2xl ${theme.text} hover:bg-white/5 transition-all disabled:opacity-50`}
+                                                        aria-label="Submit email"
+                                                    >
+                                                        {isSubmitting ? (
+                                                            <Loader2 className="h-10 w-10 animate-spin" />
+                                                        ) : (
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2.5"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                className="h-12 w-12"
+                                                            >
+                                                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                                            </svg>
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage className="text-red-400 text-xl mt-4" />
+                                        </FormItem>
+                                    )}
+                                />
+                            </form>
+                        </Form>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>
