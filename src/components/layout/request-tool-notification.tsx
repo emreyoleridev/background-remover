@@ -98,68 +98,55 @@ export function RequestToolNotification() {
             <div
                 onClick={handleOpen}
                 className={cn(
-                    "group relative flex items-center gap-4 p-4 pr-12 rounded-2xl cursor-pointer select-none overflow-hidden",
-                    "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-2xl",
-                    "border border-white/20 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)]",
-                    "hover:translate-y-[-4px] hover:border-primary/50 transition-all duration-500",
-                    "active:scale-[0.97]"
+                    "group relative flex items-center gap-4 p-4 pr-10 rounded-2xl cursor-pointer select-none overflow-hidden",
+                    "bg-white/90 dark:bg-zinc-900/90 backdrop-blur-2xl",
+                    "border border-zinc-200 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
+                    "hover:translate-y-[-2px] hover:border-primary/30 transition-all duration-300",
+                    "active:scale-[0.98]"
                 )}
             >
-                {/* Subtle Inner Glow */}
-                <div className={cn(
-                    "absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 bg-primary",
-                )} />
-
-                {/* Left Section: Icon within a clean container */}
+                {/* Minimalist Left Section */}
                 <div className="relative">
                     <div className={cn(
-                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-500",
-                        theme.badge,
-                        "ring-1 ring-primary/20",
-                        "group-hover:scale-105 group-hover:ring-primary/40"
+                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
+                        "bg-zinc-100 dark:bg-white/5",
+                        "text-zinc-600 dark:text-zinc-400 group-hover:text-primary"
                     )}>
-                        <Wand2 className="w-5 h-5 transition-transform" />
+                        <Wand2 className="w-5 h-5" />
                     </div>
                 </div>
 
-                {/* Text Content: Clearer hierarchy and more color */}
-                <div className="flex flex-col gap-1 max-w-[200px]">
+                {/* Text Content: Focused and Clean */}
+                <div className="flex flex-col gap-0.5">
                     <h3 className={cn(
-                        "text-base font-bold tracking-tight leading-tight",
-                        "text-transparent bg-clip-text bg-gradient-to-r",
-                        theme.gradientText
+                        "text-[15px] font-semibold tracking-tight leading-tight transition-colors group-hover:text-primary",
+                        "text-zinc-900 dark:text-zinc-100"
                     )}>
                         {config.label}
                     </h3>
-                    <p className="text-xs text-muted-foreground font-medium leading-normal dark:text-zinc-400">
+                    <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-medium leading-normal">
                         {/* @ts-ignore - added description to config */}
                         {config.description || "Tell me what to build next"}
                     </p>
                 </div>
 
-                {/* Interaction Feedback - Arrow */}
-                <div className="flex items-center ml-2">
-                    <div className={cn(
-                        "flex items-center justify-center w-8 h-8 rounded-full",
-                        "bg-zinc-100 dark:bg-zinc-800 text-foreground group-hover:bg-primary group-hover:text-primary-foreground",
-                        "shadow-inner transition-all duration-300"
-                    )}>
-                        <ChevronRight className="w-4 h-4" />
-                    </div>
+                {/* Static Minimal Arrow */}
+                <div className="flex items-center ml-1">
+                    <ChevronRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-primary transition-colors" />
                 </div>
 
-                {/* Premium Close Button */}
+                {/* Manual Close Button - Integrated */}
                 <button
                     onClick={handleDismiss}
                     aria-label="Dismiss notification"
-                    className="absolute top-3 right-3 p-1.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-muted-foreground/30 hover:text-muted-foreground transition-all duration-300"
+                    className="absolute top-2 right-2 p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-white/5 text-zinc-300 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-400 transition-all duration-200"
                 >
-                    <X className="w-4 h-4" />
+                    <X className="w-3.5 h-3.5" />
                 </button>
 
-                {/* Subtle border accent */}
+                {/* Bottom line - Very thin and subtle */}
                 <div className={cn(
-                    "absolute bottom-0 left-0 h-[2px] w-full bg-primary/20 group-hover:bg-primary transition-colors",
+                    "absolute bottom-0 left-0 h-[1px] w-full bg-zinc-200 dark:bg-white/10 group-hover:bg-primary transition-colors",
                 )} />
             </div>
         </div>
