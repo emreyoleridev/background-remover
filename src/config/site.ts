@@ -120,7 +120,8 @@ export const siteConfig = {
     cta: {
         requestTool: {
             enabled: true,
-            label: "Request a Tool",
+            label: "Have a Tool Idea? ✨",
+            description: "Tell me what to build next, and I'll make it happen!",
             url: "https://builtbyemre.userjot.com/",
             delayMs: 5000,
         },

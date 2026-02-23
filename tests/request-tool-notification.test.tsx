@@ -12,7 +12,8 @@ vi.mock("@/config/site", async (importOriginal) => {
             cta: {
                 requestTool: {
                     enabled: true,
-                    label: "Request a Tool",
+                    label: "Have a Tool Idea? ✨",
+                    description: "Tell me what to build next, and I'll make it happen!",
                     url: "https://builtbyemre.userjot.com/",
                     delayMs: 5000,
                 },
@@ -48,7 +49,7 @@ describe("RequestToolNotification", () => {
         });
 
         expect(screen.getByLabelText(/request a tool/i)).toBeInTheDocument();
-        expect(screen.getByText("Request a Tool")).toBeInTheDocument();
+        expect(screen.getByText(/Have a Tool Idea/i)).toBeInTheDocument();
     });
 
     it("does not render if scroll occurs before timer ends", async () => {
@@ -76,7 +77,7 @@ describe("RequestToolNotification", () => {
         });
 
         // The clickable area is the first div inside the wrapper
-        const clickable = screen.getByText("Request a Tool").closest('div[class*="cursor-pointer"]');
+        const clickable = screen.getByText(/Have a Tool Idea/i).closest('div[class*="cursor-pointer"]');
         if (clickable) {
             fireEvent.click(clickable);
         }
