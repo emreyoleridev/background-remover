@@ -100,26 +100,32 @@ export function ShareModal() {
                                             key={platform.id}
                                             onClick={() => handleShare(platform)}
                                             className={cn(
-                                                "group relative flex flex-col items-center justify-center gap-2 rounded-xl bg-black/5 dark:bg-white/5 p-3 shadow-sm transition-all hover:scale-[1.02] active:scale-95 border border-black/10 dark:border-white/10",
+                                                "group relative flex flex-col items-center justify-center gap-2 rounded-xl bg-black/5 dark:bg-white/5 p-3 shadow-sm transition-all active:scale-95 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10",
                                                 `hover:${theme.border}`
                                             )}
                                             aria-label={`Share on ${platform.name}`}
                                         >
-                                            <div className="relative h-8 w-8 flex flex-shrink-0 items-center justify-center rounded-md bg-transparent overflow-hidden">
-                                                {config.token ? (
+                                            <div className="relative h-10 w-10 flex flex-shrink-0 items-center justify-center rounded-md bg-transparent overflow-hidden">
+                                                {platform.id === "x" ? (
+                                                    <>
+                                                        <img
+                                                            src="/logos/x_dark.svg"
+                                                            alt={platform.name}
+                                                            className="hidden dark:block h-7 w-7 object-contain"
+                                                        />
+                                                        <img
+                                                            src="/logos/x_light.svg"
+                                                            alt={platform.name}
+                                                            className="block dark:hidden h-7 w-7 object-contain"
+                                                        />
+                                                    </>
+                                                ) : (
                                                     <img
-                                                        src={`https://img.logo.dev/${platform.domain}?token=${config.token}`}
+                                                        src={`/logos/${platform.id}.svg`}
                                                         alt={platform.name}
-                                                        className="h-5 w-5 object-contain"
-                                                        onError={(e) => {
-                                                            (e.target as HTMLImageElement).style.display = 'none';
-                                                            (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                                                        }}
+                                                        className="h-7 w-7 object-contain"
                                                     />
-                                                ) : null}
-                                                <span className={cn("text-sm font-bold text-muted-foreground", config.token ? "hidden" : "")}>
-                                                    {platform.name.charAt(0)}
-                                                </span>
+                                                )}
                                             </div>
                                             <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                                                 {platform.name}
