@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Shield } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { GithubForkButton } from "@/components/common/github-fork-button";
-// import { ThemeToggle } from "@/components/common/theme-toggle";
+import { ThemeToggle } from "@/components/common/theme-toggle";
 
 export function SiteHeader() {
     return (
@@ -18,7 +18,7 @@ export function SiteHeader() {
                 </div>
                 <div className="flex flex-1 items-center justify-end space-x-2">
                     <GithubForkButton />
-                    {/* ThemeToggle will be injected here during Stage 4 */}
+                    <ThemeToggle />
                 </div>
             </div>
         </header>
