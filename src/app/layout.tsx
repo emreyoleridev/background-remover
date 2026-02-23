@@ -10,6 +10,8 @@ import { ModalProvider } from "@/components/common/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import { getThemeClasses } from "@/lib/theme";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -19,6 +21,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const theme = getThemeClasses();
 
 export const metadata: Metadata = {
   title: {
@@ -57,10 +61,10 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
   },
   other: {
-    "msapplication-TileColor": siteConfig.themeColorHex,
+    "msapplication-TileColor": theme.hex,
     "msapplication-TileImage": "/mstile-150x150.png",
     "msapplication-config": "/browserconfig.xml",
-    "theme-color": siteConfig.themeColorHex,
+    "theme-color": theme.hex,
   },
 };
 

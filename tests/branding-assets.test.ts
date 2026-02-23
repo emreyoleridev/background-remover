@@ -79,14 +79,15 @@ describe("siteConfig branding fields (drive Next.js metadata)", () => {
         expect(siteConfig.siteName.length).toBeGreaterThan(0);
     });
 
-    it("has themeColorHex as a valid hex color", async () => {
-        const { siteConfig } = await import("../src/config/site");
-        expect(siteConfig.themeColorHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
+    it("has valid hex color in theme utility", async () => {
+        const { getThemeClasses } = await import("../src/lib/theme");
+        const theme = getThemeClasses();
+        expect(theme.hex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
-    it("has backgroundColorHex as a valid hex color", async () => {
-        const { siteConfig } = await import("../src/config/site");
-        expect(siteConfig.backgroundColorHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
+    it("has valid background hex in branding constants", async () => {
+        const { BRANDING } = await import("../src/lib/theme");
+        expect(BRANDING.backgroundHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
     it("layout.tsx source references correct icon paths", () => {

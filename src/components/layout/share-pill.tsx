@@ -33,18 +33,8 @@ export function SharePill() {
 
     const handleShare = async (platform: typeof siteConfig.share.platforms[number]) => {
         const shareData = getShareData();
-        if (platform.action === "copyOnly") {
-            try {
-                await navigator.clipboard.writeText(shareData.url);
-                toast.success("Link copied to clipboard!");
-            } catch {
-                toast.error("Failed to copy link.");
-            }
-            return;
-        }
-        if (platform.action === "shareUrl" && platform.template) {
-            openShare(buildShareUrl(platform.template, shareData));
-        }
+
+        openShare(buildShareUrl(platform.template, shareData));
     };
 
     const handleCopy = async () => {
@@ -58,9 +48,7 @@ export function SharePill() {
     };
 
     const logoRadius = (platform: typeof siteConfig.share.platforms[number]) => {
-        if (platform.domain === "instagram.com") {
-            return "rounded-none";
-        } else if (platform.domain === "linkedin.com") {
+        if (platform.domain === "linkedin.com") {
             return "rounded-sm";
         }
         return "rounded-full";
@@ -71,11 +59,11 @@ export function SharePill() {
             ref={pillRef}
             className="fixed z-[9998] flex flex-col items-end"
             style={{ bottom: "calc(18px + 56px + 24px)", right: "18px" }}
-        // onBlur={(e) => {
-        //     if (!pillRef.current?.contains(e.relatedTarget as Node)) {
-        //         setOpen(false);
-        //     }
-        // }}
+            onBlur={(e) => {
+                if (!pillRef.current?.contains(e.relatedTarget as Node)) {
+                    setOpen(false);
+                }
+            }}
         >
             {/* Single connected pill containing all icons + trigger at bottom */}
             <div className={cn(

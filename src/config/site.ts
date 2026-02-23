@@ -5,17 +5,13 @@ export const siteConfig = {
     siteName: "Secure_Studio",
     headerIcon: Shield,              // The icon to use in the header
 
-    // Branding colors (hex — used in manifest / meta tags only)
-    themeColorHex: "#052e16",        // Dark emerald — matches accent palette
-    backgroundColorHex: "#0a0a0a",  // Near-black background
-
     // SEO
     seo: {
         title: "SecureStudio - Premium Client-Side Security Tools",
         description: "Free, private, and 100% secure client-side tools. No data ever leaves your browser.",
         keywords: ["security tools", "privacy", "client-side", "free tools", "developer toolkit"],
         url: "https://securestudio.com",
-        twitterHandle: "@emreyoleri",
+        twitterHandle: "@emreyoleridev",
     },
 
     // Hero Section
@@ -115,8 +111,7 @@ export const siteConfig = {
     // Features Section
     featuresSection: {
         badge: "Why Choose Us",
-        titlePrefix: "Built for",
-        titleHighlight: "Privacy",
+        title: "Built for *Privacy*",
         subtitle: "Every tool is engineered to run entirely in your browser\nno servers, no tracking, no compromises.",
     },
     features: [

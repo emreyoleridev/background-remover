@@ -8,7 +8,13 @@ type ThemeColorMap = {
     gradientText: string;
     badge: string;
     iconBg: string;
+    hex: string; // The primary hex color for branding/manifest
 };
+
+// Global branding constants
+export const BRANDING = {
+    backgroundHex: "#0a0a0a", // Near-black background used across all themes
+} as const;
 
 const colors: Record<string, ThemeColorMap> = {
     emerald: {
@@ -19,6 +25,7 @@ const colors: Record<string, ThemeColorMap> = {
         gradientText: "from-emerald-400 to-emerald-600 dark:from-emerald-400 dark:to-emerald-200",
         badge: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
         iconBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+        hex: "#10b981",
     },
     teal: {
         text: "text-teal-500",
@@ -28,6 +35,7 @@ const colors: Record<string, ThemeColorMap> = {
         gradientText: "from-teal-400 to-teal-600 dark:from-teal-400 dark:to-teal-200",
         badge: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
         iconBg: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
+        hex: "#14b8a6",
     },
     indigo: {
         text: "text-indigo-500",
@@ -37,6 +45,7 @@ const colors: Record<string, ThemeColorMap> = {
         gradientText: "from-indigo-400 to-indigo-600 dark:from-indigo-400 dark:to-indigo-200",
         badge: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
         iconBg: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400",
+        hex: "#6366f1",
     },
     blue: {
         text: "text-blue-500",
@@ -46,6 +55,7 @@ const colors: Record<string, ThemeColorMap> = {
         gradientText: "from-blue-400 to-blue-600 dark:from-blue-400 dark:to-blue-200",
         badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
         iconBg: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+        hex: "#3b82f6",
     },
     violet: {
         text: "text-violet-500",
@@ -55,6 +65,7 @@ const colors: Record<string, ThemeColorMap> = {
         gradientText: "from-violet-400 to-violet-600 dark:from-violet-400 dark:to-violet-200",
         badge: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
         iconBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+        hex: "#8b5cf6",
     },
 };
 

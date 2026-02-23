@@ -1,8 +1,10 @@
 import { siteConfig } from "@/config/site";
 import { MetadataRoute } from "next";
+import { getThemeClasses, BRANDING } from "@/lib/theme";
 
 export default function manifest(): MetadataRoute.Manifest {
     const cleanName = siteConfig.siteName.replace("_", "");
+    const theme = getThemeClasses();
 
     return {
         name: cleanName,
@@ -10,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
         description: siteConfig.seo.description,
         start_url: "/",
         display: "standalone",
-        background_color: siteConfig.backgroundColorHex,
-        theme_color: siteConfig.themeColorHex,
+        background_color: BRANDING.backgroundHex,
+        theme_color: theme.hex,
         icons: [
             {
                 src: "/android-chrome-192x192.png",

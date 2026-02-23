@@ -90,7 +90,7 @@ describe('SharePill Component', () => {
         );
     });
 
-    it('copies link and shows toast for copyLink and copyOnly', async () => {
+    it('copies link and shows toast for copyLink', async () => {
         render(<SharePill />);
         await waitFor(() => screen.getByLabelText(/Share on Copy Link/i));
 

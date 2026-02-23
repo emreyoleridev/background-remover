@@ -21,10 +21,15 @@ export function SiteFeatures() {
                         {siteConfig.featuresSection.badge}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground uppercase">
-                        {siteConfig.featuresSection.titlePrefix}{" "}
-                        <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>
-                            {siteConfig.featuresSection.titleHighlight}
-                        </span>
+                        {siteConfig.featuresSection.title.split("*").map((part, i) => (
+                            i % 2 === 1 ? (
+                                <span key={i} className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>
+                                    {part}
+                                </span>
+                            ) : (
+                                <span key={i}>{part}</span>
+                            )
+                        ))}
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto whitespace-pre-line">
                         {siteConfig.featuresSection.subtitle}
