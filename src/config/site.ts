@@ -3,7 +3,12 @@ import { Shield, Zap, Lock } from "lucide-react";
 export const siteConfig = {
     // Brand
     siteName: "Secure_Studio",
-    headerIcon: Shield, // The icon to use in the header
+    shortName: "SecureStudio",       // Used in webmanifest short_name
+    headerIcon: Shield,              // The icon to use in the header
+
+    // Branding colors (hex — used in manifest / meta tags only)
+    themeColorHex: "#052e16",        // Dark emerald — matches accent palette
+    backgroundColorHex: "#0a0a0a",  // Near-black background
 
     // SEO
     seo: {

@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: siteConfig.seo.title,
-    template: `%s | ${siteConfig.siteName.replace("_", "")}`,
+    template: `%s — ${siteConfig.siteName.replace("_", "")}`,
   },
   description: siteConfig.seo.description,
   keywords: [...siteConfig.seo.keywords],
@@ -49,9 +49,19 @@ export const metadata: Metadata = {
     creator: siteConfig.seo.twitterHandle,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
+  manifest: "/site.webmanifest",
+  other: {
+    "msapplication-TileColor": siteConfig.themeColorHex,
+    "msapplication-TileImage": "/mstile-150x150.png",
+    "msapplication-config": "/browserconfig.xml",
+    "theme-color": siteConfig.themeColorHex,
   },
 };
 
