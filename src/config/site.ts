@@ -21,12 +21,13 @@ export const siteConfig = {
 
     // Theme & Styling
     // Tailwind color token (e.g., "emerald", "teal", "indigo", "blue")
-    accentColor: "emerald",
+    accentColor: "teal",
 
     // Links
     githubRepoUrl: "https://github.com/emreyoleri/boilerplate",
     authorName: "Emre Yoleri",
     authorGithubUrl: "https://github.com/emreyoleri",
+    authorEmail: "emreyoleridev@gmail.com",
 
     // Buy Me a Coffee Widget
     buyMeACoffee: {
