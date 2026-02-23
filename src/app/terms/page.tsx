@@ -46,8 +46,8 @@ export default function TermsPage() {
                     <h2 className="text-2xl font-semibold text-foreground border-b pb-2">Contact</h2>
                     <p className="text-muted-foreground mt-4 leading-relaxed">
                         If you have any questions about these Terms of Use, please contact us at{" "}
-                        <a href={`mailto:${siteConfig.authorEmail}`} className="text-primary hover:underline transition-all">
-                            {siteConfig.authorEmail}
+                        <a href={`mailto:${siteConfig.links.authorEmail}`} className="text-primary hover:underline transition-all">
+                            {siteConfig.links.authorEmail}
                         </a>.
                     </p>
                 </section>

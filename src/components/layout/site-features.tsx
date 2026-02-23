@@ -18,10 +18,10 @@ export function SiteFeatures() {
                         theme.text
                     )}>
                         <Sparkles className="h-4 w-4" />
-                        {siteConfig.featuresSection.badge}
+                        {siteConfig.features.badge}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground uppercase">
-                        {siteConfig.featuresSection.title.split("*").map((part, i) => (
+                        {siteConfig.features.title.split("*").map((part, i) => (
                             i % 2 === 1 ? (
                                 <span key={i} className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>
                                     {part}
@@ -32,13 +32,13 @@ export function SiteFeatures() {
                         ))}
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto whitespace-pre-line">
-                        {siteConfig.featuresSection.subtitle}
+                        {siteConfig.features.subtitle}
                     </p>
                 </div>
 
                 {/* Feature cards */}
                 <div className="grid gap-8 md:grid-cols-3">
-                    {siteConfig.features.map((feature, index) => {
+                    {siteConfig.features.items.map((feature, index) => {
                         const Icon = feature.icon;
                         return (
                             <div key={index} className="flex flex-col items-center text-center p-6 bg-background rounded-2xl border shadow-sm transition-all hover:shadow-md">

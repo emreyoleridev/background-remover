@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import { getThemeClasses } from "@/lib/theme";
 
 export function BuyMeACoffeeWidget() {
-    const { id, message } = siteConfig.buyMeACoffee;
+    const { id, message } = siteConfig.integrations.buyMeACoffee;
     const theme = getThemeClasses();
     const hexColor = theme.hex;
 

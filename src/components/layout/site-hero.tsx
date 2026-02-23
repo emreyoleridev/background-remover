@@ -16,18 +16,18 @@ export function SiteHero() {
             <Container className="flex flex-col items-center text-center">
                 <div className={`inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium mb-8 ${theme.badge}`}>
                     <Shield className="mr-2 h-4 w-4" />
-                    {siteConfig.heroBadgeText}
+                    {siteConfig.hero.badgeText}
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-                    <span className="block text-foreground">{siteConfig.heroTitle.split("_")[0]}</span>
+                    <span className="block text-foreground">{siteConfig.hero.title.split("_")[0]}</span>
                     <span className={`block mt-2 bg-gradient-to-r bg-clip-text text-transparent ${theme.gradientText}`}>
-                        {siteConfig.heroTitle.split("_")[1]}
+                        {siteConfig.hero.title.split("_")[1]}
                     </span>
                 </h1>
 
                 <p className="max-w-[42rem] mx-auto leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                    {siteConfig.heroSubtitle}
+                    {siteConfig.hero.subtitle}
                 </p>
             </Container>
         </section>

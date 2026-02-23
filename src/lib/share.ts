@@ -25,9 +25,10 @@ export function openShare(url: string): void {
 
 export const getShareData = () => {
     const currentUrl = getCurrentUrl();
+    const cleanName = siteConfig.siteName.replace("_", "");
     return {
         url: currentUrl,
-        text: `${siteConfig.share.shareText} — ${siteConfig.siteName}`,
-        title: siteConfig.siteName,
+        text: `${siteConfig.integrations.share.shareText} — ${cleanName}`,
+        title: cleanName,
     };
 };

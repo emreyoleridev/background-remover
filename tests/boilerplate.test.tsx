@@ -57,7 +57,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.getByText(siteConfig.siteName.split("_")[1])).toBeInTheDocument();
         const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
         expect(githubLink).toBeInTheDocument();
-        expect(githubLink).toHaveAttribute('href', siteConfig.githubRepoUrl);
+        expect(githubLink).toHaveAttribute('href', siteConfig.links.githubRepo);
     });
 
     it('2) Theme toggle exists', () => {
@@ -67,8 +67,8 @@ describe('Tool Boilerplate Components', () => {
 
     it('3) Hero renders badge + title lines', () => {
         render(<SiteHero />);
-        expect(screen.getByText(siteConfig.heroBadgeText)).toBeInTheDocument();
-        expect(screen.getByText(siteConfig.heroTitle.split("_")[0])).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.hero.badgeText)).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.hero.title.split("_")[0])).toBeInTheDocument();
     });
 
     it('4) Subscribe modal functionality', async () => {
@@ -79,7 +79,7 @@ describe('Tool Boilerplate Components', () => {
 
         act(() => {
             triggerSubscribeModal();
-            vi.advanceTimersByTime(siteConfig.subscribe.delaySecondsAfterSuccess * 1000 + 100);
+            vi.advanceTimersByTime(siteConfig.integrations.subscribe.delaySecondsAfterSuccess * 1000 + 100);
         });
 
         expect(screen.getByText(/new tool/i)).toBeInTheDocument();
@@ -99,7 +99,7 @@ describe('Tool Boilerplate Components', () => {
 
         act(() => {
             triggerSubscribeModal();
-            vi.advanceTimersByTime(siteConfig.subscribe.delaySecondsAfterSuccess * 1000 + 100);
+            vi.advanceTimersByTime(siteConfig.integrations.subscribe.delaySecondsAfterSuccess * 1000 + 100);
         });
 
         expect(screen.getByTestId('dialog')).toHaveAttribute('data-state', 'open');
@@ -120,6 +120,6 @@ describe('Tool Boilerplate Components', () => {
         const { container } = render(<BuyMeACoffeeWidget />);
         const script = container.querySelector('script[data-name="BMC-Widget"]');
         expect(script).toBeInTheDocument();
-        expect(script).toHaveAttribute('data-id', siteConfig.buyMeACoffee.id);
+        expect(script).toHaveAttribute('data-id', siteConfig.integrations.buyMeACoffee.id);
     });
 });

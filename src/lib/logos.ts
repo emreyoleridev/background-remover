@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config/site";
 
 export function getLogoDevToken(): string | null {
-    return siteConfig.share.token || null;
+    return siteConfig.integrations.share.token || null;
 }
 
 export function getLogoUrl(domain: string): string | null {

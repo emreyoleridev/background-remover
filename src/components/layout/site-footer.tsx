@@ -8,12 +8,12 @@ export function SiteFooter() {
                 <p className="text-sm leading-loose text-center text-muted-foreground">
                     Built with ❤️ by{" "}
                     <a
-                        href={siteConfig.authorGithubUrl}
+                        href={siteConfig.links.authorGithub}
                         target="_blank"
                         rel="noreferrer"
                         className="font-medium underline underline-offset-4 hover:text-foreground transition-colors"
                     >
-                        {siteConfig.authorName}
+                        {siteConfig.links.authorName}
                     </a>
                 </p>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">

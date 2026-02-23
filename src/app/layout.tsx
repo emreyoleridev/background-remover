@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   keywords: [...siteConfig.seo.keywords],
   authors: [
     {
-      name: siteConfig.authorName,
-      url: siteConfig.authorGithubUrl,
+      name: siteConfig.links.authorName,
+      url: siteConfig.links.authorGithub,
     },
   ],
-  creator: siteConfig.authorName,
+  creator: siteConfig.links.authorName,
   openGraph: {
     type: "website",
     locale: "en_US",

@@ -26,12 +26,12 @@ export function SharePill() {
 
     useEffect(() => { setMounted(true); }, []);
 
-    if (!mounted || !siteConfig.share.enabled) return null;
+    if (!mounted || !siteConfig.integrations.share.enabled) return null;
 
     const bg = accentBg[siteConfig.accentColor] ?? "bg-zinc-700";
-    const enabledPlatforms = siteConfig.share.platforms.filter((p) => p.enabled);
+    const enabledPlatforms = siteConfig.integrations.share.platforms.filter((p: any) => p.enabled);
 
-    const handleShare = async (platform: typeof siteConfig.share.platforms[number]) => {
+    const handleShare = async (platform: any) => {
         const shareData = getShareData();
 
         openShare(buildShareUrl(platform.template, shareData));
@@ -47,7 +47,7 @@ export function SharePill() {
         }
     };
 
-    const logoRadius = (platform: typeof siteConfig.share.platforms[number]) => {
+    const logoRadius = (platform: any) => {
         if (platform.domain === "linkedin.com") {
             return "rounded-sm";
         }

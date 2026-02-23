@@ -39,7 +39,7 @@ export function SubscribeModal() {
     const [open, setOpen] = React.useState(false);
     const [isSubmitting, setIsSubmitting] = React.useState(false);
     const theme = getThemeClasses();
-    const config = siteConfig.subscribe;
+    const config = siteConfig.integrations.subscribe;
 
     React.useEffect(() => {
         if (!config.enabled) return;
