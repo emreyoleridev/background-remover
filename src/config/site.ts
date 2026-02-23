@@ -9,7 +9,16 @@ export const siteConfig = {
     headerIcon: Shield,
 
     // ---------------------------------------------------------------------------
-    // 2. SEO & Metadata
+    // 2. Brand Identity
+    // ---------------------------------------------------------------------------
+    brand: {
+        signatureEnabled: true,
+        signatureText: "// emreyoleri.dev",
+        url: "https://emreyoleri.dev"
+    },
+
+    // ---------------------------------------------------------------------------
+    // 3. SEO & Metadata
     // ---------------------------------------------------------------------------
     seo: {
         title: "SecureStudio - Premium Client-Side Security Tools",
@@ -20,7 +29,7 @@ export const siteConfig = {
     },
 
     // ---------------------------------------------------------------------------
-    // 3. Hero Section
+    // 4. Hero Section
     // ---------------------------------------------------------------------------
     hero: {
         badgeText: "100% SECURE & CLIENT-SIDE",
@@ -29,7 +38,7 @@ export const siteConfig = {
     },
 
     // ---------------------------------------------------------------------------
-    // 4. Theme & Styling
+    // 5. Theme & Styling
     // ---------------------------------------------------------------------------
     // Accent Color Options:
     // - Neutrals: "slate", "gray", "zinc", "neutral", "stone"
@@ -38,7 +47,7 @@ export const siteConfig = {
     accentColor: "violet" as const,
 
     // ---------------------------------------------------------------------------
-    // 5. Links & Author
+    // 6. Links & Author
     // ---------------------------------------------------------------------------
     author: {
         name: "Emre Yoleri",
@@ -56,7 +65,7 @@ export const siteConfig = {
     },
 
     // ---------------------------------------------------------------------------
-    // 6. Integrations & Functional Features
+    // 7. Integrations & Functional Features
     // ---------------------------------------------------------------------------
     integrations: {
         buyMeACoffee: {
@@ -86,7 +95,7 @@ export const siteConfig = {
     },
 
     // ---------------------------------------------------------------------------
-    // 7. Site Content (Features & FAQ)
+    // 8. Site Content (Features & FAQ)
     // ---------------------------------------------------------------------------
     features: {
         badge: "Why Choose Us",
@@ -117,7 +126,7 @@ export const siteConfig = {
         },
     ],
     // ---------------------------------------------------------------------------
-    // 8. Marquee Banner
+    // 9. Marquee Banner
     // ---------------------------------------------------------------------------
     marquee: {
         enabled: true,
@@ -128,7 +137,7 @@ export const siteConfig = {
         }
     },
     // ---------------------------------------------------------------------------
-    // 9. CTA configuration
+    // 10. CTA configuration
     // ---------------------------------------------------------------------------
     cta: {
         requestTool: {
@@ -149,7 +158,7 @@ export const siteConfig = {
         }
     },
     // ---------------------------------------------------------------------------
-    // 10. Project & Build Meta
+    // 11. Project & Build Meta
     // ---------------------------------------------------------------------------
     buildMeta: {
         enabled: true,

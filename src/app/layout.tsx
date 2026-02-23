@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MarqueeBanner } from "@/components/layout/marquee-banner";
+import { DevSignature } from "@/components/layout/dev-signature";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/common/theme-provider";
@@ -91,6 +92,7 @@ export default function RootLayout({
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <MarqueeBanner />
+              <DevSignature />
               <main className="flex-1">{children}</main>
               <SiteFooter />
             </div>
