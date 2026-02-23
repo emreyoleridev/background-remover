@@ -32,7 +32,7 @@ export const siteConfig = {
     // Subscribe Modal
     subscribe: {
         enabled: true,
-        delaySecondsAfterSuccess: 10,
+        delaySecondsAfterSuccess: 2, // Changed from 10 so it's noticeably faster
         googleSheetsEndpoint: "YOUR_GOOGLE_SHEETS_ENDPOINT_HERE",
         localStorageKeyDismissed: "bp_subscribe_dismissed",
         localStorageKeySubmitted: "bp_subscribe_submitted",

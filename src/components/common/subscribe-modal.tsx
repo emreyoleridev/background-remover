@@ -27,11 +27,12 @@ import { getThemeClasses } from "@/lib/theme";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
-export const subscribeEventTarget = new EventTarget();
 export const TRIGGER_SUBSCRIBE_EVENT = "trigger-subscribe";
 
 export function triggerSubscribeModal() {
-    subscribeEventTarget.dispatchEvent(new Event(TRIGGER_SUBSCRIBE_EVENT));
+    if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event(TRIGGER_SUBSCRIBE_EVENT));
+    }
 }
 
 export function SubscribeModal() {
@@ -53,9 +54,9 @@ export function SubscribeModal() {
             }, config.delaySecondsAfterSuccess * 1000);
         };
 
-        subscribeEventTarget.addEventListener(TRIGGER_SUBSCRIBE_EVENT, handleTrigger);
+        window.addEventListener(TRIGGER_SUBSCRIBE_EVENT, handleTrigger);
         return () => {
-            subscribeEventTarget.removeEventListener(TRIGGER_SUBSCRIBE_EVENT, handleTrigger);
+            window.removeEventListener(TRIGGER_SUBSCRIBE_EVENT, handleTrigger);
         };
     }, [config]);
 
