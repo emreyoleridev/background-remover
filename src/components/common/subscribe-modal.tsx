@@ -102,7 +102,7 @@ export function SubscribeModal() {
                     {/* Background Glow */}
                     <div className={`absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full ${theme.bg} opacity-10 blur-[100px] pointer-events-none`}></div>
 
-                    <div className="relative z-10 flex flex-col items-start text-left max-w-3xl">
+                    <div className="relative z-10 flex flex-col items-start text-left w-full">
                         <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
                             <DialogTitle className="text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.05] uppercase">
                                 I build a <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>new tool</span> <br />
@@ -122,7 +122,7 @@ export function SubscribeModal() {
                                     render={({ field }) => (
                                         <FormItem className="w-full">
                                             <FormControl>
-                                                <div className="relative group w-full max-w-2xl">
+                                                <div className="relative group w-full">
                                                     <Input
                                                         placeholder="EMAIL"
                                                         className="h-20 px-8 text-xl md:text-2xl font-bold uppercase tracking-widest rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
