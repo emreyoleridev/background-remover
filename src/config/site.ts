@@ -115,7 +115,18 @@ export const siteConfig = {
         text: "I build free tools every day. I build. I learn. I share. @emreyoleridev",
     },
     // ---------------------------------------------------------------------------
-    // 9. Project & Build Meta
+    // 9. CTA configuration
+    // ---------------------------------------------------------------------------
+    cta: {
+        requestTool: {
+            enabled: true,
+            label: "Request a Tool",
+            url: "https://builtbyemre.userjot.com/",
+            delayMs: 5000,
+        },
+    },
+    // ---------------------------------------------------------------------------
+    // 10. Project & Build Meta
     // ---------------------------------------------------------------------------
     buildMeta: {
         enabled: true,
