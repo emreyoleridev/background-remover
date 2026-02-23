@@ -94,38 +94,54 @@ export function SubscribeModal() {
 
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                    <DialogTitle>Don&apos;t miss the next one.</DialogTitle>
-                    <DialogDescription>
-                        I build a new free tool every day. Get notified when the next one drops.
-                        If you close this, we won&apos;t ask again.
-                    </DialogDescription>
-                </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-4">
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormControl>
-                                        <Input placeholder="you@example.com" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button
-                            type="submit"
-                            className={`w-full ${theme.bg} text-primary-foreground hover:opacity-90 transition-opacity`}
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                            {isSubmitting ? "Subscribing..." : "Subscribe"}
-                        </Button>
-                    </form>
-                </Form>
+            <DialogContent className="max-w-3xl p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]">
+                <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-10 md:p-16 text-center shadow-2xl`}>
+
+                    {/* Decorative gradient orb */}
+                    <div className={`absolute -top-32 -right-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
+                    <div className={`absolute -bottom-32 -left-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
+
+                    <DialogHeader className="space-y-6 mb-10 text-center relative z-10">
+                        <DialogTitle className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                            Don&apos;t miss the <br className="hidden md:block" />
+                            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>next free tool.</span>
+                        </DialogTitle>
+                        <DialogDescription className="text-lg md:text-xl text-zinc-400 max-w-xl mx-auto leading-relaxed">
+                            I build a new free, fast, and secure client-side tool every single day.
+                            Subscribe to get notified. If you close this, we won&apos;t ask again.
+                        </DialogDescription>
+                    </DialogHeader>
+
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10 max-w-lg mx-auto w-full">
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="you@awesome.com"
+                                                className="h-16 px-6 text-lg md:text-xl rounded-xl border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-zinc-600 text-white placeholder:text-zinc-500 shadow-inner"
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage className="text-red-400 text-base" />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button
+                                type="submit"
+                                size="lg"
+                                className={`w-full h-16 text-lg md:text-xl font-bold rounded-xl ${theme.bg} text-white shadow-lg transition-transform hover:scale-[1.02] hover:opacity-90 active:scale-[0.98] border border-white/10`}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting && <Loader2 className="mr-3 h-6 w-6 animate-spin" />}
+                                {isSubmitting ? "Subscribing..." : "Join the Daily List"}
+                            </Button>
+                        </form>
+                    </Form>
+                </div>
             </DialogContent>
         </Dialog>
     );
