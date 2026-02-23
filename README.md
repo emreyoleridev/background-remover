@@ -31,6 +31,42 @@ The subscription feature posts user emails to a Google Sheets endpoint.
 
 *Note: The current implementation sends the request successfully directly from the client side using browser `fetch()`.*
 
+## Branding / Favicons
+
+The following favicon and PWA icon files live under `/public`. Replace them with your own artwork before shipping:
+
+| File | Size | Purpose |
+|---|---|---|
+| `favicon.ico` | — | Classic browser tab icon (fallback) |
+| `favicon-16x16.png` | 16 × 16 | Small browser tab icon |
+| `favicon-32x32.png` | 32 × 32 | Standard browser tab icon |
+| `apple-touch-icon.png` | 180 × 180 | iOS home-screen icon |
+| `android-chrome-192x192.png` | 192 × 192 | Android home-screen / PWA icon |
+| `android-chrome-512x512.png` | 512 × 512 | Android splash / high-DPI PWA icon |
+| `mstile-150x150.png` | 150 × 150 | Windows pinned-site tile |
+| `site.webmanifest` | — | PWA manifest (auto-served) |
+| `browserconfig.xml` | — | Windows / Edge tile config |
+
+### How to replace favicons
+1. Design your icon at **1024 × 1024 px** or larger.
+2. Resize and export all sizes listed above (tools: [realfavicongenerator.net](https://realfavicongenerator.net) or Figma export).
+3. Drop the files into `/public`, overwriting the existing ones.
+4. No code changes are needed — `layout.tsx` and the manifests already reference these paths.
+
+### Config fields that control branding
+
+All branding values live in `src/config/site.ts`:
+
+| Field | Type | Effect |
+|---|---|---|
+| `shortName` | `string` | `short_name` in `site.webmanifest` |
+| `themeColorHex` | `string` (hex) | `theme_color` in manifest + `msapplication-TileColor` meta tag + `TileColor` in `browserconfig.xml` |
+| `backgroundColorHex` | `string` (hex) | `background_color` in `site.webmanifest` |
+
+> **Note:** After changing hex colors make sure to update `public/browserconfig.xml` → `<TileColor>` manually (or wire it through your build step), since that XML is a static file.
+
+---
+
 ## Tech Stack
 - **Framework**: Next.js App Router
 - **Language**: TypeScript
