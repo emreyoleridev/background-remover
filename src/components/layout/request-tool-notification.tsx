@@ -137,44 +137,49 @@ export function RequestToolNotification() {
                 onClick={handleOpen}
                 className={cn(
                     "group relative flex items-center gap-4 p-4 pr-6 rounded-2xl cursor-pointer select-none overflow-hidden",
-                    "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl",
-                    "border border-zinc-200 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
-                    "hover:border-primary/40"
+                    "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-3xl",
+                    "border border-zinc-200 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.25)]",
+                    "hover:border-primary/50 transition-all duration-300"
                 )}
             >
-                {/* Blade Shine Effect */}
+                {/* Elegant Blade Shine Effect (Lighter & Stylish) */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute inset-0 w-[40%] h-full bg-gradient-to-r from-transparent via-primary/20 dark:via-white/5 to-transparent animate-shimmer" />
+                    <div className="absolute inset-0 w-[60%] h-full bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent animate-shimmer-elegant" />
                 </div>
 
-                {/* Left Section: Icon */}
+                {/* Left Section: Glowing Blue Icon with NEW badge */}
                 <div className="relative pointer-events-none">
                     <div className={cn(
-                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl",
-                        theme.badge,
-                        "ring-1 ring-primary/20"
+                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
+                        "bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600",
+                        "text-white shadow-lg animate-glow-blue"
                     )}>
-                        <Wand2 className="w-5 h-5 text-primary" />
+                        <Wand2 className="w-5 h-5 fill-white/20" />
                     </div>
+                    {/* NEW Badge - Restored */}
+                    <span className="absolute -top-1.5 -left-1.5 px-1.5 py-0.5 rounded-full bg-orange-500 text-[9px] font-black text-white uppercase tracking-tighter shadow-lg shadow-orange-500/40 animate-pulse">
+                        New
+                    </span>
                 </div>
 
                 {/* Text Content */}
                 <div className="flex flex-col gap-0.5 relative z-10 pointer-events-none">
                     <h3 className={cn(
-                        "text-[15px] font-bold tracking-tight leading-tight",
+                        "text-[15px] font-extrabold tracking-tight leading-tight",
                         "text-zinc-900 dark:text-zinc-50 group-hover:text-primary transition-colors"
                     )}>
                         {config.label}
                     </h3>
-                    <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-medium leading-normal">
+                    <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-semibold leading-normal">
                         {/* @ts-ignore */}
                         {config.description || "Tell me what to build next"}
                     </p>
                 </div>
 
-                {/* Bottom decorative accent */}
+                {/* Bold Bottom Decorative Accent - Restored */}
                 <div className={cn(
-                    "absolute bottom-0 left-0 h-[2px] w-full bg-zinc-200 dark:bg-white/10 group-hover:bg-primary transition-colors z-20",
+                    "absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r transition-all duration-500 z-20",
+                    theme.gradientText
                 )} />
             </div>
 

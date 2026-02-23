@@ -140,6 +140,52 @@
   animation: marquee 30s linear infinite;
 }
 
+@keyframes shimmer-elegant {
+  0% {
+    transform: translateX(-300%) skewX(-15deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(300%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+    filter: brightness(1);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+    filter: brightness(1.2);
+  }
+}
+
+.animate-shimmer-elegant {
+  animation: shimmer-elegant 4s ease-in-out infinite;
+}
+
+.animate-glow-blue {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
 @keyframes shimmer {
   0% {
     transform: translateX(-200%) skewX(-30deg);
