@@ -107,17 +107,22 @@ export function RequestToolNotification() {
                             "transition-colors duration-300"
                         )}
                     >
-                        {/* Iconic Section: Glowing blue-themed gradient */}
+                        {/* Iconic Section: Using site's primary accent color */}
                         <div className="relative pointer-events-none">
                             <div className={cn(
                                 "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
-                                "bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500", // "Mavi gradient" as requested
-                                "text-white shadow-lg animate-glow-blue" // Pulsing glow
+                                theme.bg, // Sites primary accent color (Amber)
+                                "text-white shadow-lg",
+                                "animate-glow-blue" // This class name is generic enough for the pulse effect
                             )}>
                                 <Wand2 className="w-5 h-5 fill-white/10" />
                             </div>
-                            {/* NEW Badge - Mandatory */}
-                            <span className="absolute -top-1.5 -left-1.5 px-2 py-0.5 rounded-full bg-orange-500 text-[9px] font-black text-white uppercase tracking-tighter shadow-lg shadow-orange-500/40">
+                            {/* NEW Badge - Using site's theme accent */}
+                            <span className={cn(
+                                "absolute -top-1.5 -left-1.5 px-2 py-0.5 rounded-full",
+                                theme.bg,
+                                "text-[9px] font-black text-white uppercase tracking-tighter shadow-lg ring-1 ring-white/20"
+                            )}>
                                 New
                             </span>
                         </div>
@@ -130,7 +135,7 @@ export function RequestToolNotification() {
                             )}>
                                 <span className="relative inline-block overflow-hidden">
                                     <span className="relative z-10">{config.label}</span>
-                                    {/* The Blade Shine (Jilet) Effect: Sharp, fast, exclusively on title text */}
+                                    {/* Sharp Blade Shine Effect exclusively on title */}
                                     <span
                                         className="absolute inset-0 z-20 animate-text-shimmer select-none"
                                         aria-hidden="true"
@@ -145,7 +150,7 @@ export function RequestToolNotification() {
                             </p>
                         </div>
 
-                        {/* Bold Primary Gradient Bottom Border - Mandatory */}
+                        {/* Bold Primary Gradient Bottom Border */}
                         <div className={cn(
                             "absolute bottom-0 left-0 h-[3px] w-full bg-gradient-to-r transition-all duration-500 z-20",
                             theme.gradientText

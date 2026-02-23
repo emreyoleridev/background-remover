@@ -67,6 +67,16 @@ const colors: Record<string, ThemeColorMap> = {
         iconBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
         hex: "#8b5cf6",
     },
+    amber: {
+        text: "text-amber-500",
+        bg: "bg-amber-500",
+        border: "border-amber-500/30",
+        glow: "shadow-amber-500/20",
+        gradientText: "from-amber-400 to-amber-600 dark:from-amber-400 dark:to-amber-200",
+        badge: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+        iconBg: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+        hex: "#f59e0b",
+    },
 };
 
 export function getThemeClasses() {
