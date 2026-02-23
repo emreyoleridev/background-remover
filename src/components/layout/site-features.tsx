@@ -18,16 +18,16 @@ export function SiteFeatures() {
                         theme.text
                     )}>
                         <Sparkles className="h-4 w-4" />
-                        Why Choose Us
+                        {siteConfig.featuresSection.badge}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground uppercase">
-                        Built for{" "}
+                        {siteConfig.featuresSection.titlePrefix}{" "}
                         <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>
-                            Privacy
+                            {siteConfig.featuresSection.titleHighlight}
                         </span>
                     </h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Every tool is engineered to run entirely in your browser <br />no servers, no tracking, no compromises.
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto whitespace-pre-line">
+                        {siteConfig.featuresSection.subtitle}
                     </p>
                 </div>
 
