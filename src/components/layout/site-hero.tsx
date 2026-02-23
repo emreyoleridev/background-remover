@@ -1,6 +1,7 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config/site";
 import { getThemeClasses } from "@/lib/theme";
-import { Shield } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Sparkles } from "lucide-react";
 import { Container } from "@/components/common/container";
 
 export function SiteHero() {
@@ -15,19 +16,19 @@ export function SiteHero() {
 
             <Container className="flex flex-col items-center text-center">
                 <div className={`inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium mb-8 ${theme.badge}`}>
-                    <Shield className="mr-2 h-4 w-4" />
-                    {siteConfig.hero.badgeText}
+                    <Sparkles className="mr-2 h-4 w-4" />
+                    {contentConfig.hero.badgeText}
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-                    <span className="block text-foreground">{siteConfig.hero.title.split("_")[0]}</span>
-                    <span className={`block mt-2 bg-gradient-to-r bg-clip-text text-transparent ${theme.gradientText}`}>
-                        {siteConfig.hero.title.split("_")[1]}
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6">
+                    <span className="block text-zinc-900 dark:text-white leading-[1.1]">{contentConfig.hero.title.split("_")[0]}</span>
+                    <span className={cn("block mt-2 text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>
+                        {contentConfig.hero.title.split("_")[1]}
                     </span>
                 </h1>
 
-                <p className="max-w-[42rem] mx-auto leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                    {siteConfig.hero.subtitle}
+                <p className="max-w-[42rem] mx-auto leading-normal text-zinc-600 dark:text-zinc-400 sm:text-xl sm:leading-8">
+                    {contentConfig.hero.subtitle}
                 </p>
             </Container>
         </section>

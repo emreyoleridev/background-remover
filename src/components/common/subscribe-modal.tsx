@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { siteConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config/site";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage";
 import {
     Dialog,
@@ -41,6 +41,7 @@ export function SubscribeModal() {
     const [isSubmitting, setIsSubmitting] = React.useState(false);
     const theme = getThemeClasses();
     const config = siteConfig.integrations.subscribe;
+    const content = contentConfig.modals.subscribe;
 
     React.useEffect(() => {
         if (!config.enabled) return;
@@ -86,6 +87,23 @@ export function SubscribeModal() {
         }
     };
 
+    const renderTitle = (text: string, theme: any) => {
+        if (!text) return null;
+        const parts = text.split(/(\*[^*\n]+\*|_[^_\n]+_|\n)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith('*') && part.endsWith('*')) {
+                return <span key={index} className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>{part.slice(1, -1)}</span>;
+            }
+            if (part.startsWith('_') && part.endsWith('_')) {
+                return <span key={index} className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">{part.slice(1, -1)}</span>;
+            }
+            if (part === '\n') {
+                return <br key={index} />;
+            }
+            return <React.Fragment key={index}>{part}</React.Fragment>;
+        });
+    };
+
     const handleOpenChange = (newOpen: boolean) => {
         setOpen(newOpen);
         if (!newOpen && !isSubmitting) {
@@ -99,17 +117,17 @@ export function SubscribeModal() {
                 onInteractOutside={(e) => e.preventDefault()}
                 className="!max-w-[95vw] sm:!max-w-[850px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-10 md:p-16 shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-6 sm:p-10 md:p-16 shadow-2xl">
                     {/* Background Glow - Theme aware */}
                     <div className={cn("absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-10 dark:opacity-20 blur-[100px] pointer-events-none", theme.bg)}></div>
 
                     <div className="relative z-10 flex flex-col items-start text-left w-full">
-                        <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
-                            <DialogTitle className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
-                                I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> <br /> every <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
+                        <DialogHeader className="space-y-2 md:space-y-4 mb-6 md:mb-10 text-left items-start w-full">
+                            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
+                                {renderTitle(content.title, theme)}
                             </DialogTitle>
                             <DialogDescription className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
-                                Join the newsletter to get every single tool I build delivered straight to your inbox, the moment it's shipped.
+                                {content.description}
                             </DialogDescription>
                         </DialogHeader>
 
@@ -124,23 +142,23 @@ export function SubscribeModal() {
                                                 <div className="relative group w-full">
                                                     <Input
                                                         placeholder="Email address"
-                                                        className="h-20 px-8 text-xl md:text-2xl font-medium rounded-2xl border-border bg-muted/30 focus-visible:ring-offset-0 focus-visible:ring-1 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground transition-all"
+                                                        className="h-14 sm:h-16 md:h-20 px-4 sm:px-6 md:px-8 text-base sm:text-lg md:text-xl md:text-2xl font-medium rounded-2xl border-border bg-muted/30 focus-visible:ring-offset-0 focus-visible:ring-1 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground transition-all pr-[72px] sm:pr-[84px] md:pr-[100px]"
                                                         {...field}
                                                     />
                                                     <button
                                                         type="submit"
                                                         disabled={isSubmitting}
                                                         className={cn(
-                                                            "absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-xl transition-all shadow-sm",
+                                                            "absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 flex items-center justify-center rounded-xl transition-all shadow-sm",
                                                             theme.bg,
                                                             "text-white hover:scale-105 active:scale-95 disabled:opacity-50"
                                                         )}
                                                         aria-label="Submit email"
                                                     >
                                                         {isSubmitting ? (
-                                                            <Loader2 className="h-7 w-7 animate-spin" />
+                                                            <Loader2 className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 animate-spin" />
                                                         ) : (
-                                                            <Sparkles className="h-7 w-7" />
+                                                            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
                                                         )}
                                                     </button>
                                                 </div>

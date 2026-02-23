@@ -1,4 +1,4 @@
-import { Shield, Zap, Lock, Rocket, Wand2 } from "lucide-react";
+import { Shield, Zap, Lock, Rocket, Wand2, Sparkle, Sparkles, Share2 } from "lucide-react";
 
 export const siteConfig = {
     // ---------------------------------------------------------------------------
@@ -28,14 +28,7 @@ export const siteConfig = {
         twitterHandle: "@emreyoleridev",
     },
 
-    // ---------------------------------------------------------------------------
-    // 4. Hero Section
-    // ---------------------------------------------------------------------------
-    hero: {
-        badgeText: "100% SECURE & CLIENT-SIDE",
-        title: "The Ultimate_Security Toolkit",
-        subtitle: "I build free tools every day. No signups, no tracking. Fast, private, and 100% secure client-side tools.",
-    },
+
 
     // ---------------------------------------------------------------------------
     // 5. Theme & Styling
@@ -45,6 +38,8 @@ export const siteConfig = {
     // - Colors: "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
     // Note: Ensure the color is defined in src/lib/theme.ts to apply specific styles.
     accentColor: "cyan" as const,
+    defaultTheme: "dark" as "light" | "dark" | "system",
+    toastPosition: "top-center" as "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center",
 
     // ---------------------------------------------------------------------------
     // 6. Links & Author
@@ -92,6 +87,26 @@ export const siteConfig = {
                 { id: "vk", name: "VK", domain: "vk.com", template: "https://vk.com/share.php?url={url}", enabled: true },
             ],
         },
+    },
+
+    // ---------------------------------------------------------------------------
+    // 11. Project & Build Meta
+    // ---------------------------------------------------------------------------
+    buildMeta: {
+        enabled: true,
+        buildDay: 42,
+        startedAt: "2025-01-01",
+    },
+} as const;
+
+export const contentConfig = {
+    // ---------------------------------------------------------------------------
+    // 4. Hero Section
+    // ---------------------------------------------------------------------------
+    hero: {
+        badgeText: "100% SECURE & CLIENT-SIDE",
+        title: "The Ultimate_Security Toolkit",
+        subtitle: "I build free tools every day. No signups, no tracking. Fast, private, and 100% secure client-side tools.",
     },
 
     // ---------------------------------------------------------------------------
@@ -145,26 +160,45 @@ export const siteConfig = {
             label: "Have a tool idea? ✨",
             description: "Tell me what to build next and I'll build it!",
             url: "https://builtbyemre.userjot.com/",
-            icon: Wand2,
+            icon: Sparkles,
             delayMs: 2000,
         },
         discoverMore: {
             enabled: true,
             title: "Like this tool? 👀",
             subtitle: "I build a new one every day. Discover more of my total collection.",
-            href: "https://your-tools-page.com", // MUST come from config
+            href: "https://emreyoleri.dev", // MUST come from config
             icon: Rocket,
             external: true
         }
     },
     // ---------------------------------------------------------------------------
-    // 11. Project & Build Meta
+    // 11. Tool Component (Marketing texts)
     // ---------------------------------------------------------------------------
-    buildMeta: {
-        enabled: true,
-        buildDay: 42,
-        startedAt: "2025-01-01",
+    tool: {
+        demo: {
+            title: "Interactive Tool Demo",
+            description: "Tool Content Goes Here. Replace this shell with your actual tool components.",
+        },
+        sharePrompt: {
+            title: "Found it usefuls?",
+            description: "Share it with your friends and colleagues.",
+            icon: Share2
+        }
     },
+    // ---------------------------------------------------------------------------
+    // 12. Modals (Marketing texts)
+    // ---------------------------------------------------------------------------
+    modals: {
+        subscribe: {
+            title: "I build a *new tool* every _single_ day.",
+            description: "Join the newsletter to get every single tool I build delivered straight to your inbox, the moment it's shipped."
+        },
+        share: {
+            title: "*SHARE* THIS TOOL WITH YOUR _FRIENDS_.",
+            description: "Everything is free, unlimited, and runs locally in your browser. Share it anywhere in seconds."
+        }
+    }
 } as const;
 
 export type SiteConfig = typeof siteConfig;

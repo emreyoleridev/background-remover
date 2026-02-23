@@ -69,7 +69,7 @@ export function DevSignature() {
         <div className="relative w-full z-[10] flex pb-8 md:pb-12 pointer-events-none">
             <div className="absolute top-[28px] left-4 md:left-6 lg:left-8 pointer-events-auto">
                 <Link
-                    href={brand.url}
+                    href={`${brand.url}?ref=${siteConfig.siteName.replace('_', '').toLowerCase()}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
@@ -81,19 +81,19 @@ export function DevSignature() {
                     <div className="flex">
 
                         <pre className={cn(
-                            "whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased italic animate-blink",
+                            "whitespace-pre font-mono text-[3.5px] min-[400px]:text-[4.5px] sm:text-[5.5px] md:text-[7px] leading-[1.05] tracking-tighter antialiased italic animate-blink",
                             "bg-gradient-to-br bg-clip-text text-transparent brightness-90 opacity-100 dark:brightness-125 dark:opacity-90",
                             theme.gradientText
                         )} >
                             {asciiChunk}
                         </pre>
 
-                        <pre className="whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased">
+                        <pre className="whitespace-pre font-mono text-[3.5px] min-[400px]:text-[4.5px] sm:text-[5.5px] md:text-[7px] leading-[1.05] tracking-tighter antialiased">
                             {asciiMiddle}
                         </pre>
 
                         <pre className={cn(
-                            "whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased italic",
+                            "whitespace-pre font-mono text-[3.5px] min-[400px]:text-[4.5px] sm:text-[5.5px] md:text-[7px] leading-[1.05] tracking-tighter antialiased italic",
                             "bg-gradient-to-br bg-clip-text text-transparent brightness-90 opacity-100 dark:brightness-125 dark:opacity-90",
                             theme.gradientText
                         )} >

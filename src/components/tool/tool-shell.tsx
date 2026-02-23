@@ -10,8 +10,9 @@ import { Section } from "@/components/common/section";
 import { getThemeClasses } from "@/lib/theme";
 import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
 import { triggerShareModal } from "@/components/share/share-modal";
-import { Share2 } from "lucide-react";
+import { triggerDiscoverMoreCTA } from "@/components/layout/discover-more-cta";
 import { cn } from "@/lib/utils";
+import { contentConfig } from "@/config/site";
 
 export function ToolShell() {
     const theme = getThemeClasses();
@@ -21,9 +22,9 @@ export function ToolShell() {
             <Container className="max-w-3xl">
                 <Card className="w-full shadow-lg border-border bg-card">
                     <CardHeader>
-                        <CardTitle>Interactive Tool Demo</CardTitle>
+                        <CardTitle>{contentConfig.tool.demo.title}</CardTitle>
                         <CardDescription>
-                            Tool Content Goes Here. Replace this shell with your actual tool components.
+                            {contentConfig.tool.demo.description}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -40,7 +41,10 @@ export function ToolShell() {
                                 <Button
                                     className={`w-full ${theme.bg} hover:opacity-90 text-primary-foreground border-none`}
                                     variant="default"
-                                    onClick={() => triggerSubscribeModal()}
+                                    onClick={() => {
+                                        triggerSubscribeModal();
+                                        triggerDiscoverMoreCTA();
+                                    }}
                                 >
                                     Generate Output
                                 </Button>
@@ -77,6 +81,8 @@ export function ToolShell() {
                             "bg-gradient-to-br from-black/5 via-transparent to-black/5 dark:from-white/5 dark:to-white/5"
                         )} />
 
+
+
                         <div className="flex items-center gap-4">
                             {/* Left accent icon block */}
                             <div className={cn(
@@ -85,16 +91,16 @@ export function ToolShell() {
                                 "shadow-sm",
                                 theme.text
                             )}>
-                                <Share2 className="w-6 h-6 fill-current/10" />
+                                {contentConfig.tool.sharePrompt.icon && <contentConfig.tool.sharePrompt.icon className="w-6 h-6 fill-current/10" />}
                             </div>
 
                             {/* Text block */}
-                            <div className="relative z-10 flex-1 min-w-0 flex flex-col gap-1.5">
-                                <h3 className="text-lg font-bold text-zinc-900 dark:text-white truncate tracking-tight">
-                                    Like this tool? Share it!
+                            <div className="relative z-10 flex-1 min-w-0 flex flex-col">
+                                <h3 className="text-lg font-bold text-zinc-900 dark:text-white  tracking-tight">
+                                    {contentConfig.tool.sharePrompt.title}
                                 </h3>
-                                <p className="text-sm text-zinc-500 dark:text-zinc-400 truncate">
-                                    Help others discover this useful tool.
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400 ">
+                                    {contentConfig.tool.sharePrompt.description}
                                 </p>
                             </div>
                         </div>

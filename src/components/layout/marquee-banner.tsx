@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { siteConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { getThemeClasses } from "@/lib/theme";
 
 export function MarqueeBanner() {
-    const { marquee } = siteConfig;
+    const { marquee } = contentConfig;
     const theme = getThemeClasses();
 
     if (!marquee.enabled) return null;
@@ -19,7 +19,7 @@ export function MarqueeBanner() {
                         <span>{marquee.text}</span>
                         {marquee.platform && (
                             <a
-                                href={marquee.platform.url}
+                                href={`${marquee.platform.url}?ref=${siteConfig.siteName.replace('_', '').toLowerCase()}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={cn(
@@ -39,7 +39,7 @@ export function MarqueeBanner() {
 
     return (
         <div
-            className="relative flex h-10 w-full items-center overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-muted/40 backdrop-blur-sm"
+            className="group relative flex h-10 w-full items-center overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-muted/40 backdrop-blur-sm"
             aria-label="Daily tools updates marquee"
         >
             {/* Left Fade */}

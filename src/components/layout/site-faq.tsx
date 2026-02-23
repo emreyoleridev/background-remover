@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config/site";
 import { getThemeClasses } from "@/lib/theme";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,7 +30,7 @@ export function SiteFaq() {
                 </div>
 
                 <div className="space-y-4">
-                    {siteConfig.faqs.map((faq, index) => (
+                    {contentConfig.faqs.map((faq, index) => (
                         <div
                             key={index}
                             className={cn(

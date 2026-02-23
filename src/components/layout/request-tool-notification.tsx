@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { siteConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { getThemeClasses } from "@/lib/theme";
 
@@ -17,7 +17,7 @@ export function RequestToolNotification() {
     const [isDismissed, setIsDismissed] = useState(false);
 
     const theme = getThemeClasses();
-    const config = siteConfig.cta.requestTool;
+    const config = contentConfig.cta.requestTool;
 
     const handleScroll = useCallback(() => {
         if (typeof window !== "undefined" && window.scrollY > 0) {
@@ -52,7 +52,7 @@ export function RequestToolNotification() {
     const dragOpacity = useTransform(x, [0, 150], [1, 0]);
 
     const handleOpen = () => {
-        window.open(config.url, "_blank", "noopener,noreferrer");
+        window.open(`${config.url}?ref=${siteConfig.siteName.replace('_', '').toLowerCase()}`, "_blank", "noopener,noreferrer");
         setIsDismissed(true);
     };
 
@@ -80,8 +80,8 @@ export function RequestToolNotification() {
                     style={{ x, opacity: dragOpacity }}
                     className={cn(
                         "fixed z-[100]",
-                        "top-20 right-6",
-                        "max-w-[calc(100vw-3rem)] md:max-w-[360px]",
+                        "top-20 right-4 left-4 sm:left-auto sm:right-6",
+                        "sm:w-[360px]",
                         "cursor-grab active:cursor-grabbing"
                     )}
                 >
@@ -90,9 +90,9 @@ export function RequestToolNotification() {
                         role="button"
                         aria-label="Open request tool"
                         className={cn(
-                            "group relative flex items-center gap-4 p-4 pr-8 rounded-2xl select-none overflow-hidden",
+                            "group relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4 pr-6 sm:pr-8 rounded-2xl select-none overflow-hidden",
                             "bg-white dark:bg-zinc-900 backdrop-blur-md",
-                            "border border-zinc-200 dark:border-white/10 shadow-xl",
+                            "border border-zinc-200 dark:border-white/10 shadow-xl w-full",
                             "transition-all duration-300",
                             "hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20",
                             "cursor-pointer"

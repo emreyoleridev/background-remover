@@ -28,7 +28,7 @@ export function SiteFooter() {
                 <p className="text-sm leading-loose text-center text-muted-foreground">
                     Built with ❤️ by{" "}
                     <a
-                        href={author.socials.github}
+                        href={`${author.socials.github}?ref=${siteConfig.siteName.replace('_', '').toLowerCase()}`}
                         target="_blank"
                         rel="noreferrer"
                         className="font-medium underline underline-offset-4 hover:text-foreground transition-colors"
@@ -42,7 +42,7 @@ export function SiteFooter() {
                     {socials.map((social, index) => (
                         <Fragment key={social.name}>
                             <a
-                                href={social.href}
+                                href={`${social.href}?ref=${siteConfig.siteName.replace('_', '').toLowerCase()}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="hover:text-foreground transition-colors"
