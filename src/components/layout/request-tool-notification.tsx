@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { Sparkles, X, ChevronRight } from "lucide-react";
+import { Wand2, X, ChevronRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -105,25 +105,21 @@ export function RequestToolNotification() {
                     "active:scale-[0.97]"
                 )}
             >
-                {/* Animated Inner Glow/Gradient */}
+                {/* Subtle Inner Glow */}
                 <div className={cn(
-                    "absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br",
-                    theme.gradientText
+                    "absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 bg-primary",
                 )} />
 
-                {/* Left Section: Icon within a vibrant gradient square */}
+                {/* Left Section: Icon within a clean container */}
                 <div className="relative">
                     <div className={cn(
-                        "flex-shrink-0 flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg rotate-3 group-hover:rotate-0 transition-transform duration-500",
-                        "bg-gradient-to-br from-primary via-primary/80 to-primary/40 text-primary-foreground",
-                        "ring-4 ring-primary/10"
+                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-500",
+                        theme.badge,
+                        "ring-1 ring-primary/20",
+                        "group-hover:scale-105 group-hover:ring-primary/40"
                     )}>
-                        <Sparkles className="w-7 h-7 animate-pulse fill-white/20" />
+                        <Wand2 className="w-5 h-5 transition-transform" />
                     </div>
-                    {/* Floating badge for extra "pop" */}
-                    <span className="absolute -top-2 -left-2 px-2 py-0.5 rounded-full bg-orange-500 text-[10px] font-black text-white uppercase tracking-tighter shadow-lg shadow-orange-500/30 animate-bounce">
-                        New
-                    </span>
                 </div>
 
                 {/* Text Content: Clearer hierarchy and more color */}
@@ -144,11 +140,11 @@ export function RequestToolNotification() {
                 {/* Interaction Feedback - Arrow */}
                 <div className="flex items-center ml-2">
                     <div className={cn(
-                        "flex items-center justify-center w-10 h-10 rounded-full",
+                        "flex items-center justify-center w-8 h-8 rounded-full",
                         "bg-zinc-100 dark:bg-zinc-800 text-foreground group-hover:bg-primary group-hover:text-primary-foreground",
-                        "shadow-inner transition-all duration-300 group-hover:scale-110"
+                        "shadow-inner transition-all duration-300"
                     )}>
-                        <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+                        <ChevronRight className="w-4 h-4" />
                     </div>
                 </div>
 
@@ -161,10 +157,9 @@ export function RequestToolNotification() {
                     <X className="w-4 h-4" />
                 </button>
 
-                {/* Bottom decorative color bar */}
+                {/* Subtle border accent */}
                 <div className={cn(
-                    "absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r",
-                    theme.gradientText
+                    "absolute bottom-0 left-0 h-[2px] w-full bg-primary/20 group-hover:bg-primary transition-colors",
                 )} />
             </div>
         </div>
