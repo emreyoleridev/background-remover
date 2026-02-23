@@ -105,7 +105,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.getByTestId('dialog')).toHaveAttribute('data-state', 'open');
 
         const input = screen.getByPlaceholderText('EMAIL');
-        const submitBtn = screen.getByRole('button', { name: /SUBSCRIBE/i });
+        const submitBtn = screen.getByRole('button', { name: /Submit email/i });
 
         // Invalid email
         fireEvent.change(input, { target: { value: 'invalid-email' } });

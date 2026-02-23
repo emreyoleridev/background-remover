@@ -122,23 +122,35 @@ export function SubscribeModal() {
                                     render={({ field }) => (
                                         <FormItem className="w-full">
                                             <FormControl>
-                                                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl">
+                                                <div className="relative group w-full max-w-2xl">
                                                     <Input
                                                         placeholder="EMAIL"
                                                         className="h-20 px-8 text-xl md:text-2xl font-bold uppercase tracking-widest rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
                                                         {...field}
                                                     />
-                                                    <Button
+                                                    <button
                                                         type="submit"
                                                         disabled={isSubmitting}
-                                                        className={`h-20 px-10 rounded-2xl ${theme.bg} text-white text-xl font-black uppercase tracking-widest hover:opacity-90 transition-all shadow-xl active:scale-95`}
+                                                        className={`absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-xl ${theme.text} hover:bg-white/5 transition-all disabled:opacity-50`}
+                                                        aria-label="Submit email"
                                                     >
                                                         {isSubmitting ? (
                                                             <Loader2 className="h-8 w-8 animate-spin" />
                                                         ) : (
-                                                            "SUBSCRIBE"
+                                                            <svg
+                                                                viewBox="0 0 24 24"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2.5"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                className="h-8 w-8"
+                                                            >
+                                                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                                            </svg>
                                                         )}
-                                                    </Button>
+                                                    </button>
                                                 </div>
                                             </FormControl>
                                             <FormMessage className="text-red-400 text-lg mt-3" />
