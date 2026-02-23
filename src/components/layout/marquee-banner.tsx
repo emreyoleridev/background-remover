@@ -15,10 +15,10 @@ export function MarqueeBanner() {
     const parts = marquee.text.split(/(@emreyoleridev)/);
 
     const marqueeContent = (
-        <div className="flex shrink-0 items-center gap-8 px-4">
+        <div className="flex shrink-0 items-center">
             {Array.from({ length: 3 }).map((_, i) => (
-                <span key={i} className="flex items-center gap-8">
-                    <span className="inline-flex items-center whitespace-nowrap text-sm font-medium tracking-wide text-muted-foreground uppercase">
+                <span key={i} className="flex items-center">
+                    <span className="inline-flex items-center whitespace-nowrap px-8 text-sm font-medium tracking-wide text-muted-foreground uppercase">
                         {parts.map((part, index) =>
                             part === "@emreyoleridev" ? (
                                 <span key={index} className={cn("font-bold", theme.text)}>
