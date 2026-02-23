@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Rocket } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { getThemeClasses } from "@/lib/theme";
@@ -10,7 +9,6 @@ import { getThemeClasses } from "@/lib/theme";
  * DiscoverMoreCTA Component
  * 
  * A fixed bottom-left CTA card that encourages users to discover more tools.
- * Fully config-driven from siteConfig.cta.discoverMore.
  */
 export function DiscoverMoreCTA() {
     const config = siteConfig.cta.discoverMore;
@@ -23,38 +21,53 @@ export function DiscoverMoreCTA() {
     const content = (
         <div
             className={cn(
-                "group relative flex items-center gap-4 p-4 rounded-2xl select-none overflow-hidden",
-                "bg-background/90 backdrop-blur-md",
-                "border border-white/10 shadow-xl",
-                "max-w-[300px] sm:max-w-[360px]",
-                "transition-all duration-300",
-                "hover:-translate-y-1 hover:border-white/20",
+                "group relative flex flex-col gap-4 p-4 rounded-2xl select-none overflow-hidden",
+                "bg-white dark:bg-zinc-900 backdrop-blur-md",
+                "border border-zinc-200 dark:border-white/10 shadow-xl",
+                "max-w-[320px] sm:max-w-[380px]",
+                "transition-all duration-500 ease-out",
+                "hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20 hover:shadow-2xl",
                 "cursor-pointer"
             )}
         >
             {/* Subtle Accent Glow */}
             <div className={cn(
                 "absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                "bg-gradient-to-br from-white/5 via-white/0 to-white/5"
+                "bg-gradient-to-br from-black/5 via-transparent to-black/5 dark:from-white/5 dark:to-white/5"
             )} />
 
-            {/* Left accent icon block */}
-            <div className={cn(
-                "relative z-10 flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
-                "bg-accent/20 shadow-sm",
-                theme.text // Use theme's primary color for the icon
-            )}>
-                <Rocket className="w-6 h-6 fill-current/10" />
+            <div className="flex items-center gap-4">
+                {/* Left accent icon block */}
+                <div className={cn(
+                    "relative z-10 flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
+                    theme.iconBg,
+                    "shadow-sm",
+                    theme.text
+                )}>
+                    {config.icon && <config.icon className="w-6 h-6 fill-current/10" />}
+                </div>
+
+                {/* Text block */}
+                <div className="relative z-10 flex-1 min-w-0 flex flex-col gap-0.5">
+                    <h3 className="text-sm font-semibold text-zinc-900 dark:text-white truncate tracking-tight">
+                        {config.title}
+                    </h3>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-snug line-clamp-2">
+                        {config.subtitle}
+                    </p>
+                </div>
             </div>
 
-            {/* Right text block */}
-            <div className="relative z-10 flex flex-col gap-0.5">
-                <h3 className="text-sm font-semibold text-foreground">
-                    {config.title}
-                </h3>
-                <p className="text-xs text-muted-foreground leading-snug">
-                    {config.subtitle}
-                </p>
+            {/* Bottom action button: Subtle Hover */}
+            <div className={cn(
+                "relative z-10 flex items-center justify-center w-full px-4 py-2.5 rounded-xl transition-all duration-300",
+                "bg-zinc-50 dark:bg-white/5 border border-zinc-200/50 dark:border-white/10",
+                "group-hover:bg-zinc-100 dark:group-hover:bg-white/10",
+                "group-hover:border-zinc-300 dark:group-hover:border-white/20",
+                theme.text,
+                "text-[10px] font-bold uppercase tracking-widest text-center"
+            )}>
+                Discover more
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { Wand2 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -11,12 +10,6 @@ import { getThemeClasses } from "@/lib/theme";
  * RequestToolNotification Component
  * 
  * A premium, interactive floating CTA built with Framer Motion.
- * Features:
- * - Delayed entry (5s)
- * - Swipe-right to dismiss
- * - Sharp "Blade" shine effect exclusively on the title text
- * - Theme-consistent colors with a vibrant glowing icon
- * - Persistent bottom accent border and "New" badge
  */
 export function RequestToolNotification() {
     const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +19,6 @@ export function RequestToolNotification() {
     const theme = getThemeClasses();
     const config = siteConfig.cta.requestTool;
 
-    // Detect scroll to prevent appearance
     const handleScroll = useCallback(() => {
         if (typeof window !== "undefined" && window.scrollY > 0) {
             setHasScrolled(true);
@@ -36,7 +28,6 @@ export function RequestToolNotification() {
     useEffect(() => {
         if (!config.enabled || isDismissed) return;
 
-        // Initial check
         if (typeof window !== "undefined" && window.scrollY > 0) {
             setHasScrolled(true);
             return;
@@ -57,17 +48,12 @@ export function RequestToolNotification() {
         };
     }, [config.enabled, config.delayMs, hasScrolled, handleScroll, isDismissed]);
 
-    // Motion values for swipe-right dismissal
     const x = useMotionValue(0);
     const dragOpacity = useTransform(x, [0, 150], [1, 0]);
 
     const handleOpen = () => {
-        // Only trigger click if it wasn't a significant drag
-        const currentX = typeof x.get === "function" ? x.get() : 0;
-        if (Math.abs(currentX) < 5) {
-            window.open(config.url, "_blank", "noopener,noreferrer");
-            setIsDismissed(true);
-        }
+        window.open(config.url, "_blank", "noopener,noreferrer");
+        setIsDismissed(true);
     };
 
     if (!config.enabled || isDismissed || (hasScrolled && !isVisible)) {
@@ -87,7 +73,6 @@ export function RequestToolNotification() {
                     dragConstraints={{ left: 0, right: 300 }}
                     dragElastic={0.05}
                     onDragEnd={(_, info) => {
-                        // Dismiss if swiped more than 80px to the RIGHT
                         if (info.offset.x > 80) {
                             setIsDismissed(true);
                         }
@@ -102,37 +87,43 @@ export function RequestToolNotification() {
                 >
                     <div
                         onClick={handleOpen}
+                        role="button"
+                        aria-label="Open request tool"
                         className={cn(
                             "group relative flex items-center gap-4 p-4 pr-8 rounded-2xl select-none overflow-hidden",
-                            "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-3xl",
-                            "border border-zinc-200 dark:border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]",
-                            "transition-colors duration-300",
-                            // "animate-shine"
+                            "bg-white dark:bg-zinc-900 backdrop-blur-md",
+                            "border border-zinc-200 dark:border-white/10 shadow-xl",
+                            "transition-all duration-300",
+                            "hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20",
+                            "cursor-pointer"
                         )}
                     >
-                        {/* Iconic Section: Using site's primary accent color */}
-                        <div className="relative pointer-events-none">
+                        {/* Subtle Accent Glow */}
+                        <div className={cn(
+                            "absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                            "bg-gradient-to-br from-black/5 via-transparent to-black/5 dark:from-white/5 dark:to-white/5"
+                        )} />
+
+                        {/* Iconic Section */}
+                        <div className="relative z-10 pointer-events-none">
                             <div className={cn(
                                 "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
-                                theme.bg, // Sites primary accent color (Amber)
-                                "text-white shadow-lg",
-                                "animate-glow-blue" // This class name is generic enough for the pulse effect
+                                theme.iconBg,
+                                "shadow-sm",
+                                theme.text
                             )}>
-                                <Wand2 className="w-5 h-5 fill-white/10" />
+                                {config.icon && <config.icon className="w-5 h-5 fill-current/10" />}
                             </div>
-                            {/* NEW Badge - Using site's theme accent */}
-
                         </div>
 
                         {/* Text Content */}
                         <div className="flex flex-col gap-0.5 relative z-10 pointer-events-none">
                             <h3 className={cn(
-                                "text-[16px] font-extrabold tracking-tight leading-tight",
-                                "text-zinc-900 dark:text-zinc-50"
+                                "text-sm font-semibold tracking-tight leading-tight",
+                                "text-zinc-900 dark:text-white"
                             )}>
                                 <span className="relative inline-block overflow-hidden">
                                     <span className="relative z-10">{config.label}</span>
-                                    {/* Sharp Blade Shine Effect exclusively on title */}
                                     <span
                                         className="absolute inset-0 z-20 animate-text-shimmer select-none"
                                         aria-hidden="true"
@@ -141,9 +132,9 @@ export function RequestToolNotification() {
                                     </span>
                                 </span>
                             </h3>
-                            <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-semibold leading-normal">
+                            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-snug">
                                 {/* @ts-ignore */}
-                                {config.description || "Tell me what to build next"}
+                                {config.description || "Tell me what to build next!"}
                             </p>
                         </div>
 

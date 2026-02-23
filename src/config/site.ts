@@ -1,9 +1,10 @@
-import { Shield, Zap, Lock } from "lucide-react";
+import { Shield, Zap, Lock, Rocket, Wand2 } from "lucide-react";
 
 export const siteConfig = {
     // ---------------------------------------------------------------------------
     // 1. Brand & Identity
     // ---------------------------------------------------------------------------
+    pk: "boilerplate",
     siteName: "Secure_Studio",
     headerIcon: Shield,
 
@@ -34,16 +35,24 @@ export const siteConfig = {
     // - Neutrals: "slate", "gray", "zinc", "neutral", "stone"
     // - Colors: "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
     // Note: Ensure the color is defined in src/lib/theme.ts to apply specific styles.
-    accentColor: "green" as const,
+    accentColor: "violet" as const,
 
     // ---------------------------------------------------------------------------
     // 5. Links & Author
     // ---------------------------------------------------------------------------
-    links: {
-        githubRepo: "https://github.com/emreyoleri/boilerplate",
-        authorName: "Emre Yoleri",
-        authorGithub: "https://github.com/emreyoleri",
-        authorEmail: "emreyoleridev@gmail.com",
+    author: {
+        name: "Emre Yoleri",
+        email: "emreyoleridev@gmail.com",
+        socials: {
+            instagram: "https://instagram.com/emreyoleridev",
+            tiktok: "https://tiktok.com/@emreyoleridev",
+            youtube: "https://youtube.com/@emreyoleridev",
+            linkedin: "https://linkedin.com/in/emreyoleridev",
+            twitter: "https://twitter.com/emreyoleridev",
+            reddit: "https://reddit.com/u/emreyoleridev",
+            productHunt: "https://www.producthunt.com/@emreyoleridev",
+            github: "https://github.com/emreyoleridev",
+        },
     },
 
     // ---------------------------------------------------------------------------
@@ -112,7 +121,11 @@ export const siteConfig = {
     // ---------------------------------------------------------------------------
     marquee: {
         enabled: true,
-        text: "I build free tools every day. I build. I learn. I share. @emreyoleridev",
+        text: "I build free tools every day. I build. I learn. I share.",
+        platform: {
+            label: "@emreyoleridev",
+            url: "https://x.com/emreyoleridev"
+        }
     },
     // ---------------------------------------------------------------------------
     // 9. CTA configuration
@@ -120,16 +133,18 @@ export const siteConfig = {
     cta: {
         requestTool: {
             enabled: true,
-            label: "Have a Tool Idea? ✨",
-            description: "Tell me what to build next, and I'll make it happen!",
+            label: "Have a tool idea? ✨",
+            description: "Tell me what to build next and I'll build it!",
             url: "https://builtbyemre.userjot.com/",
+            icon: Wand2,
             delayMs: 2000,
         },
         discoverMore: {
             enabled: true,
             title: "Like this tool? 👀",
-            subtitle: "I build a new one every day. Discover more.",
+            subtitle: "I build a new one every day. Discover more of my total collection.",
             href: "https://your-tools-page.com", // MUST come from config
+            icon: Rocket,
             external: true
         }
     },

@@ -57,7 +57,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.getByText(siteConfig.siteName.split("_")[1])).toBeInTheDocument();
         const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
         expect(githubLink).toBeInTheDocument();
-        expect(githubLink).toHaveAttribute('href', siteConfig.links.githubRepo);
+        expect(githubLink).toHaveAttribute('href', `${siteConfig.author.socials.github}/${siteConfig.pk}`);
     });
 
     it('2) Theme toggle exists', () => {

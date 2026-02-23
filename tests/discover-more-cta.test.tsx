@@ -15,8 +15,9 @@ vi.mock("@/config/site", async (importOriginal) => {
                 discoverMore: {
                     enabled: true,
                     title: "Like this tool?",
-                    subtitle: "Discover more.",
+                    subtitle: "I build a new one every day. Discover more of my total collection.",
                     href: "https://external.com",
+                    icon: null,
                     external: true
                 }
             }
@@ -37,7 +38,7 @@ describe("DiscoverMoreCTA", () => {
         render(<DiscoverMoreCTA />);
         expect(screen.getByLabelText(/discover more tools/i)).toBeInTheDocument();
         expect(screen.getByText("Like this tool?")).toBeInTheDocument();
-        expect(screen.getByText("Discover more.")).toBeInTheDocument();
+        expect(screen.getByText(/Discover more of my total collection/i)).toBeInTheDocument();
     });
 
     it("does not render when enabled=false", () => {

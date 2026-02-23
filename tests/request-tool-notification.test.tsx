@@ -12,9 +12,10 @@ vi.mock("@/config/site", async (importOriginal) => {
             cta: {
                 requestTool: {
                     enabled: true,
-                    label: "Have a Tool Idea? ✨",
-                    description: "Tell me what to build next, and I'll make it happen!",
+                    label: "Have a tool idea? ✨",
+                    description: "Tell me what to build next, I'll make it happen!",
                     url: "https://builtbyemre.userjot.com/",
+                    icon: null,
                     delayMs: 5000,
                 },
             },
@@ -38,21 +39,23 @@ describe("RequestToolNotification", () => {
 
     it("does not render immediately on load", () => {
         render(<RequestToolNotification />);
-        expect(screen.queryByLabelText(/request a tool/i)).not.toBeInTheDocument();
+        expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
 
-    it("renders after 5000ms if no scroll occurred", async () => {
+    it("renders after 5000ms if no scroll occurred", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5000);
+            vi.advanceTimersByTime(5001);
         });
 
-        expect(screen.getByLabelText(/request a tool/i)).toBeInTheDocument();
-        expect(screen.getByText(/Have a Tool Idea/i)).toBeInTheDocument();
+        const alert = screen.getByRole("alert");
+        expect(alert).toBeInTheDocument();
+        // The title text appears twice due to the shine effect
+        expect(screen.getAllByText(/Have a tool idea/i)[0]).toBeInTheDocument();
     });
 
-    it("does not render if scroll occurs before timer ends", async () => {
+    it("does not render if scroll occurs before timer ends", () => {
         render(<RequestToolNotification />);
 
         // Simulate scroll
@@ -66,23 +69,18 @@ describe("RequestToolNotification", () => {
             vi.advanceTimersByTime(5000);
         });
 
-        expect(screen.queryByLabelText(/request a tool/i)).not.toBeInTheDocument();
+        expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
 
-    it("opens configured URL when clicked", async () => {
+    it("opens configured URL when clicked", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5000);
+            vi.advanceTimersByTime(5001);
         });
 
-        // The notification is now wrapped in motion.div, then a div with onClick
-        const notification = screen.getByRole("alert");
-        const clickable = notification.querySelector('div[class*="cursor-pointer"]');
-
-        if (clickable) {
-            fireEvent.click(clickable);
-        }
+        const clickable = screen.getByRole("button", { name: /open request tool/i });
+        fireEvent.click(clickable);
 
         expect(window.open).toHaveBeenCalledWith(
             "https://builtbyemre.userjot.com/",
@@ -91,13 +89,14 @@ describe("RequestToolNotification", () => {
         );
     });
 
-    it("has correct aria-label for swipe-right dismissal", async () => {
+    it("has correct aria-label for swipe-right dismissal", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5000);
+            vi.advanceTimersByTime(5001);
         });
 
-        expect(screen.getByLabelText(/swipe right to dismiss/i)).toBeInTheDocument();
+        const alert = screen.getByRole("alert");
+        expect(alert).toHaveAttribute("aria-label", expect.stringMatching(/swipe right to dismiss/i));
     });
 });

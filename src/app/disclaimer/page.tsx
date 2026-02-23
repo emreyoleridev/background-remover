@@ -36,8 +36,8 @@ export default function DisclaimerPage() {
                     <h2 className="text-2xl font-semibold text-foreground border-b pb-2">Contact</h2>
                     <p className="text-muted-foreground mt-4 leading-relaxed">
                         If you have any questions about this Disclaimer, please contact us at{" "}
-                        <a href={`mailto:${siteConfig.links.authorEmail}`} className="text-primary hover:underline transition-all">
-                            {siteConfig.links.authorEmail}
+                        <a href={`mailto:${siteConfig.author.email}`} className="text-primary hover:underline transition-all">
+                            {siteConfig.author.email}
                         </a>.
                     </p>
                 </section>

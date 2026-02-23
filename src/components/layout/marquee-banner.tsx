@@ -11,22 +11,24 @@ export function MarqueeBanner() {
 
     if (!marquee.enabled) return null;
 
-    // Split text to highlight @emreyoleridev
-    const parts = marquee.text.split(/(@\w+)/);
-
     const marqueeContent = (
         <div className="flex shrink-0 items-center">
-            {Array.from({ length: 3 }).map((_, i) => (
+            {Array.from({ length: 4 }).map((_, i) => (
                 <span key={i} className="flex items-center">
-                    <span className="inline-flex items-center whitespace-nowrap px-8 text-sm font-medium tracking-wide text-muted-foreground uppercase">
-                        {parts.map((part, index) =>
-                            part.startsWith("@") ? (
-                                <span key={index} className={cn("font-bold mx-1", theme.text)}>
-                                    {part}
-                                </span>
-                            ) : (
-                                <span key={index}>{part}</span>
-                            )
+                    <span className="inline-flex items-center whitespace-nowrap px-10 text-xs font-medium tracking-widest text-muted-foreground uppercase">
+                        <span>{marquee.text}</span>
+                        {marquee.platform && (
+                            <a
+                                href={marquee.platform.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={cn(
+                                    "font-bold ml-2 hover:opacity-80 transition-opacity",
+                                    theme.text
+                                )}
+                            >
+                                {marquee.platform.label}
+                            </a>
                         )}
                     </span>
                     <span className="h-1 w-1 rounded-full bg-muted-foreground/30" aria-hidden="true" />
@@ -37,7 +39,7 @@ export function MarqueeBanner() {
 
     return (
         <div
-            className="relative flex h-10 w-full items-center overflow-hidden border-b border-white/5 bg-muted/40 backdrop-blur-sm"
+            className="relative flex h-10 w-full items-center overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-muted/40 backdrop-blur-sm"
             aria-label="Daily tools updates marquee"
         >
             {/* Left Fade */}

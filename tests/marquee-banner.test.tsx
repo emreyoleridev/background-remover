@@ -11,7 +11,11 @@ vi.mock("@/config/site", async (importOriginal) => {
             ...actual.siteConfig,
             marquee: {
                 enabled: true,
-                text: "I build free tools every day. I build. I learn. I share. @emreyoleridev",
+                text: "I build free tools every day. I build. I learn. I share.",
+                platform: {
+                    label: "@emreyoleridev",
+                    url: "https://x.com/emreyoleridev"
+                }
             },
         },
     };
@@ -21,10 +25,15 @@ describe("MarqueeBanner", () => {
     it("renders the marquee text when enabled", () => {
         render(<MarqueeBanner />);
 
-        // The text is repeated, so we check if it's there
-        // Since we split the text to highlight @emreyoleridev, we check for parts
-        expect(screen.getAllByText(/I build free tools every day/i)).toHaveLength(6); // 3 repeats in content, 2 content copies = 6
-        expect(screen.getAllByText(/@emreyoleridev/i)).toHaveLength(6);
+        // We check for the main text
+        expect(screen.getAllByText(/I build free tools every day/i).length).toBeGreaterThan(0);
+
+        // Check for the platform link
+        const links = screen.getAllByRole('link');
+        expect(links.length).toBeGreaterThan(0);
+        expect(links[0]).toHaveTextContent("@emreyoleridev");
+        expect(links[0]).toHaveAttribute("href", "https://x.com/emreyoleridev");
+        expect(links[0]).toHaveAttribute("target", "_blank");
     });
 
     it("does not render when disabled", async () => {

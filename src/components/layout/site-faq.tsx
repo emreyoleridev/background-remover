@@ -42,10 +42,10 @@ export function SiteFaq() {
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full text-left px-8 py-6 flex items-center justify-between gap-4"
+                                className="w-full cursor-pointer text-left px-8 py-6 flex items-center justify-between gap-4"
                             >
                                 <span className={cn(
-                                    "text-xl font-bold transition-colors",
+                                    "text-xl font-bold transition-colors ",
                                     openIndex === index ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                                 )}>
                                     {faq.question}
