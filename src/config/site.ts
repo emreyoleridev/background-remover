@@ -119,10 +119,8 @@ export const siteConfig = {
     // ---------------------------------------------------------------------------
     buildMeta: {
         enabled: true,
-        projectNumber: 27,
         buildDay: 42,
-        startedAt: "2025-01-01", // optional, for auto-calculation later
-        autoCalculateDay: false  // if true, calculate from startedAt
+        startedAt: "2025-01-01",
     },
 } as const;
 

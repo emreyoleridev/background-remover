@@ -12,10 +12,8 @@ vi.mock("@/config/site", async (importOriginal) => {
             ...actual.siteConfig,
             buildMeta: {
                 enabled: true,
-                projectNumber: 27,
                 buildDay: 42,
-                startedAt: "2025-01-01",
-                autoCalculateDay: false
+                startedAt: "2024-12-12",
             },
         },
     };
@@ -23,20 +21,21 @@ vi.mock("@/config/site", async (importOriginal) => {
 
 describe("ProjectBadge", () => {
     beforeEach(() => {
-        vi.useRealTimers();
         // Reset siteConfig values for each test
         // @ts-ignore
         siteConfig.buildMeta.enabled = true;
         // @ts-ignore
-        siteConfig.buildMeta.autoCalculateDay = false;
-        // @ts-ignore
         siteConfig.buildMeta.buildDay = 42;
+        // @ts-ignore
+        siteConfig.buildMeta.startedAt = "2024-12-12";
     });
 
-    it("renders the correct project number and day from config", () => {
+    it("renders the correct project number and formatted date from config", () => {
         render(<ProjectBadge />);
-        expect(screen.getByText(/Project #27/i)).toBeDefined();
-        expect(screen.getByText(/Day 42/i)).toBeDefined();
+        // Use regex to find text regardless of casing/tags
+        expect(screen.getByText(/42/)).toBeDefined();
+        // 2024-12-12 should be formatted as 12-12-2024
+        expect(screen.getByText(/12-12-2024/)).toBeDefined();
     });
 
     it("does not render when disabled", () => {
@@ -44,24 +43,5 @@ describe("ProjectBadge", () => {
         siteConfig.buildMeta.enabled = false;
         const { container } = render(<ProjectBadge />);
         expect(container.firstChild).toBeNull();
-    });
-
-    it("calculates day correctly when autoCalculateDay is true", () => {
-        // Set fixed "today" to 2025-01-10
-        const mockDate = new Date("2025-01-10T12:00:00Z");
-        vi.useFakeTimers();
-        vi.setSystemTime(mockDate);
-
-        // @ts-ignore
-        siteConfig.buildMeta.autoCalculateDay = true;
-        // @ts-ignore
-        siteConfig.buildMeta.startedAt = "2025-01-01";
-
-        render(<ProjectBadge />);
-
-        // Jan 1 to Jan 10 is 9 days diff + 1 = Day 10
-        expect(screen.getByText(/Day 10/i)).toBeDefined();
-
-        vi.useRealTimers();
     });
 });
