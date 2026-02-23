@@ -21,6 +21,11 @@ export function RequestToolNotification() {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
+    // Swipe state
+    const [startX, setStartX] = useState(0);
+    const [offsetX, setOffsetX] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+
     const theme = getThemeClasses();
     const config = siteConfig.cta.requestTool;
 
@@ -68,13 +73,35 @@ export function RequestToolNotification() {
 
     // Handle opening the link
     const handleOpen = () => {
-        window.open(config.url, "_blank", "noopener,noreferrer");
+        if (Math.abs(offsetX) < 10) { // Only open if not swiping
+            window.open(config.url, "_blank", "noopener,noreferrer");
+        }
     };
 
-    // Handle dismissal
-    const handleDismiss = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setIsDismissed(true);
+    // Swipe Logic
+    const onStart = (clientX: number) => {
+        setStartX(clientX);
+        setIsDragging(true);
+    };
+
+    const onMove = (clientX: number) => {
+        if (!isDragging) return;
+        const diff = clientX - startX;
+        // Only allow swiping left (negative diff) as per "sola kaydırmak"
+        if (diff < 0) {
+            setOffsetX(diff);
+        }
+    };
+
+    const onEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        // If swiped more than 100px to the left, dismiss
+        if (offsetX < -100) {
+            setIsDismissed(true);
+        } else {
+            setOffsetX(0); // Reset position if not dismissed
+        }
     };
 
     // Don't render if it's disabled, dismissed, or scroll prevented it
@@ -86,70 +113,74 @@ export function RequestToolNotification() {
         <div
             role="alert"
             aria-live="polite"
-            aria-label="Request a tool"
+            aria-label="Request a tool. Swipe left to dismiss."
+            onMouseDown={(e) => onStart(e.clientX)}
+            onMouseMove={(e) => onMove(e.clientX)}
+            onMouseUp={onEnd}
+            onMouseLeave={onEnd}
+            onTouchStart={(e) => onStart(e.touches[0].clientX)}
+            onTouchMove={(e) => onMove(e.touches[0].clientX)}
+            onTouchEnd={onEnd}
+            style={{
+                transform: `translateX(${isAnimating ? offsetX : 48}px)`, // Initial position 48px right, then controlled by offsetX
+                opacity: isAnimating ? Math.max(0, 1 + offsetX / 200) : 0, // Fade out as it swipes left
+                transition: isDragging ? "none" : "all 0.5s cubic-bezier(0.23, 1, 0.32, 1)" // No transition during drag
+            }}
             className={cn(
-                "fixed z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+                "fixed z-[100]",
                 // Positioned below Header (56px) + Marquee (40px) + Gap
                 "top-[112px] right-6 md:right-8",
-                isAnimating ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0",
-                "motion-reduce:transition-none motion-reduce:translate-x-0"
+                "motion-reduce:transition-none"
             )}
         >
             <div
                 onClick={handleOpen}
                 className={cn(
-                    "group relative flex items-center gap-4 p-4 pr-10 rounded-2xl cursor-pointer select-none overflow-hidden",
-                    "bg-white/90 dark:bg-zinc-900/90 backdrop-blur-2xl",
+                    "group relative flex items-center gap-4 p-4 pr-6 rounded-2xl cursor-pointer select-none overflow-hidden",
+                    "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl",
                     "border border-zinc-200 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.15)]",
-                    "hover:translate-y-[-2px] hover:border-primary/30 transition-all duration-300",
-                    "active:scale-[0.98]"
+                    "hover:border-primary/40"
                 )}
             >
-                {/* Left Section: Colorful Icon */}
-                <div className="relative">
+                {/* Blade Shine Effect */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 w-[40%] h-full bg-gradient-to-r from-transparent via-primary/20 dark:via-white/5 to-transparent animate-shimmer" />
+                </div>
+
+                {/* Left Section: Icon */}
+                <div className="relative pointer-events-none">
                     <div className={cn(
-                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
+                        "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl",
                         theme.badge,
-                        "ring-1 ring-primary/20",
-                        "group-hover:ring-primary/40 group-hover:scale-105"
+                        "ring-1 ring-primary/20"
                     )}>
-                        <Wand2 className="w-5 h-5 transition-transform" />
+                        <Wand2 className="w-5 h-5 text-primary" />
                     </div>
                 </div>
 
-                {/* Text Content: Focused and Clean */}
-                <div className="flex flex-col gap-0.5">
+                {/* Text Content */}
+                <div className="flex flex-col gap-0.5 relative z-10 pointer-events-none">
                     <h3 className={cn(
-                        "text-[15px] font-semibold tracking-tight leading-tight transition-colors group-hover:text-primary",
-                        "text-zinc-900 dark:text-zinc-100"
+                        "text-[15px] font-bold tracking-tight leading-tight",
+                        "text-zinc-900 dark:text-zinc-50 group-hover:text-primary transition-colors"
                     )}>
                         {config.label}
                     </h3>
                     <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-medium leading-normal">
-                        {/* @ts-ignore - added description to config */}
+                        {/* @ts-ignore */}
                         {config.description || "Tell me what to build next"}
                     </p>
                 </div>
 
-                {/* Static Minimal Arrow */}
-                <div className="flex items-center ml-1">
-                    <ChevronRight className="w-4 h-4 text-zinc-300 dark:text-zinc-600 group-hover:text-primary transition-colors" />
-                </div>
-
-                {/* Manual Close Button - Integrated */}
-                <button
-                    onClick={handleDismiss}
-                    aria-label="Dismiss notification"
-                    className="absolute top-2 right-2 p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-white/5 text-zinc-300 hover:text-zinc-500 dark:text-zinc-600 dark:hover:text-zinc-400 transition-all duration-200"
-                >
-                    <X className="w-3.5 h-3.5" />
-                </button>
-
-                {/* Bottom gradient border - restored from previous version */}
+                {/* Bottom decorative accent */}
                 <div className={cn(
-                    "absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r",
-                    theme.gradientText
+                    "absolute bottom-0 left-0 h-[2px] w-full bg-zinc-200 dark:bg-white/10 group-hover:bg-primary transition-colors z-20",
                 )} />
+            </div>
+
+            {/* Tooltip hint for swipe (optional, but good for UX) */}
+            <div className="mt-2 text-[10px] text-center text-zinc-400/50 font-medium uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                ← Swipe to dismiss
             </div>
         </div>
     );

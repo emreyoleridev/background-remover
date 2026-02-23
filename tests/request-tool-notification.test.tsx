@@ -89,15 +89,24 @@ describe("RequestToolNotification", () => {
         );
     });
 
-    it("dismisses when X is clicked", async () => {
+    it("dismisses when swiped to the left", async () => {
         render(<RequestToolNotification />);
 
         act(() => {
             vi.advanceTimersByTime(5000);
         });
 
-        const closeButton = screen.getByLabelText(/dismiss notification/i);
-        fireEvent.click(closeButton);
+        const notification = screen.getByLabelText(/swipe left to dismiss/i);
+
+        // Simulate swipe left
+        fireEvent.mouseDown(notification, { clientX: 500 });
+        fireEvent.mouseMove(notification, { clientX: 300 }); // Swiped 200px
+        fireEvent.mouseUp(notification);
+
+        // Advance timers for animation
+        act(() => {
+            vi.advanceTimersByTime(500);
+        });
 
         expect(screen.queryByLabelText(/request a tool/i)).not.toBeInTheDocument();
     });
