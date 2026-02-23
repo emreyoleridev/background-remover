@@ -25,7 +25,8 @@ import { subscribeSchema, SubscribeInput } from "@/lib/validators";
 import { postSubscriptionEmail } from "@/lib/sheets";
 import { getThemeClasses } from "@/lib/theme";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const TRIGGER_SUBSCRIBE_EVENT = "trigger-subscribe";
 
@@ -98,19 +99,17 @@ export function SubscribeModal() {
                 onInteractOutside={(e) => e.preventDefault()}
                 className="!max-w-[95vw] sm:!max-w-[850px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0f1a] p-10 md:p-16 shadow-2xl">
-                    {/* Background Glow */}
-                    <div className={`absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full ${theme.bg} opacity-10 blur-[100px] pointer-events-none`}></div>
+                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-10 md:p-16 shadow-2xl">
+                    {/* Background Glow - Theme aware */}
+                    <div className={cn("absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-10 dark:opacity-20 blur-[100px] pointer-events-none", theme.bg)}></div>
 
                     <div className="relative z-10 flex flex-col items-start text-left w-full">
                         <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
-                            <DialogTitle className="text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.05] uppercase">
-                                I build a <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>new tool</span> <br />
-                                every single day.
+                            <DialogTitle className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
+                                I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> <br /> every <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
                             </DialogTitle>
-                            <DialogDescription className="text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed mt-2">
-                                Never miss a release! Subscribe to my daily newsletter <br className="hidden md:block" />
-                                to get every tool delivered to your inbox instantly.
+                            <DialogDescription className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
+                                Join the newsletter to get every single tool I build delivered straight to your inbox, the moment it's shipped.
                             </DialogDescription>
                         </DialogHeader>
 
@@ -125,35 +124,28 @@ export function SubscribeModal() {
                                                 <div className="relative group w-full">
                                                     <Input
                                                         placeholder="Email address"
-                                                        className="h-20 px-8 text-xl md:text-2xl font-medium rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-600 transition-all group-hover:border-zinc-700"
+                                                        className="h-20 px-8 text-xl md:text-2xl font-medium rounded-2xl border-border bg-muted/30 focus-visible:ring-offset-0 focus-visible:ring-1 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground transition-all"
                                                         {...field}
                                                     />
                                                     <button
                                                         type="submit"
                                                         disabled={isSubmitting}
-                                                        className={`absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-xl ${theme.text} hover:bg-white/5 transition-all disabled:opacity-50`}
+                                                        className={cn(
+                                                            "absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-xl transition-all shadow-sm",
+                                                            theme.bg,
+                                                            "text-white hover:scale-105 active:scale-95 disabled:opacity-50"
+                                                        )}
                                                         aria-label="Submit email"
                                                     >
                                                         {isSubmitting ? (
-                                                            <Loader2 className="h-8 w-8 animate-spin" />
+                                                            <Loader2 className="h-7 w-7 animate-spin" />
                                                         ) : (
-                                                            <svg
-                                                                viewBox="0 0 24 24"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeWidth="2.5"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                className="h-8 w-8"
-                                                            >
-                                                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                                            </svg>
+                                                            <Sparkles className="h-7 w-7" />
                                                         )}
                                                     </button>
                                                 </div>
                                             </FormControl>
-                                            <FormMessage className="text-red-400 text-lg mt-3" />
+                                            <FormMessage className="text-destructive text-lg mt-3" />
                                         </FormItem>
                                     )}
                                 />

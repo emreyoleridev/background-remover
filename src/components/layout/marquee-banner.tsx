@@ -12,7 +12,7 @@ export function MarqueeBanner() {
     if (!marquee.enabled) return null;
 
     // Split text to highlight @emreyoleridev
-    const parts = marquee.text.split(/(@emreyoleridev)/);
+    const parts = marquee.text.split(/(@\w+)/);
 
     const marqueeContent = (
         <div className="flex shrink-0 items-center">
@@ -20,8 +20,8 @@ export function MarqueeBanner() {
                 <span key={i} className="flex items-center">
                     <span className="inline-flex items-center whitespace-nowrap px-8 text-sm font-medium tracking-wide text-muted-foreground uppercase">
                         {parts.map((part, index) =>
-                            part === "@emreyoleridev" ? (
-                                <span key={index} className={cn("font-bold", theme.text)}>
+                            part.startsWith("@") ? (
+                                <span key={index} className={cn("font-bold mx-1", theme.text)}>
                                     {part}
                                 </span>
                             ) : (
