@@ -107,6 +107,13 @@ export const siteConfig = {
             answer: "Yes! I build and release a new tool every single day to make your digital life easier and more secure.",
         },
     ],
+    // ---------------------------------------------------------------------------
+    // 8. Marquee Banner
+    // ---------------------------------------------------------------------------
+    marquee: {
+        enabled: true,
+        text: "I build free tools every day. I build. I learn. I share. @emreyoleridev",
+    },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
