@@ -3,7 +3,9 @@ import { Shield, Zap, Lock } from "lucide-react";
 export const siteConfig = {
     // Brand
     siteName: "SecureStudio",
-    headerName: "SecureStudio", // Optional override, otherwise falls back to siteName
+    headerIcon: Shield, // The icon to use in the header
+    headerNamePart1: "Secure", // First part of header name (standard text)
+    headerNamePart2: "Studio", // Second part of header name (accent color)
 
     // Hero Section
     heroBadgeText: "100% SECURE & CLIENT-SIDE",

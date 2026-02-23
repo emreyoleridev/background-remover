@@ -105,7 +105,7 @@ export function SubscribeModal() {
                     <div className={`absolute -bottom-32 -left-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
 
                     <DialogHeader className="space-y-6 mb-10 text-center relative z-10">
-                        <DialogTitle className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        <DialogTitle className="text-4xl text-centerşu m md:text-6xl font-extrabold tracking-tight text-white leading-tight">
                             Don&apos;t miss the <br className="hidden md:block" />
                             <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>next free tool.</span>
                         </DialogTitle>

@@ -53,7 +53,8 @@ describe('Tool Boilerplate Components', () => {
 
     it('1) Renders header with brand name and "GitHub" button', () => {
         render(<SiteHeader />);
-        expect(screen.getByText(siteConfig.siteName)).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.headerNamePart1)).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.headerNamePart2)).toBeInTheDocument();
         const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
         expect(githubLink).toBeInTheDocument();
         expect(githubLink).toHaveAttribute('href', siteConfig.githubRepoUrl);
