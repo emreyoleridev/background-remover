@@ -124,8 +124,8 @@ export function SubscribeModal() {
                                             <FormControl>
                                                 <div className="relative group w-full">
                                                     <Input
-                                                        placeholder="EMAIL"
-                                                        className="h-20 px-8 text-xl md:text-2xl font-bold uppercase tracking-widest rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
+                                                        placeholder="Email address"
+                                                        className="h-20 px-8 text-xl md:text-2xl font-medium rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-600 transition-all group-hover:border-zinc-700"
                                                         {...field}
                                                     />
                                                     <button

@@ -104,7 +104,7 @@ describe('Tool Boilerplate Components', () => {
 
         expect(screen.getByTestId('dialog')).toHaveAttribute('data-state', 'open');
 
-        const input = screen.getByPlaceholderText('EMAIL');
+        const input = screen.getByPlaceholderText('Email address');
         const submitBtn = screen.getByRole('button', { name: /Submit email/i });
 
         // Invalid email
