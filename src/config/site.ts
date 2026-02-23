@@ -45,6 +45,9 @@ export const siteConfig = {
         googleSheetsEndpoint: "https://script.google.com/macros/s/AKfycbzg4doiboFM2vl0DoEMSRXcUoWdyaiIiZEmz5PEQ-1btat9FzS96yyF0jM690XhJIwnvg/exec",
     },
 
+    // Share Section
+    enableShareSection: true,
+
     // Features Section
     features: [
         {
