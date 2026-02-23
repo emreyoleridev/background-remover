@@ -272,7 +272,7 @@
 }
 
 .animate-blink {
-  animation: blink 1.75s infinite;
+  animation: blink 3s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

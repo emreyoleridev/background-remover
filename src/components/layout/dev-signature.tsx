@@ -21,34 +21,47 @@ export function DevSignature() {
     }
 
     // Exact ASCII provided by USER - Escaped backslashes for TS compatibility
-    const asciiSignature = `
-   /$$ /$$         /$$$$$$$$ /$$      /$$ /$$$$$$$  /$$$$$$$$ /$$     /$$ /$$$$$$  /$$       /$$$$$$$$ /$$$$$$$  /$$$$$$    
-  / $$/ $$        | $$_____/| $$$    /$$$| $$__  $$| $$_____/|  $$   /$$//$$__  $$| $$      | $$_____/| $$__  $$|_  $$_/    
- /$$$$$$$$$$      | $$      | $$$$  /$$$$| $$  \\ $$| $$       \\  $$ /$$/| $$  \\ $$| $$      | $$      | $$  \\ $$  | $$      
-|   $$  $$_/      | $$$$$   | $$ $$/$$ $$| $$$$$$$/| $$$$$     \\  $$$$/ | $$  | $$| $$      | $$$$$   | $$$$$$$/  | $$      
- /$$$$$$$$$$      | $$__/   | $$  $$$| $$| $$__  $$| $$__/      \\  $$/  | $$  | $$| $$      | $$__/   | $$__  $$  | $$      
-|_  $$  $$_/      | $$      | $$\\  $ | $$| $$  \\ $$| $$          | $$   | $$  | $$| $$      | $$      | $$  \\ $$  | $$      
-  | $$| $$        | $$$$$$$$| $$ \\/  | $$| $$  | $$| $$$$$$$$    | $$   |  $$$$$$/| $$$$$$$$| $$$$$$$$| $$  | $$ /$$$$$$ /$$
-  |__/|__/        |________/|__/     |__/|__/  |__/|________/    |__/    \\______/ |________/|________/|__/  |__/|______/|__/
-                                                                                                                            
-                                                                                                                            
-                                                                                                                            
+    const asciiChunk = `
+   /$$ /$$  
+  / $$/ $$  
+ /$$$$$$$$$$
+|   $$  $$_/
+ /$$$$$$$$$$
+|_  $$  $$_/
+  | $$| $$  
+  |__/|__/  
+            
+            
+            
 `;
 
-    const asciiDev = `
- /$$$$$$$  /$$$$$$$$ /$$    /$$
-| $$__  $$| $$_____/| $$   | $$
-| $$  \\ $$| $$      | $$   | $$
-| $$  | $$| $$$$$   |  $$ / $$/
-| $$  | $$| $$__/    \\  $$ $$/ 
-| $$  | $$| $$        \\  $$$/  
-| $$$$$$$/| $$$$$$$$   \\  $/   
-|_______/ |________/    \\_/    
-                               
-                               
-                               
+    const asciiMiddle = `
+       /$$$$$$$$ /$$      /$$ /$$$$$$$  /$$$$$$$$ /$$     /$$ /$$$$$$  /$$       /$$$$$$$$ /$$$$$$$  /$$$$$$
+      | $$_____/| $$$    /$$$| $$__  $$| $$_____/|  $$   /$$//$$__  $$| $$      | $$_____/| $$__  $$|_  $$_/
+      | $$      | $$$$  /$$$$| $$  \\ $$| $$       \\  $$ /$$/| $$  \\ $$| $$      | $$      | $$  \\ $$  | $$  
+      | $$$$$   | $$ $$/$$ $$| $$$$$$$/| $$$$$     \\  $$$$/ | $$  | $$| $$      | $$$$$   | $$$$$$$/  | $$  
+      | $$__/   | $$  $$$| $$| $$__  $$| $$__/      \\  $$/  | $$  | $$| $$      | $$__/   | $$__  $$  | $$  
+      | $$      | $$\\  $ | $$| $$  \\ $$| $$          | $$   | $$  | $$| $$      | $$      | $$  \\ $$  | $$  
+      | $$$$$$$$| $$ \\/  | $$| $$  | $$| $$$$$$$$    | $$   |  $$$$$$/| $$$$$$$$| $$$$$$$$| $$  | $$ /$$$$$$
+      |________/|__/     |__/|__/  |__/|________/    |__/    \\______/ |________/|________/|__/  |__/|______/
+                                                                                                            
+                                                                                                            
+                                                                                                            
 `;
 
+    const asciiEnd = `
+     /$$$$$$$  /$$$$$$$$ /$$    /$$
+    | $$__  $$| $$_____/| $$   | $$
+    | $$  \\ $$| $$      | $$   | $$
+    | $$  | $$| $$$$$   |  $$ / $$/
+    | $$  | $$| $$__/    \\  $$ $$/ 
+    | $$  | $$| $$        \\  $$$/  
+ /$$| $$$$$$$/| $$$$$$$$   \\  $/   
+|__/|_______/ |________/    \\_/    
+                                   
+                                   
+                                   
+`;
 
 
 
@@ -67,12 +80,17 @@ export function DevSignature() {
                         )}
                     >
                         <div className="flex">
-                            <pre className="whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-85">
-                                {asciiSignature}
+
+                            <pre className={cn("whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-80 brightness-125 italic animate-blink", theme.text)} >
+                                {asciiChunk}
                             </pre>
 
-                            <pre className={cn("whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-85 animate-blink brightness-125 italic", theme.text)} >
-                                {asciiDev}
+                            <pre className="whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased">
+                                {asciiMiddle}
+                            </pre>
+
+                            <pre className={cn("whitespace-pre font-mono text-[5.5px] sm:text-[7px] leading-[1.05] tracking-tighter antialiased opacity-80 brightness-125 italic", theme.text)} >
+                                {asciiEnd}
                             </pre>
                         </div>
                     </Link>
