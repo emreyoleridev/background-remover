@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Windows / IE / Edge tile configuration.
+  Controls the pinned-site tile on Windows start screen.
+  - TileImage: 150x150 PNG shown inside the tile
+  - TileColor: must match siteConfig.themeColorHex (#052e16)
+  To update: change the hex value below AND siteConfig.themeColorHex in src/config/site.ts
+-->
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square150x150logo src="/mstile-150x150.png"/>
+      <TileColor>#052e16</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>
