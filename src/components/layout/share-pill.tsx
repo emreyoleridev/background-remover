@@ -1,127 +1,166 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { X, Copy } from "lucide-react";
+import { Copy, Share2 } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { getThemeClasses } from "@/lib/theme";
 import { getLogoUrl } from "@/lib/logos";
 import { buildShareUrl, getShareData, openShare } from "@/lib/share";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
-const STORAGE_KEY = "share_pill_dismissed";
+const accentBg: Record<string, string> = {
+    emerald: "bg-emerald-600",
+    teal: "bg-teal-600",
+    indigo: "bg-indigo-600",
+    blue: "bg-blue-600",
+    violet: "bg-violet-600",
+};
 
 export function SharePill() {
-    const [isVisible, setIsVisible] = useState(false);
-    const [isDismissed, setIsDismissed] = useState(true);
-    const theme = getThemeClasses();
+    const [mounted, setMounted] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [triggerHovered, setTriggerHovered] = useState(false);
+    const pillRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (!siteConfig.share.enabled) return;
+    useEffect(() => { setMounted(true); }, []);
 
-        if (siteConfig.share.rememberDismiss) {
-            const dismissed = localStorage.getItem(STORAGE_KEY);
-            if (dismissed === "1") return;
-        }
+    if (!mounted || !siteConfig.share.enabled) return null;
 
-        setIsDismissed(false);
-        setIsVisible(true);
-    }, []);
-
-    if (isDismissed || !siteConfig.share.enabled) return null;
-
-    const handleDismiss = () => {
-        setIsVisible(false);
-        setTimeout(() => {
-            setIsDismissed(true);
-            if (siteConfig.share.rememberDismiss) {
-                localStorage.setItem(STORAGE_KEY, "1");
-            }
-        }, 300);
-    };
+    const bg = accentBg[siteConfig.accentColor] ?? "bg-zinc-700";
+    const enabledPlatforms = siteConfig.share.platforms.filter((p) => p.enabled);
 
     const handleShare = async (platform: typeof siteConfig.share.platforms[number]) => {
         const shareData = getShareData();
-
-        if (platform.action === "copyLink" || platform.action === "copyOnly") {
+        if (platform.action === "copyOnly") {
             try {
                 await navigator.clipboard.writeText(shareData.url);
-                if (platform.id === "copy") {
-                    toast.success("Link copied to clipboard!");
-                } else {
-                    toast.success(`Link copied — paste it into ${platform.name}`);
-                }
-            } catch (err) {
+                toast.success("Link copied to clipboard!");
+            } catch {
                 toast.error("Failed to copy link.");
             }
             return;
         }
-
         if (platform.action === "shareUrl" && platform.template) {
-            const shareUrl = buildShareUrl(platform.template, shareData);
-            openShare(shareUrl);
+            openShare(buildShareUrl(platform.template, shareData));
         }
     };
 
+    const handleCopy = async () => {
+        const shareData = getShareData();
+        try {
+            await navigator.clipboard.writeText(shareData.url);
+            toast.success("Link copied to clipboard!");
+        } catch {
+            toast.error("Failed to copy link.");
+        }
+    };
+
+    const logoRadius = (platform: typeof siteConfig.share.platforms[number]) => {
+        if (platform.domain === "instagram.com") {
+            return "rounded-none";
+        } else if (platform.domain === "linkedin.com") {
+            return "rounded-sm";
+        }
+        return "rounded-full";
+    };
+
     return (
-        <div className={cn(
-            "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 transform",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-        )}>
-            <div className="flex flex-col items-center gap-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                    {siteConfig.share.shareText}
-                </span>
+        <div
+            ref={pillRef}
+            className="fixed z-[9998] flex flex-col items-end"
+            style={{ bottom: "calc(18px + 56px + 24px)", right: "18px" }}
+        // onBlur={(e) => {
+        //     if (!pillRef.current?.contains(e.relatedTarget as Node)) {
+        //         setOpen(false);
+        //     }
+        // }}
+        >
+            {/* Single connected pill containing all icons + trigger at bottom */}
+            <div className={cn(
+                "flex flex-col items-center rounded-full shadow-2xl overflow-hidden transition-transform duration-300",
+                triggerHovered && !open && "scale-110",
+                bg
+            )}>
+                {/* Expandable icon rows — slide open via max-h */}
+                <div
+                    className={cn(
+                        "flex flex-col gap-3 items-center overflow-hidden transition-all duration-500 ease-in-out w-full",
+                        open ? "max-h-[800px]" : "max-h-0"
+                    )}
+                >
 
-                <div className={cn(
-                    "flex items-center gap-2 rounded-full h-14 sm:h-16 px-2 sm:px-3 shadow-2xl border border-white/10 backdrop-blur-md max-w-[92vw]",
-                    siteConfig.accentColor === "emerald" ? "bg-emerald-600/90" :
-                        siteConfig.accentColor === "teal" ? "bg-teal-600/90" :
-                            siteConfig.accentColor === "indigo" ? "bg-indigo-600/90" :
-                                siteConfig.accentColor === "blue" ? "bg-blue-600/90" :
-                                    siteConfig.accentColor === "violet" ? "bg-violet-600/90" : "bg-zinc-800/90"
-                )}>
-                    {/* Close Button */}
+
+                    {[...enabledPlatforms].map((platform) => {
+                        const logoUrl = getLogoUrl(platform.domain);
+                        return (
+                            <Tooltip key={platform.id}>
+                                <TooltipTrigger asChild>
+                                    <button
+                                        onClick={() => handleShare(platform)}
+                                        title={platform.name}
+                                        className="cursor-pointer flex items-center justify-center flex-shrink-0 first:mt-4 last:mb-2"
+                                        aria-label={`Share on ${platform.name}`}
+                                    >
+                                        {logoUrl ? (
+                                            <div className="w-9 h-9 rounded-sm p-1.5 bg-white flex items-center justify-center shadow-sm overflow-hidden">
+                                                <Image
+                                                    src={logoUrl}
+                                                    alt={platform.name}
+                                                    width={28}
+                                                    height={28}
+                                                    className={cn("object-contain", logoRadius(platform))}
+                                                    unoptimized
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-zinc-800 uppercase">
+                                                <Copy className="h-4 w-4 text-zinc-700" />
+                                            </div>
+                                        )}
+                                    </button>
+                                </TooltipTrigger>
+                                <TooltipContent side="left" sideOffset={12}>
+                                    <p>Share on {platform.name}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        );
+                    })}
+
+
+                </div>
+
+                {/* FAB trigger — same width, bottom of pill */}
+                <div className="relative flex items-center justify-center w-16 h-16 flex-shrink-0">
+                    {/* Broadcast rings — only visible when closed */}
+                    {!open && (
+                        <>
+                            <span className="absolute inset-0 rounded-full border border-white/50" style={{ animation: "shareRing 2.2s ease-out infinite" }} />
+                            <span className="absolute inset-0 rounded-full border border-white/30" style={{ animation: "shareRing 2.2s ease-out infinite", animationDelay: "0.75s" }} />
+                            <span className="absolute inset-0 rounded-full border border-white/15" style={{ animation: "shareRing 2.2s ease-out infinite", animationDelay: "1.5s" }} />
+                        </>
+                    )}
+                    <style>{`
+                        @keyframes shareRing {
+                            0%   { transform: scale(0.5); opacity: 0.9; }
+                            100% { transform: scale(2.4); opacity: 0; }
+                        }
+                    `}</style>
                     <button
-                        onClick={handleDismiss}
-                        className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/60 flex items-center justify-center transition-colors border border-white/5"
-                        aria-label="Close share menu"
+                        onClick={() => setOpen((prev) => !prev)}
+                        onMouseEnter={() => setTriggerHovered(true)}
+                        onMouseLeave={() => setTriggerHovered(false)}
+                        className={cn(
+                            "w-16 h-16 flex items-center justify-center flex-shrink-0",
+                            "rounded-full transition-all duration-300 cursor-pointer hover:bg-black/20",
+                            "focus-visible:outline-none relative z-10",
+                            open && "rotate-[135deg]"
+                        )}
+                        aria-label="Share this page"
                     >
-                        <X className="h-5 w-5 text-white" />
+                        <Share2 className="h-6 w-6 text-white" />
                     </button>
-
-                    {/* Icons Row */}
-                    <div className="flex items-center gap-3 sm:gap-4 overflow-x-auto px-2 py-1 scrollbar-hide no-scrollbar">
-                        {siteConfig.share.platforms.map((platform) => {
-                            if (!platform.enabled) return null;
-                            const logoUrl = getLogoUrl(platform.domain);
-
-                            return (
-                                <button
-                                    key={platform.id}
-                                    onClick={() => handleShare(platform)}
-                                    className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full hover:bg-white/10 flex items-center justify-center transition-all active:scale-90"
-                                    aria-label={`Share on ${platform.name}`}
-                                >
-                                    {logoUrl ? (
-                                        <Image
-                                            src={logoUrl}
-                                            alt={platform.name}
-                                            width={26}
-                                            height={26}
-                                            className="opacity-95 rounded-sm"
-                                            unoptimized // For logo.dev external images
-                                        />
-                                    ) : (
-                                        <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-white uppercase">
-                                            {platform.id === "copy" ? <Copy className="h-4 w-4" /> : platform.name[0]}
-                                        </div>
-                                    )}
-                                </button>
-                            );
-                        })}
-                    </div>
                 </div>
             </div>
         </div>

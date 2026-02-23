@@ -101,35 +101,11 @@ export const siteConfig = {
                 enabled: true,
             },
             {
-                id: "hn",
-                name: "Hacker News",
-                domain: "ycombinator.com",
-                action: "shareUrl",
-                template: "https://news.ycombinator.com/submitlink?u={url}&t={title}",
-                enabled: true,
-            },
-            {
-                id: "email",
-                name: "Email",
-                domain: "gmail.com",
-                action: "shareUrl",
-                template: "mailto:?subject={title}&body={text}%0A%0A{url}",
-                enabled: true,
-            },
-            {
                 id: "pinterest",
                 name: "Pinterest",
                 domain: "pinterest.com",
                 action: "shareUrl",
                 template: "https://pinterest.com/pin/create/button/?url={url}&description={text}",
-                enabled: true,
-            },
-            {
-                id: "line",
-                name: "LINE",
-                domain: "line.me",
-                action: "shareUrl",
-                template: "https://social-plugins.line.me/lineit/share?url={url}",
                 enabled: true,
             },
             {
@@ -154,13 +130,7 @@ export const siteConfig = {
                 action: "copyOnly",
                 enabled: true,
             },
-            {
-                id: "copy",
-                name: "Copy Link",
-                domain: "linktr.ee",
-                action: "copyLink",
-                enabled: true,
-            },
+
         ],
     },
 

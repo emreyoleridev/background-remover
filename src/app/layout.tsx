@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/common/theme-provider";
 import { BuyMeACoffeeWidget } from "@/components/common/buymeacoffee-widget";
 import { ModalProvider } from "@/components/common/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,11 +71,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-          </div>
+          <TooltipProvider delayDuration={300}>
+            <div className="relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+            </div>
+          </TooltipProvider>
           <ModalProvider />
           <Toaster position="top-center" />
         </ThemeProvider>
