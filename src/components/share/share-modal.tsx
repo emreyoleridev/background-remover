@@ -74,51 +74,54 @@ export function ShareModal() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent
-                className="!max-w-[95vw] sm:!max-w-[850px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
+                className="!max-w-[95vw] sm:!max-w-2xl w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-10 md:p-16 shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-border bg-background p-6 md:p-10 shadow-2xl">
                     {/* Background Glow - Theme aware */}
-                    <div className={cn("absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-10 dark:opacity-20 blur-[100px] pointer-events-none", theme.bg)}></div>
+                    <div className={cn("absolute -bottom-24 -right-24 h-[300px] w-[300px] rounded-full opacity-5 dark:opacity-10 blur-[80px] pointer-events-none", theme.bg)}></div>
 
                     <div className="relative z-10 flex flex-col items-start text-left w-full">
-                        <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
-                            <DialogTitle className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
-                                <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>SHARE</span> THIS TOOL WITH YOUR <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">FRIENDS</span>.
+                        <DialogHeader className="space-y-2 mb-6 text-left items-start w-full">
+                            <DialogTitle className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                                <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>Share</span> this tool.
                             </DialogTitle>
                             <DialogDescription className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
                                 Everything is free, unlimited, and runs locally in your browser. Share it anywhere in seconds.
                             </DialogDescription>
                         </DialogHeader>
 
-                        <div className="w-full space-y-8 mt-4">
+                        <div className="w-full space-y-6 mt-0">
                             {/* Platform Buttons */}
                             <div className="space-y-4">
                                 <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Choose a platform</p>
-                                <div className="grid grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 max-h-[40vh] md:max-h-none overflow-y-auto pr-2 pb-2">
+                                <div className="grid grid-cols-3 md:grid-cols-4 gap-3 max-h-[40vh] md:max-h-none overflow-y-auto pr-1 pb-1">
                                     {config.platforms.filter((p: any) => p.enabled).map((platform: any) => (
                                         <button
                                             key={platform.id}
                                             onClick={() => handleShare(platform)}
-                                            className="group relative flex flex-col items-center justify-center gap-2 rounded-xl bg-white p-4 shadow-sm transition-all hover:scale-[1.02] active:scale-95 border border-transparent hover:border-black/5 dark:hover:border-white/10"
+                                            className={cn(
+                                                "group relative flex flex-col items-center justify-center gap-2 rounded-xl bg-black/5 dark:bg-white/5 p-3 shadow-sm transition-all hover:scale-[1.02] active:scale-95 border border-black/10 dark:border-white/10",
+                                                `hover:${theme.border}`
+                                            )}
                                             aria-label={`Share on ${platform.name}`}
                                         >
-                                            <div className="relative h-10 w-10 flex items-center justify-center rounded-lg bg-zinc-100 overflow-hidden">
+                                            <div className="relative h-8 w-8 flex flex-shrink-0 items-center justify-center rounded-md bg-transparent overflow-hidden">
                                                 {config.token ? (
                                                     <img
                                                         src={`https://img.logo.dev/${platform.domain}?token=${config.token}`}
                                                         alt={platform.name}
-                                                        className="h-6 w-6 object-contain"
+                                                        className="h-5 w-5 object-contain"
                                                         onError={(e) => {
                                                             (e.target as HTMLImageElement).style.display = 'none';
                                                             (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
                                                         }}
                                                     />
                                                 ) : null}
-                                                <span className={cn("text-lg font-bold text-zinc-600", config.token ? "hidden" : "")}>
+                                                <span className={cn("text-sm font-bold text-muted-foreground", config.token ? "hidden" : "")}>
                                                     {platform.name.charAt(0)}
                                                 </span>
                                             </div>
-                                            <span className="text-xs font-medium text-zinc-600 group-hover:text-zinc-900 transition-colors">
+                                            <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                                                 {platform.name}
                                             </span>
                                         </button>
@@ -135,21 +138,21 @@ export function ShareModal() {
                                         readOnly
                                         value={shareUrl}
                                         onFocus={(e) => e.target.select()}
-                                        className="w-full h-16 md:h-20 px-6 md:px-8 pr-20 md:pr-24 text-lg md:text-xl font-medium rounded-2xl border border-border bg-muted/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground text-ellipsis transition-all"
+                                        className="w-full h-14 md:h-16 px-5 md:px-6 pr-16 md:pr-20 text-base md:text-lg font-medium rounded-2xl border border-border bg-muted/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground text-ellipsis transition-all"
                                         placeholder="Generating link..."
                                     />
                                     <button
                                         type="button"
                                         onClick={handleCopy}
                                         className={cn(
-                                            "absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-xl transition-all shadow-sm",
+                                            "absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl transition-all shadow-sm",
                                             theme.bg,
-                                            "text-white hover:scale-105 active:scale-95 disabled:opacity-50"
+                                            "text-white hover:scale-[1.02] active:scale-95 disabled:opacity-50"
                                         )}
                                         aria-label="Copy link"
                                         title="Copy link"
                                     >
-                                        <Copy className="h-5 w-5 md:h-7 md:w-7" />
+                                        <Copy className="h-4 w-4 md:h-5 md:w-5" />
                                     </button>
                                 </div>
                             </div>
