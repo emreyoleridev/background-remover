@@ -20,9 +20,9 @@ export function SiteHero() {
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-                    <span className="block text-foreground">{siteConfig.heroTitleTopLine}</span>
+                    <span className="block text-foreground">{siteConfig.heroTitle.split("_")[0]}</span>
                     <span className={`block mt-2 bg-gradient-to-r bg-clip-text text-transparent ${theme.gradientText}`}>
-                        {siteConfig.heroTitleAccentLine}
+                        {siteConfig.heroTitle.split("_")[1]}
                     </span>
                 </h1>
 

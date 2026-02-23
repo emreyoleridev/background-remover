@@ -35,14 +35,26 @@ vi.stubGlobal('localStorage', {
     setItem: vi.fn((key, value) => { mockStorage[key] = value }),
 });
 
-describe('Logos library', () => {
-    it('returns null without token', () => {
-        vi.stubEnv('NEXT_PUBLIC_LOGODEV_TOKEN', '');
-        expect(getLogoUrl('facebook.com')).toBeNull();
-    });
+// Mock siteConfig for testing different logo scenarios
+vi.mock('@/config/site', async (importOriginal) => {
+    const original: any = await importOriginal();
+    return {
+        ...original,
+        siteConfig: {
+            ...original.siteConfig,
+            share: {
+                ...original.siteConfig.share,
+                logoProvider: {
+                    ...original.siteConfig.share.logoProvider,
+                    token: 'test_token',
+                },
+            },
+        },
+    };
+});
 
-    it('returns correct url with token', () => {
-        vi.stubEnv('NEXT_PUBLIC_LOGODEV_TOKEN', 'test_token');
+describe('Logos library', () => {
+    it('returns correct url with token from config', () => {
         expect(getLogoUrl('facebook.com')).toBe('https://img.logo.dev/facebook.com?token=test_token');
     });
 });

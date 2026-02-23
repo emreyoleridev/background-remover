@@ -53,8 +53,8 @@ describe('Tool Boilerplate Components', () => {
 
     it('1) Renders header with brand name and "GitHub" button', () => {
         render(<SiteHeader />);
-        expect(screen.getByText(siteConfig.headerNamePart1)).toBeInTheDocument();
-        expect(screen.getByText(siteConfig.headerNamePart2)).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.siteName.split("_")[0])).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.siteName.split("_")[1])).toBeInTheDocument();
         const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
         expect(githubLink).toBeInTheDocument();
         expect(githubLink).toHaveAttribute('href', siteConfig.githubRepoUrl);
@@ -68,7 +68,7 @@ describe('Tool Boilerplate Components', () => {
     it('3) Hero renders badge + title lines', () => {
         render(<SiteHero />);
         expect(screen.getByText(siteConfig.heroBadgeText)).toBeInTheDocument();
-        expect(screen.getByText(siteConfig.heroTitleTopLine)).toBeInTheDocument();
+        expect(screen.getByText(siteConfig.heroTitle.split("_")[0])).toBeInTheDocument();
     });
 
     it('4) Subscribe modal functionality', async () => {

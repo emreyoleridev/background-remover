@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: siteConfig.seo.title,
-    template: `%s | ${siteConfig.siteName}`,
+    template: `%s | ${siteConfig.siteName.replace("_", "")}`,
   },
   description: siteConfig.seo.description,
   keywords: [...siteConfig.seo.keywords],
@@ -39,21 +39,12 @@ export const metadata: Metadata = {
     url: siteConfig.seo.url,
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-    siteName: siteConfig.siteName,
-    images: [
-      {
-        url: siteConfig.seo.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.siteName,
-      },
-    ],
+    siteName: siteConfig.siteName.replace("_", ""),
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-    images: [siteConfig.seo.ogImage],
     creator: siteConfig.seo.twitterHandle,
   },
   icons: {

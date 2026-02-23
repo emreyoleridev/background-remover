@@ -9,7 +9,7 @@ export async function postSubscriptionEmail(email: string): Promise<void> {
     const payload = {
         email,
         source: window.location.href,
-        toolName: siteConfig.siteName,
+        toolName: siteConfig.siteName.replace("_", ""),
         timestamp: new Date().toISOString(),
     };
 

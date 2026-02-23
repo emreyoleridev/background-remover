@@ -1,5 +1,7 @@
+import { siteConfig } from "@/config/site";
+
 export function getLogoDevToken(): string | null {
-    return process.env.NEXT_PUBLIC_LOGODEV_TOKEN || null;
+    return siteConfig.share.logoProvider.token || null;
 }
 
 export function getLogoUrl(domain: string): string | null {

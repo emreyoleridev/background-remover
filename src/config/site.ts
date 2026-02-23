@@ -2,10 +2,8 @@ import { Shield, Zap, Lock } from "lucide-react";
 
 export const siteConfig = {
     // Brand
-    siteName: "SecureStudio",
+    siteName: "Secure_Studio",
     headerIcon: Shield, // The icon to use in the header
-    headerNamePart1: "Secure", // First part of header name (standard text)
-    headerNamePart2: "Studio", // Second part of header name (accent color)
 
     // SEO
     seo: {
@@ -13,14 +11,12 @@ export const siteConfig = {
         description: "Free, private, and 100% secure client-side tools. No data ever leaves your browser.",
         keywords: ["security tools", "privacy", "client-side", "free tools", "developer toolkit"],
         url: "https://securestudio.com",
-        ogImage: "/og-image.png",
         twitterHandle: "@emreyoleri",
     },
 
     // Hero Section
     heroBadgeText: "100% SECURE & CLIENT-SIDE",
-    heroTitleTopLine: "The Ultimate",
-    heroTitleAccentLine: "Security Toolkit",
+    heroTitle: "The Ultimate_Security Toolkit",
     heroSubtitle: "I build free tools every day. No signups, no tracking. Fast, private, and 100% secure client-side tools.",
 
     // Theme & Styling
@@ -42,7 +38,7 @@ export const siteConfig = {
     subscribe: {
         enabled: true,
         delaySecondsAfterSuccess: 2, // Changed from 10 so it's noticeably faster
-        googleSheetsEndpoint: "https://script.google.com/macros/s/AKfycbzg4doiboFM2vl0DoEMSRXcUoWdyaiIiZEmz5PEQ-1btat9FzS96yyF0jM690XhJIwnvg/exec",
+        googleSheetsEndpoint: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_ENDPOINT || "",
     },
 
     // Share Section
@@ -53,7 +49,7 @@ export const siteConfig = {
         shareText: "Check out this free tool",
         logoProvider: {
             type: "logodev",
-            tokenEnvKey: "NEXT_PUBLIC_LOGODEV_TOKEN",
+            token: process.env.NEXT_PUBLIC_LOGODEV_TOKEN || "",
         },
         platforms: [
             {
