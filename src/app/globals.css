@@ -153,14 +153,14 @@
 .animate-text-shimmer {
   background: linear-gradient(110deg,
       transparent 0%,
-      rgba(255, 255, 255, 0) 42%,
+      rgba(255, 255, 255, 0) 45%,
       rgba(255, 255, 255, 1) 50%,
-      rgba(255, 255, 255, 0) 58%,
+      rgba(255, 255, 255, 0) 55%,
       transparent 100%);
   background-size: 150% auto;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: text-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: text-shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes shimmer-elegant {

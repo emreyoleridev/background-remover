@@ -104,7 +104,7 @@ export function RequestToolNotification() {
                             "group relative flex items-center gap-4 p-4 pr-8 rounded-2xl select-none overflow-hidden",
                             "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-3xl",
                             "border border-zinc-200 dark:border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]",
-                            "hover:border-primary/40 transition-colors duration-300"
+                            "transition-colors duration-300"
                         )}
                     >
                         {/* Iconic Section: Glowing blue-themed gradient */}
