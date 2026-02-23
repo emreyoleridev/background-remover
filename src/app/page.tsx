@@ -2,14 +2,14 @@ import { SiteHero } from "@/components/layout/site-hero";
 import { SiteFeatures } from "@/components/layout/site-features";
 import { ToolShell } from "@/components/tool/tool-shell";
 import { SiteFaq } from "@/components/layout/site-faq";
-import { ShareSection } from "@/components/layout/share-section";
+import { SharePill } from "@/components/layout/share-pill";
 
 export default function Home() {
   return (
     <>
       <SiteHero />
       <ToolShell />
-      <ShareSection />
+      <SharePill />
       <SiteFeatures />
       <SiteFaq />
     </>
