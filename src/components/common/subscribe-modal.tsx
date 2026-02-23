@@ -106,7 +106,7 @@ export function SubscribeModal() {
                     <div className="relative z-10 flex flex-col items-start text-left w-full">
                         <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
                             <DialogTitle className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground leading-[1.05] uppercase">
-                                I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> <br /> every <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
+                                I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> <br /> every <span className="relative inline-block px-3 italic after:absolute after:bottom-1 after:left-0 after:h-4 md:after:h-6 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
                             </DialogTitle>
                             <DialogDescription className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mt-2">
                                 Join the newsletter to get every single tool I build delivered straight to your inbox, the moment it's shipped.

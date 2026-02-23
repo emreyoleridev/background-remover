@@ -66,6 +66,7 @@ export function RequestToolNotification() {
         const currentX = typeof x.get === "function" ? x.get() : 0;
         if (Math.abs(currentX) < 5) {
             window.open(config.url, "_blank", "noopener,noreferrer");
+            setIsDismissed(true);
         }
     };
 
@@ -94,7 +95,8 @@ export function RequestToolNotification() {
                     style={{ x, opacity: dragOpacity }}
                     className={cn(
                         "fixed z-[100]",
-                        "top-[112px] right-6 md:right-8",
+                        "top-20 right-6",
+                        "max-w-[calc(100vw-3rem)] md:max-w-[360px]",
                         "cursor-grab active:cursor-grabbing"
                     )}
                 >
@@ -104,7 +106,8 @@ export function RequestToolNotification() {
                             "group relative flex items-center gap-4 p-4 pr-8 rounded-2xl select-none overflow-hidden",
                             "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-3xl",
                             "border border-zinc-200 dark:border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]",
-                            "transition-colors duration-300"
+                            "transition-colors duration-300",
+                            // "animate-shine"
                         )}
                     >
                         {/* Iconic Section: Using site's primary accent color */}
@@ -118,13 +121,7 @@ export function RequestToolNotification() {
                                 <Wand2 className="w-5 h-5 fill-white/10" />
                             </div>
                             {/* NEW Badge - Using site's theme accent */}
-                            <span className={cn(
-                                "absolute -top-1.5 -left-1.5 px-2 py-0.5 rounded-full",
-                                theme.bg,
-                                "text-[9px] font-black text-white uppercase tracking-tighter shadow-lg ring-1 ring-white/20"
-                            )}>
-                                New
-                            </span>
+
                         </div>
 
                         {/* Text Content */}

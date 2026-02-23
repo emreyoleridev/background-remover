@@ -9,14 +9,7 @@ import { buildShareUrl, getShareData, openShare } from "@/lib/share";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-
-const accentBg: Record<string, string> = {
-    emerald: "bg-emerald-600",
-    teal: "bg-teal-600",
-    indigo: "bg-indigo-600",
-    blue: "bg-blue-600",
-    violet: "bg-violet-600",
-};
+import { getThemeClasses } from "@/lib/theme";
 
 export function SharePill() {
     const [mounted, setMounted] = useState(false);
@@ -24,11 +17,12 @@ export function SharePill() {
     const [triggerHovered, setTriggerHovered] = useState(false);
     const pillRef = useRef<HTMLDivElement>(null);
 
+    const theme = getThemeClasses();
+
     useEffect(() => { setMounted(true); }, []);
 
     if (!mounted || !siteConfig.integrations.share.enabled) return null;
 
-    const bg = accentBg[siteConfig.accentColor] ?? "bg-zinc-700";
     const enabledPlatforms = siteConfig.integrations.share.platforms.filter((p: any) => p.enabled);
 
     const handleShare = async (platform: any) => {
@@ -38,7 +32,6 @@ export function SharePill() {
         }
 
         const shareData = getShareData();
-
         openShare(buildShareUrl(platform.template, shareData));
     };
 
@@ -74,7 +67,7 @@ export function SharePill() {
             <div className={cn(
                 "flex flex-col items-center rounded-full shadow-2xl overflow-hidden transition-transform duration-300",
                 triggerHovered && !open && "scale-110",
-                bg
+                theme.bg
             )}>
                 {/* Expandable icon rows — slide open via max-h */}
                 <div
@@ -83,8 +76,6 @@ export function SharePill() {
                         open ? "max-h-[800px]" : "max-h-0"
                     )}
                 >
-
-
                     {[...enabledPlatforms].map((platform) => {
                         const logoUrl = getLogoUrl(platform.domain);
                         return (
@@ -120,8 +111,6 @@ export function SharePill() {
                             </Tooltip>
                         );
                     })}
-
-
                 </div>
 
                 {/* FAB trigger — same width, bottom of pill */}
@@ -129,9 +118,9 @@ export function SharePill() {
                     {/* Broadcast rings — only visible when closed */}
                     {!open && (
                         <>
-                            <span className="absolute inset-0 rounded-full border border-white/50" style={{ animation: "shareRing 2.2s ease-out infinite" }} />
-                            <span className="absolute inset-0 rounded-full border border-white/30" style={{ animation: "shareRing 2.2s ease-out infinite", animationDelay: "0.75s" }} />
-                            <span className="absolute inset-0 rounded-full border border-white/15" style={{ animation: "shareRing 2.2s ease-out infinite", animationDelay: "1.5s" }} />
+                            <span className="absolute inset-0 rounded-full border-2" style={{ borderColor: theme.hex, opacity: 0.5, animation: "shareRing 2.2s ease-out infinite" }} />
+                            <span className="absolute inset-0 rounded-full border-2" style={{ borderColor: theme.hex, opacity: 0.3, animation: "shareRing 2.2s ease-out infinite", animationDelay: "0.75s" }} />
+                            <span className="absolute inset-0 rounded-full border-2" style={{ borderColor: theme.hex, opacity: 0.15, animation: "shareRing 2.2s ease-out infinite", animationDelay: "1.5s" }} />
                         </>
                     )}
                     <style>{`

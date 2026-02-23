@@ -65,7 +65,7 @@ export function SubscribeSection() {
                     {/* Left side: Heading & Description */}
                     <div className="flex-1 text-center md:text-left">
                         <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground uppercase leading-tight mb-2">
-                            I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> every <span className="relative inline-block px-2 italic after:absolute after:bottom-1 after:left-0 after:h-3 after:w-full after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
+                            I build a <span className={cn("text-transparent bg-clip-text bg-gradient-to-r", theme.gradientText)}>new tool</span> every <span className="relative inline-block px-2 italic after:absolute after:bottom-1 after:left-0 after:h-3 after:w-full after:bg-zinc-200/60 dark:after:bg-primary/30 after:-z-10 after:-skew-x-12">single</span> day.
                         </h2>
                         <p className="text-muted-foreground leading-relaxed max-w-md">
                             Join the newsletter to get every single tool I build delivered straight to your inbox, the moment it's shipped.

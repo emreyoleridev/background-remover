@@ -34,7 +34,7 @@ export const siteConfig = {
     // - Neutrals: "slate", "gray", "zinc", "neutral", "stone"
     // - Colors: "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
     // Note: Ensure the color is defined in src/lib/theme.ts to apply specific styles.
-    accentColor: "teal" as const,
+    accentColor: "green" as const,
 
     // ---------------------------------------------------------------------------
     // 5. Links & Author
@@ -123,8 +123,15 @@ export const siteConfig = {
             label: "Have a Tool Idea? ✨",
             description: "Tell me what to build next, and I'll make it happen!",
             url: "https://builtbyemre.userjot.com/",
-            delayMs: 5000,
+            delayMs: 2000,
         },
+        discoverMore: {
+            enabled: true,
+            title: "Like this tool? 👀",
+            subtitle: "I build a new one every day. Discover more.",
+            href: "https://your-tools-page.com", // MUST come from config
+            external: true
+        }
     },
     // ---------------------------------------------------------------------------
     // 10. Project & Build Meta

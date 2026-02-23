@@ -11,6 +11,7 @@ import { ModalProvider } from "@/components/common/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RequestToolNotification } from "@/components/layout/request-tool-notification";
+import { DiscoverMoreCTA } from "@/components/layout/discover-more-cta";
 
 import { getThemeClasses } from "@/lib/theme";
 
@@ -100,6 +101,7 @@ export default function RootLayout({
 
         <BuyMeACoffeeWidget />
         <RequestToolNotification />
+        <DiscoverMoreCTA />
       </body>
     </html>
   );
