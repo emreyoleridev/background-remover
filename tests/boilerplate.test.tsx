@@ -51,11 +51,12 @@ describe('Tool Boilerplate Components', () => {
         vi.useRealTimers();
     });
 
-    it('1) Renders header with brand name and "Fork" GitHub button', () => {
+    it('1) Renders header with brand name and "GitHub" button', () => {
         render(<SiteHeader />);
         expect(screen.getByText(siteConfig.siteName)).toBeInTheDocument();
-        expect(screen.getByText('Fork')).toBeInTheDocument();
-        expect(screen.getByText('Fork').closest('a')).toHaveAttribute('href', siteConfig.githubForkUrl);
+        const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
+        expect(githubLink).toBeInTheDocument();
+        expect(githubLink).toHaveAttribute('href', siteConfig.githubRepoUrl);
     });
 
     it('2) Theme toggle exists', () => {
@@ -89,7 +90,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.queryByText(/next free tool/i)).not.toBeInTheDocument();
 
         // Verify localStorage flag prevents returning
-        expect(localStorage.getItem(siteConfig.subscribe.localStorageKeyDismissed)).toBe('true');
+        expect(localStorage.getItem('bp_subscribe_dismissed')).toBe('true');
     });
 
     it('5) Email validation with zod', async () => {

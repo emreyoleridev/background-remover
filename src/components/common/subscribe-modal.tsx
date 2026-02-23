@@ -45,8 +45,8 @@ export function SubscribeModal() {
         if (!config.enabled) return;
 
         const handleTrigger = () => {
-            const dismissed = getLocalStorage(config.localStorageKeyDismissed);
-            const submitted = getLocalStorage(config.localStorageKeySubmitted);
+            const dismissed = getLocalStorage("bp_subscribe_dismissed");
+            const submitted = getLocalStorage("bp_subscribe_submitted");
             if (dismissed || submitted) return;
 
             setTimeout(() => {
@@ -75,7 +75,7 @@ export function SubscribeModal() {
             }
 
             await postSubscriptionEmail(data.email);
-            setLocalStorage(config.localStorageKeySubmitted, "true");
+            setLocalStorage("bp_subscribe_submitted", "true");
             toast.success("Thanks for subscribing!");
             setOpen(false);
         } catch {
@@ -88,7 +88,7 @@ export function SubscribeModal() {
     const handleOpenChange = (newOpen: boolean) => {
         setOpen(newOpen);
         if (!newOpen && !isSubmitting) {
-            setLocalStorage(config.localStorageKeyDismissed, "true");
+            setLocalStorage("bp_subscribe_dismissed", "true");
         }
     };
 

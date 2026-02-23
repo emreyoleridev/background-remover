@@ -17,7 +17,6 @@ export const siteConfig = {
 
     // Links
     githubRepoUrl: "https://github.com/emreyoleri/boilerplate",
-    githubForkUrl: "https://github.com/emreyoleri/boilerplate/fork",
     authorName: "Emre Yoleri",
     authorGithubUrl: "https://github.com/emreyoleri",
 
@@ -25,8 +24,6 @@ export const siteConfig = {
     buyMeACoffee: {
         id: "emreyoleridev",
         message: "I build free tools every day. Support the next one ☕",
-        // Note: BMC script requires hex, but we keep the config here
-        color: "#40DCA5",
     },
 
     // Subscribe Modal
@@ -34,8 +31,6 @@ export const siteConfig = {
         enabled: true,
         delaySecondsAfterSuccess: 2, // Changed from 10 so it's noticeably faster
         googleSheetsEndpoint: "YOUR_GOOGLE_SHEETS_ENDPOINT_HERE",
-        localStorageKeyDismissed: "bp_subscribe_dismissed",
-        localStorageKeySubmitted: "bp_subscribe_submitted",
     },
 
     // Features Section

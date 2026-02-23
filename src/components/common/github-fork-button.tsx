@@ -4,13 +4,13 @@ import { siteConfig } from "@/config/site";
 export function GithubForkButton() {
     return (
         <a
-            href={siteConfig.githubForkUrl}
+            href={siteConfig.githubRepoUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+            className="inline-flex items-center justify-center gap-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
+            aria-label="GitHub Repository"
         >
-            <Github className="h-4 w-4" />
-            <span>Fork</span>
+            <Github className="h-5 w-5" />
         </a>
     );
 }
