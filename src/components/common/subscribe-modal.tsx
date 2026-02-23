@@ -96,9 +96,9 @@ export function SubscribeModal() {
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent
                 onInteractOutside={(e) => e.preventDefault()}
-                className="max-w-3xl p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]"
+                className="max-w-5xl w-[95vw] md:w-[90vw] p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-10 md:p-16 text-center shadow-2xl`}>
+                <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-12 md:p-24 text-center shadow-2xl`}>
 
                     {/* Decorative gradient orb */}
                     <div className={`absolute -top-32 -right-32 h-96 w-96 rounded-full ${theme.bg} opacity-20 blur-[100px] pointer-events-none`}></div>
