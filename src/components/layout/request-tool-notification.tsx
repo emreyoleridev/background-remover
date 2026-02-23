@@ -23,9 +23,7 @@ export function RequestToolNotification() {
 
     // Detect scroll to prevent appearance
     const handleScroll = useCallback(() => {
-        if (window.scrollY > 0) {
-            setHasScrolled(true);
-        }
+        setHasScrolled(true);
     }, []);
 
     useEffect(() => {
@@ -98,20 +96,21 @@ export function RequestToolNotification() {
                 onClick={handleOpen}
                 className={cn(
                     "group relative flex items-center gap-4 p-4 pr-10 rounded-2xl cursor-pointer select-none",
-                    "bg-background/90 dark:bg-black/60 backdrop-blur-xl",
-                    "border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.1)]",
-                    "hover:translate-y-[-2px] hover:border-primary/30 hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)]",
+                    "bg-background/90 dark:bg-zinc-950/80 backdrop-blur-xl",
+                    "border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)]",
+                    "hover:translate-y-[-2px] hover:border-primary/40 hover:shadow-[0_12px_40px_rgb(0,0,0,0.3)]",
+                    "hover:ring-1 hover:ring-primary/20",
                     "active:scale-[0.98] transition-all duration-300"
                 )}
             >
                 {/* Icon with soft accent square */}
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 ring-4 ring-primary/5">
+                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary border border-primary/20 ring-4 ring-primary/5 group-hover:bg-primary/20 transition-colors">
                     <Sparkles className="w-6 h-6 animate-pulse" />
                 </div>
 
                 {/* Text Content */}
                 <div className="flex flex-col gap-0.5">
-                    <h3 className="text-sm font-semibold tracking-tight text-foreground leading-none">
+                    <h3 className="text-sm font-semibold tracking-tight text-foreground leading-none group-hover:text-primary transition-colors">
                         {config.label}
                     </h3>
                     <p className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider">
@@ -121,7 +120,7 @@ export function RequestToolNotification() {
 
                 {/* Right Action / Button */}
                 <div className="flex items-center ml-4">
-                    <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-lg shadow-primary/20 group-hover:bg-primary/90 transition-colors">
+                    <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-lg shadow-primary/20 group-hover:bg-primary group-hover:scale-105 transition-all">
                         Open
                         <ChevronRight className="w-3.5 h-3.5" />
                     </div>
@@ -134,7 +133,7 @@ export function RequestToolNotification() {
                 <button
                     onClick={handleDismiss}
                     aria-label="Dismiss notification"
-                    className="absolute top-2.5 right-2.5 p-1 rounded-full hover:bg-white/5 text-muted-foreground/40 hover:text-muted-foreground transition-all duration-200"
+                    className="absolute top-2.5 right-2.5 p-1.5 rounded-full hover:bg-white/10 text-muted-foreground/40 hover:text-muted-foreground transition-all duration-200"
                 >
                     <X className="w-3.5 h-3.5" />
                 </button>
