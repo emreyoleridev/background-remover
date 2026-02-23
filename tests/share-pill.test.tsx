@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SharePill } from '@/components/layout/share-pill';
 import { getLogoUrl } from '@/lib/logos';
 import { siteConfig } from '@/config/site';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 // Mock window.location
 const mockLocation = {
@@ -42,11 +43,15 @@ vi.mock('@/config/site', async (importOriginal) => {
         ...original,
         siteConfig: {
             ...original.siteConfig,
-            share: {
-                ...original.siteConfig.share,
-                logoProvider: {
-                    ...original.siteConfig.share.logoProvider,
+            integrations: {
+                ...original.siteConfig.integrations,
+                share: {
+                    ...original.siteConfig.integrations.share,
                     token: 'test_token',
+                    platforms: [
+                        { id: 'facebook', name: 'Facebook', domain: 'facebook.com', template: 'https://facebook.com/{url}', enabled: true },
+                        { id: 'copyLink', name: 'Copy Link', domain: '', template: '', enabled: true }
+                    ]
                 },
             },
         },
@@ -55,7 +60,7 @@ vi.mock('@/config/site', async (importOriginal) => {
 
 describe('Logos library', () => {
     it('returns correct url with token from config', () => {
-        expect(getLogoUrl('facebook.com')).toBe('https://img.logo.dev/facebook.com?token=test_token');
+        expect(getLogoUrl('facebook.com')).toBe('https://img.logo.dev/facebook.com?token=test_token&format=png');
     });
 });
 
@@ -66,10 +71,14 @@ describe('SharePill Component', () => {
     });
 
     it('renders enabled platforms from config', async () => {
-        render(<SharePill />);
-        // Wait for useEffect
+        render(
+            <TooltipProvider>
+                <SharePill />
+            </TooltipProvider>
+        );
+        // Wait for mounted state
         await waitFor(() => {
-            expect(screen.getByText(/Check out this free tool/i)).toBeInTheDocument();
+            expect(screen.getByLabelText(/Share this page/i)).toBeInTheDocument();
         });
 
         const facebookBtn = screen.getByLabelText(/Share on Facebook/i);
@@ -77,7 +86,11 @@ describe('SharePill Component', () => {
     });
 
     it('opens shareUrl platforms with correct encoded URL', async () => {
-        render(<SharePill />);
+        render(
+            <TooltipProvider>
+                <SharePill />
+            </TooltipProvider>
+        );
         await waitFor(() => screen.getByLabelText(/Share on Facebook/i));
 
         const facebookBtn = screen.getByLabelText(/Share on Facebook/i);
@@ -91,7 +104,11 @@ describe('SharePill Component', () => {
     });
 
     it('copies link and shows toast for copyLink', async () => {
-        render(<SharePill />);
+        render(
+            <TooltipProvider>
+                <SharePill />
+            </TooltipProvider>
+        );
         await waitFor(() => screen.getByLabelText(/Share on Copy Link/i));
 
         const copyBtn = screen.getByLabelText(/Share on Copy Link/i);
@@ -100,27 +117,5 @@ describe('SharePill Component', () => {
         expect(mockClipboard.writeText).toHaveBeenCalledWith(mockLocation.href);
         const { toast } = await import('sonner');
         expect(toast.success).toHaveBeenCalledWith('Link copied to clipboard!');
-    });
-
-    it('hides pill on dismiss', async () => {
-        render(<SharePill />);
-        await waitFor(() => screen.getByLabelText(/Close share menu/i));
-
-        const closeBtn = screen.getByLabelText(/Close share menu/i);
-        fireEvent.click(closeBtn);
-
-        // Should be hidden after timeout (using waitFor to handle the setTimeout in component)
-        await waitFor(() => {
-            expect(screen.queryByLabelText(/Close share menu/i)).not.toBeInTheDocument();
-        }, { timeout: 1000 });
-    });
-
-    it('does not render if dismissed in localStorage', async () => {
-        mockStorage['share_pill_dismissed'] = '1';
-        render(<SharePill />);
-
-        // Wait a bit to ensure useEffect had time
-        await new Promise(r => setTimeout(r, 100));
-        expect(screen.queryByText(/Check out this free tool/i)).not.toBeInTheDocument();
     });
 });

@@ -32,6 +32,11 @@ export function SharePill() {
     const enabledPlatforms = siteConfig.integrations.share.platforms.filter((p: any) => p.enabled);
 
     const handleShare = async (platform: any) => {
+        if (platform.id === "copyLink") {
+            handleCopy();
+            return;
+        }
+
         const shareData = getShareData();
 
         openShare(buildShareUrl(platform.template, shareData));
