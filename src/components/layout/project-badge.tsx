@@ -10,15 +10,16 @@ export function ProjectBadge() {
 
     if (!buildMeta.enabled) return null;
 
-    // Simple date formatter to convert YYYY-MM-DD to DD-MM-YYYY
+    // Date formatter to convert YYYY-MM-DD to 'DD Month YYYY' (e.g., 17 May 2025)
     const formatDate = (dateStr: string) => {
         const date = new Date(dateStr);
         if (isNaN(date.getTime())) return dateStr;
 
-        const d = String(date.getDate()).padStart(2, "0");
-        const m = String(date.getMonth() + 1).padStart(2, "0");
-        const y = date.getFullYear();
-        return `${d}-${m}-${y}`;
+        return date.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
     };
 
     const formattedDate = formatDate(buildMeta.startedAt);

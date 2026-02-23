@@ -34,8 +34,8 @@ describe("ProjectBadge", () => {
         render(<ProjectBadge />);
         // Use regex to find text regardless of casing/tags
         expect(screen.getByText(/42/)).toBeDefined();
-        // 2024-12-12 should be formatted as 12-12-2024
-        expect(screen.getByText(/12-12-2024/)).toBeDefined();
+        // 2024-12-12 should be formatted as 12 December 2024
+        expect(screen.getByText(/12 December 2024/)).toBeDefined();
     });
 
     it("does not render when disabled", () => {
