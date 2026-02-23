@@ -11,12 +11,13 @@ import { getThemeClasses } from "@/lib/theme";
 import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
 import { triggerShareModal } from "@/components/share/share-modal";
 import { Share2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ToolShell() {
     const theme = getThemeClasses();
 
     return (
-        <Section className="pt-0 md:pt-0 pb-20">
+        <Section className="pt-0 md:pt-0 lg:pt-0 pb-20">
             <Container className="max-w-3xl">
                 <Card className="w-full shadow-lg border-border bg-card">
                     <CardHeader>
@@ -57,17 +58,47 @@ export function ToolShell() {
                 </Card>
 
                 {/* Share Trigger */}
-                <div className="mt-8 flex justify-center w-full">
-                    <Button
-                        variant="ghost"
-                        className="flex items-center gap-2 group hover:bg-muted/50 rounded-full px-6 py-6 text-muted-foreground hover:text-foreground transition-all"
+                <div className="mt-8 flex w-full justify-center">
+                    <button
                         onClick={() => triggerShareModal()}
+                        className={cn(
+                            "group relative flex flex-col gap-4 p-4 rounded-2xl select-none overflow-hidden",
+                            "bg-white dark:bg-zinc-900 backdrop-blur-md",
+                            "border border-zinc-200 dark:border-white/10 shadow-xl",
+                            "w-full max-w-[320px] sm:max-w-[380px]",
+                            "transition-all duration-500 ease-out",
+                            "hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20 hover:shadow-2xl",
+                            "cursor-pointer text-left"
+                        )}
                     >
-                        <span className="flex items-center justify-center p-2 rounded-full bg-muted group-hover:bg-background shadow-sm border border-border group-hover:scale-105 transition-all">
-                            <Share2 className="h-4 w-4" />
-                        </span>
-                        <span className="font-medium">Share this tool</span>
-                    </Button>
+                        {/* Subtle Accent Glow */}
+                        <div className={cn(
+                            "absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                            "bg-gradient-to-br from-black/5 via-transparent to-black/5 dark:from-white/5 dark:to-white/5"
+                        )} />
+
+                        <div className="flex items-center gap-4">
+                            {/* Left accent icon block */}
+                            <div className={cn(
+                                "relative z-10 flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
+                                theme.iconBg,
+                                "shadow-sm",
+                                theme.text
+                            )}>
+                                <Share2 className="w-6 h-6 fill-current/10" />
+                            </div>
+
+                            {/* Text block */}
+                            <div className="relative z-10 flex-1 min-w-0 flex flex-col gap-1.5">
+                                <h3 className="text-lg font-bold text-zinc-900 dark:text-white truncate tracking-tight">
+                                    Like this tool? Share it!
+                                </h3>
+                                <p className="text-sm text-zinc-500 dark:text-zinc-400 truncate">
+                                    Help others discover this useful tool.
+                                </p>
+                            </div>
+                        </div>
+                    </button>
                 </div>
             </Container>
         </Section>

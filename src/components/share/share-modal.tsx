@@ -33,7 +33,7 @@ export function ShareModal() {
         if (!shareUrl) return;
         try {
             await navigator.clipboard.writeText(shareUrl);
-            toast.success("Link copied!");
+            toast.success("Link copied to clipboard!");
         } catch {
             toast.error("Failed to copy link.");
         }
