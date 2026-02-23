@@ -75,20 +75,20 @@ describe('Tool Boilerplate Components', () => {
         render(<SubscribeModal />);
 
         // does NOT show on initial load
-        expect(screen.queryByText(/new tools!/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/new tool/i)).not.toBeInTheDocument();
 
         act(() => {
             triggerSubscribeModal();
             vi.advanceTimersByTime(siteConfig.subscribe.delaySecondsAfterSuccess * 1000 + 100);
         });
 
-        expect(screen.getByText(/new tools!/i)).toBeInTheDocument();
+        expect(screen.getByText(/new tool/i)).toBeInTheDocument();
 
         // Close the modal (dismiss)
         const closeBtn = screen.getByRole('button', { name: /close/i });
         fireEvent.click(closeBtn);
 
-        expect(screen.queryByText(/new tools!/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/new tool/i)).not.toBeInTheDocument();
 
         // Verify localStorage flag prevents returning
         expect(localStorage.getItem('bp_subscribe_dismissed')).toBe('true');
@@ -105,7 +105,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.getByTestId('dialog')).toHaveAttribute('data-state', 'open');
 
         const input = screen.getByPlaceholderText('EMAIL');
-        const submitBtn = screen.getByRole('button', { name: /Submit email/i });
+        const submitBtn = screen.getByRole('button', { name: /SUBSCRIBE/i });
 
         // Invalid email
         fireEvent.change(input, { target: { value: 'invalid-email' } });
