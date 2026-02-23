@@ -2,7 +2,7 @@ import { siteConfig } from "@/config/site";
 
 export async function postSubscriptionEmail(email: string): Promise<void> {
     const endpoint = siteConfig.subscribe.googleSheetsEndpoint;
-    if (!endpoint || endpoint === "YOUR_GOOGLE_SHEETS_ENDPOINT_HERE") {
+    if (!endpoint) {
         throw new Error("Google Sheets endpoint not configured.");
     }
 
@@ -16,9 +16,10 @@ export async function postSubscriptionEmail(email: string): Promise<void> {
     await fetch(endpoint, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "text/plain;charset=utf-8", // JSON yerine text/plain güvenlik için daha iyidir
         },
         body: JSON.stringify(payload),
         mode: "no-cors",
     });
+
 }

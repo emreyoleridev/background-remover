@@ -32,7 +32,7 @@ export const siteConfig = {
     subscribe: {
         enabled: true,
         delaySecondsAfterSuccess: 2, // Changed from 10 so it's noticeably faster
-        googleSheetsEndpoint: "YOUR_GOOGLE_SHEETS_ENDPOINT_HERE",
+        googleSheetsEndpoint: "https://script.google.com/macros/s/AKfycbzg4doiboFM2vl0DoEMSRXcUoWdyaiIiZEmz5PEQ-1btat9FzS96yyF0jM690XhJIwnvg/exec",
     },
 
     // Features Section

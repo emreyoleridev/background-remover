@@ -68,7 +68,7 @@ export function SubscribeModal() {
     const onSubmit = async (data: SubscribeInput) => {
         try {
             setIsSubmitting(true);
-            if (!config.googleSheetsEndpoint || config.googleSheetsEndpoint === "YOUR_GOOGLE_SHEETS_ENDPOINT_HERE") {
+            if (!config.googleSheetsEndpoint) {
                 toast.error("Subscribe endpoint not configured yet.");
                 setIsSubmitting(false);
                 return;
