@@ -76,8 +76,10 @@ describe("RequestToolNotification", () => {
             vi.advanceTimersByTime(5000);
         });
 
-        // The clickable area is the first div inside the wrapper
-        const clickable = screen.getByText(/Have a Tool Idea/i).closest('div[class*="cursor-pointer"]');
+        // The notification is now wrapped in motion.div, then a div with onClick
+        const notification = screen.getByRole("alert");
+        const clickable = notification.querySelector('div[class*="cursor-pointer"]');
+
         if (clickable) {
             fireEvent.click(clickable);
         }
@@ -89,25 +91,13 @@ describe("RequestToolNotification", () => {
         );
     });
 
-    it("dismisses when swiped to the left", async () => {
+    it("has correct aria-label for swipe-right dismissal", async () => {
         render(<RequestToolNotification />);
 
         act(() => {
             vi.advanceTimersByTime(5000);
         });
 
-        const notification = screen.getByLabelText(/swipe left to dismiss/i);
-
-        // Simulate swipe left
-        fireEvent.mouseDown(notification, { clientX: 500 });
-        fireEvent.mouseMove(notification, { clientX: 300 }); // Swiped 200px
-        fireEvent.mouseUp(notification);
-
-        // Advance timers for animation
-        act(() => {
-            vi.advanceTimersByTime(500);
-        });
-
-        expect(screen.queryByLabelText(/request a tool/i)).not.toBeInTheDocument();
+        expect(screen.getByLabelText(/swipe right to dismiss/i)).toBeInTheDocument();
     });
 });

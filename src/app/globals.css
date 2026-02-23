@@ -140,6 +140,29 @@
   animation: marquee 30s linear infinite;
 }
 
+@keyframes text-shimmer {
+  0% {
+    background-position: -150% center;
+  }
+
+  100% {
+    background-position: 150% center;
+  }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(110deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0) 42%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0) 58%,
+      transparent 100%);
+  background-size: 150% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 @keyframes shimmer-elegant {
   0% {
     transform: translateX(-300%) skewX(-15deg);
