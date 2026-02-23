@@ -59,7 +59,6 @@ All branding values live in `src/config/site.ts`:
 
 | Field | Type | Effect |
 |---|---|---|
-| `shortName` | `string` | `short_name` in `site.webmanifest` |
 | `themeColorHex` | `string` (hex) | `theme_color` in manifest + `msapplication-TileColor` meta tag + `TileColor` in `browserconfig.xml` |
 | `backgroundColorHex` | `string` (hex) | `background_color` in `site.webmanifest` |
 

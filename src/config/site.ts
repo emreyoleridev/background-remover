@@ -3,7 +3,6 @@ import { Shield, Zap, Lock } from "lucide-react";
 export const siteConfig = {
     // Brand
     siteName: "Secure_Studio",
-    shortName: "SecureStudio",       // Used in webmanifest short_name
     headerIcon: Shield,              // The icon to use in the header
 
     // Branding colors (hex — used in manifest / meta tags only)
@@ -49,13 +48,8 @@ export const siteConfig = {
     // Share Section
     share: {
         enabled: true,
-        placement: "underTool",
-        rememberDismiss: true,
         shareText: "Check out this free tool",
-        logoProvider: {
-            type: "logodev",
-            token: process.env.NEXT_PUBLIC_LOGODEV_TOKEN || "",
-        },
+        token: process.env.NEXT_PUBLIC_LOGODEV_TOKEN || "",
         platforms: [
             {
                 id: "facebook",
@@ -121,20 +115,7 @@ export const siteConfig = {
                 template: "https://vk.com/share.php?url={url}",
                 enabled: true,
             },
-            {
-                id: "discord",
-                name: "Discord",
-                domain: "discord.com",
-                action: "copyOnly",
-                enabled: true,
-            },
-            {
-                id: "instagram",
-                name: "Instagram",
-                domain: "instagram.com",
-                action: "copyOnly",
-                enabled: true,
-            },
+
 
         ],
     },

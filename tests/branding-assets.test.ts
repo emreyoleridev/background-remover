@@ -23,7 +23,6 @@ const REQUIRED_BRANDING_FILES = [
     "android-chrome-192x192.png",
     "android-chrome-512x512.png",
     "mstile-150x150.png",
-    "site.webmanifest",
     "browserconfig.xml",
 ] as const;
 
@@ -39,29 +38,27 @@ describe("Branding asset presence", () => {
 });
 
 // ---------------------------------------------------------------------------
-// 2. Webmanifest content
+// 2. Webmanifest content (Dynamic via manifest.ts)
 // ---------------------------------------------------------------------------
-describe("site.webmanifest content", () => {
-    const manifestPath = resolve(PUBLIC, "site.webmanifest");
+describe("manifest.ts content", () => {
+    it("returns valid manifest object with required PWA fields", async () => {
+        const manifestModule = await import("../src/app/manifest");
+        const manifest = manifestModule.default();
 
-    it("is a valid JSON file", () => {
-        expect(() => JSON.parse(readFileSync(manifestPath, "utf-8"))).not.toThrow();
-    });
-
-    it("has required PWA fields: name, short_name, icons, theme_color, background_color, display", () => {
-        const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
         expect(manifest).toHaveProperty("name");
         expect(manifest).toHaveProperty("short_name");
         expect(manifest).toHaveProperty("icons");
         expect(Array.isArray(manifest.icons)).toBe(true);
-        expect(manifest.icons.length).toBeGreaterThan(0);
+        expect(manifest.icons!.length).toBeGreaterThan(0);
         expect(manifest).toHaveProperty("theme_color");
         expect(manifest).toHaveProperty("background_color");
         expect(manifest).toHaveProperty("display");
     });
 
-    it("references android-chrome icons that actually exist on disk", () => {
-        const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+    it("references icons that actually exist on disk", async () => {
+        const manifestModule = await import("../src/app/manifest");
+        const manifest = manifestModule.default();
+
         for (const icon of manifest.icons as Array<{ src: string }>) {
             const relativePath = icon.src.replace(/^\//, "");
             expect(
@@ -76,10 +73,10 @@ describe("site.webmanifest content", () => {
 // 3. Config-driven metadata fields
 // ---------------------------------------------------------------------------
 describe("siteConfig branding fields (drive Next.js metadata)", () => {
-    it("has shortName field", async () => {
+    it("has siteName field", async () => {
         const { siteConfig } = await import("../src/config/site");
-        expect(typeof siteConfig.shortName).toBe("string");
-        expect(siteConfig.shortName.length).toBeGreaterThan(0);
+        expect(typeof siteConfig.siteName).toBe("string");
+        expect(siteConfig.siteName.length).toBeGreaterThan(0);
     });
 
     it("has themeColorHex as a valid hex color", async () => {
@@ -92,9 +89,8 @@ describe("siteConfig branding fields (drive Next.js metadata)", () => {
         expect(siteConfig.backgroundColorHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
-    it("layout.tsx source references /site.webmanifest and correct icon paths", () => {
+    it("layout.tsx source references correct icon paths", () => {
         const layoutSrc = readFileSync(resolve(process.cwd(), "src/app/layout.tsx"), "utf-8");
-        expect(layoutSrc).toContain('manifest: "/site.webmanifest"');
         expect(layoutSrc).toContain('"/favicon-16x16.png"');
         expect(layoutSrc).toContain('"/favicon-32x32.png"');
         expect(layoutSrc).toContain('"/apple-touch-icon.png"');

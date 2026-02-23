@@ -1,0 +1,30 @@
+import { siteConfig } from "@/config/site";
+import { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+    const cleanName = siteConfig.siteName.replace("_", "");
+
+    return {
+        name: cleanName,
+        short_name: cleanName,
+        description: siteConfig.seo.description,
+        start_url: "/",
+        display: "standalone",
+        background_color: siteConfig.backgroundColorHex,
+        theme_color: siteConfig.themeColorHex,
+        icons: [
+            {
+                src: "/android-chrome-192x192.png",
+                sizes: "192x192",
+                type: "image/png",
+                purpose: "any",
+            },
+            {
+                src: "/android-chrome-512x512.png",
+                sizes: "512x512",
+                type: "image/png",
+                purpose: "any",
+            },
+        ],
+    };
+}
