@@ -77,7 +77,7 @@ export function SubscribeModal() {
             setLocalStorage(config.localStorageKeySubmitted, "true");
             toast.success("Thanks for subscribing!");
             setOpen(false);
-        } catch (error) {
+        } catch {
             toast.error("Failed to subscribe. Please try again later.");
         } finally {
             setIsSubmitting(false);

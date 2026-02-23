@@ -8,15 +8,15 @@ import { siteConfig } from '@/config/site';
 
 vi.mock('next-themes', () => ({
     useTheme: () => ({ theme: 'dark', setTheme: vi.fn() }),
-    ThemeProvider: ({ children }: any) => <div>{children}</div>,
+    ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 vi.mock('next/script', () => ({
-    default: (props: any) => <div data-testid="next-script" {...props} />
+    default: (props: React.HTMLAttributes<HTMLDivElement>) => <div data-testid="next-script" {...props} />
 }));
 
 vi.mock('@/components/ui/dialog', () => ({
-    Dialog: ({ children, open, onOpenChange }: any) => (
+    Dialog: ({ children, open, onOpenChange }: { children: React.ReactNode; open: boolean; onOpenChange: (open: boolean) => void }) => (
         <div data-testid="dialog" data-state={open ? 'open' : 'closed'}>
             {open && (
                 <>
@@ -26,10 +26,10 @@ vi.mock('@/components/ui/dialog', () => ({
             )}
         </div>
     ),
-    DialogContent: ({ children }: any) => <div>{children}</div>,
-    DialogHeader: ({ children }: any) => <div>{children}</div>,
-    DialogTitle: ({ children }: any) => <div>{children}</div>,
-    DialogDescription: ({ children }: any) => <div>{children}</div>,
+    DialogContent: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+    DialogHeader: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+    DialogTitle: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+    DialogDescription: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 // Mock ResizeObserver
