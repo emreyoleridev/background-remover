@@ -115,8 +115,9 @@ describe('Tool Boilerplate Components', () => {
     });
 
     it('6) BuyMeACoffee widget component renders Script', () => {
-        render(<BuyMeACoffeeWidget />);
-        const script = screen.getByTestId('next-script');
+        const { container } = render(<BuyMeACoffeeWidget />);
+        const script = container.querySelector('script[data-name="BMC-Widget"]');
+        expect(script).toBeInTheDocument();
         expect(script).toHaveAttribute('data-id', siteConfig.buyMeACoffee.id);
     });
 });
