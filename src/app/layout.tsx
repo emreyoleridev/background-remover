@@ -20,8 +20,47 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.siteName,
-  description: siteConfig.heroSubtitle,
+  title: {
+    default: siteConfig.seo.title,
+    template: `%s | ${siteConfig.siteName}`,
+  },
+  description: siteConfig.seo.description,
+  keywords: [...siteConfig.seo.keywords],
+  authors: [
+    {
+      name: siteConfig.authorName,
+      url: siteConfig.authorGithubUrl,
+    },
+  ],
+  creator: siteConfig.authorName,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.seo.url,
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    siteName: siteConfig.siteName,
+    images: [
+      {
+        url: siteConfig.seo.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.siteName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [siteConfig.seo.ogImage],
+    creator: siteConfig.seo.twitterHandle,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
