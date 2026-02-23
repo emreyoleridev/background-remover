@@ -94,7 +94,10 @@ export function SubscribeModal() {
 
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogContent className="max-w-3xl p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]">
+            <DialogContent
+                onInteractOutside={(e) => e.preventDefault()}
+                className="max-w-3xl p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]"
+            >
                 <div className={`relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-10 md:p-16 text-center shadow-2xl`}>
 
                     {/* Decorative gradient orb */}
