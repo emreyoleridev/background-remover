@@ -105,14 +105,15 @@ export function RequestToolNotification() {
                     "active:scale-[0.98]"
                 )}
             >
-                {/* Minimalist Left Section */}
+                {/* Left Section: Colorful Icon */}
                 <div className="relative">
                     <div className={cn(
                         "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300",
-                        "bg-zinc-100 dark:bg-white/5",
-                        "text-zinc-600 dark:text-zinc-400 group-hover:text-primary"
+                        theme.badge,
+                        "ring-1 ring-primary/20",
+                        "group-hover:ring-primary/40 group-hover:scale-105"
                     )}>
-                        <Wand2 className="w-5 h-5" />
+                        <Wand2 className="w-5 h-5 transition-transform" />
                     </div>
                 </div>
 
@@ -144,9 +145,10 @@ export function RequestToolNotification() {
                     <X className="w-3.5 h-3.5" />
                 </button>
 
-                {/* Bottom line - Very thin and subtle */}
+                {/* Bottom gradient border - restored from previous version */}
                 <div className={cn(
-                    "absolute bottom-0 left-0 h-[1px] w-full bg-zinc-200 dark:bg-white/10 group-hover:bg-primary transition-colors",
+                    "absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r",
+                    theme.gradientText
                 )} />
             </div>
         </div>
