@@ -90,6 +90,12 @@ export const siteConfig = {
                 { id: "linkedin", name: "LinkedIn", domain: "linkedin.com", template: "https://www.linkedin.com/sharing/share-offsite/?url={url}", enabled: true },
                 { id: "pinterest", name: "Pinterest", domain: "pinterest.com", template: "https://pinterest.com/pin/create/button/?url={url}&description={text}", enabled: true },
                 { id: "vk", name: "VK", domain: "vk.com", template: "https://vk.com/share.php?url={url}", enabled: true },
+
+                // Extra platforms to reach 12
+                { id: "email", name: "Email", domain: "gmail.com", template: "mailto:?subject={title}&body={text}%20{url}", enabled: true },
+                { id: "messenger", name: "Messenger", domain: "messenger.com", template: "fb-messenger://share/?link={url}", enabled: true },
+                { id: "hackernews", name: "HackerNews", domain: "ycombinator.com", template: "https://news.ycombinator.com/submitlink?u={url}&t={title}", enabled: true },
+                { id: "pocket", name: "Pocket", domain: "getpocket.com", template: "https://getpocket.com/edit?url={url}&title={title}", enabled: true },
             ],
         },
     },

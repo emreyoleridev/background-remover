@@ -9,6 +9,8 @@ import { Container } from "@/components/common/container";
 import { Section } from "@/components/common/section";
 import { getThemeClasses } from "@/lib/theme";
 import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
+import { triggerShareModal } from "@/components/share/share-modal";
+import { Share2 } from "lucide-react";
 
 export function ToolShell() {
     const theme = getThemeClasses();
@@ -53,6 +55,20 @@ export function ToolShell() {
                         </Tabs>
                     </CardContent>
                 </Card>
+
+                {/* Share Trigger */}
+                <div className="mt-8 flex justify-center w-full">
+                    <Button
+                        variant="ghost"
+                        className="flex items-center gap-2 group hover:bg-muted/50 rounded-full px-6 py-6 text-muted-foreground hover:text-foreground transition-all"
+                        onClick={() => triggerShareModal()}
+                    >
+                        <span className="flex items-center justify-center p-2 rounded-full bg-muted group-hover:bg-background shadow-sm border border-border group-hover:scale-105 transition-all">
+                            <Share2 className="h-4 w-4" />
+                        </span>
+                        <span className="font-medium">Share this tool</span>
+                    </Button>
+                </div>
             </Container>
         </Section>
     );
