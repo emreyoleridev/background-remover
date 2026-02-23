@@ -96,19 +96,19 @@ export function SubscribeModal() {
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent
                 onInteractOutside={(e) => e.preventDefault()}
-                className="!max-w-[95vw] sm:!max-w-[1200px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_150px_-20px_rgba(0,0,0,0.5)]"
+                className="!max-w-[95vw] sm:!max-w-[850px] w-full p-0 overflow-hidden border-0 bg-transparent shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)]"
             >
-                <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0f1a] p-12 md:p-24 shadow-2xl">
+                <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-[#0f0f1a] p-10 md:p-16 shadow-2xl">
                     {/* Background Glow */}
-                    <div className={`absolute -bottom-24 -right-24 h-[600px] w-[600px] rounded-full ${theme.bg} opacity-10 blur-[120px] pointer-events-none`}></div>
+                    <div className={`absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full ${theme.bg} opacity-10 blur-[100px] pointer-events-none`}></div>
 
-                    <div className="relative z-10 flex flex-col items-start text-left max-w-5xl">
-                        <DialogHeader className="space-y-6 mb-16 text-left items-start w-full">
-                            <DialogTitle className="text-6xl md:text-[100px] font-black tracking-tighter text-white leading-[0.95] uppercase">
+                    <div className="relative z-10 flex flex-col items-start text-left max-w-3xl">
+                        <DialogHeader className="space-y-4 mb-10 text-left items-start w-full">
+                            <DialogTitle className="text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.05] uppercase">
                                 Never miss out <br />
                                 on <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>new tools!</span>
                             </DialogTitle>
-                            <DialogDescription className="text-xl md:text-3xl text-zinc-400 max-w-2xl leading-relaxed mt-4">
+                            <DialogDescription className="text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed mt-2">
                                 Subscribe to our newsletter to be informed whenever <br className="hidden md:block" />
                                 we publish something new!
                             </DialogDescription>
@@ -122,20 +122,20 @@ export function SubscribeModal() {
                                     render={({ field }) => (
                                         <FormItem className="w-full">
                                             <FormControl>
-                                                <div className="relative group max-w-3xl">
+                                                <div className="relative group max-w-2xl">
                                                     <Input
                                                         placeholder="EMAIL"
-                                                        className="h-28 px-10 text-2xl md:text-4xl font-black uppercase tracking-widest rounded-3xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
+                                                        className="h-20 px-8 text-xl md:text-2xl font-bold uppercase tracking-widest rounded-2xl border-2 border-zinc-800 bg-black/40 backdrop-blur-md focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/10 text-white placeholder:text-zinc-700 transition-all group-hover:border-zinc-700"
                                                         {...field}
                                                     />
                                                     <button
                                                         type="submit"
                                                         disabled={isSubmitting}
-                                                        className={`absolute right-8 top-1/2 -translate-y-1/2 p-4 rounded-2xl ${theme.text} hover:bg-white/5 transition-all disabled:opacity-50`}
+                                                        className={`absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-xl ${theme.text} hover:bg-white/5 transition-all disabled:opacity-50`}
                                                         aria-label="Submit email"
                                                     >
                                                         {isSubmitting ? (
-                                                            <Loader2 className="h-10 w-10 animate-spin" />
+                                                            <Loader2 className="h-8 w-8 animate-spin" />
                                                         ) : (
                                                             <svg
                                                                 viewBox="0 0 24 24"
@@ -144,7 +144,7 @@ export function SubscribeModal() {
                                                                 strokeWidth="2.5"
                                                                 strokeLinecap="round"
                                                                 strokeLinejoin="round"
-                                                                className="h-12 w-12"
+                                                                className="h-8 w-8"
                                                             >
                                                                 <line x1="22" y1="2" x2="11" y2="13"></line>
                                                                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -153,7 +153,7 @@ export function SubscribeModal() {
                                                     </button>
                                                 </div>
                                             </FormControl>
-                                            <FormMessage className="text-red-400 text-xl mt-4" />
+                                            <FormMessage className="text-red-400 text-lg mt-3" />
                                         </FormItem>
                                     )}
                                 />
