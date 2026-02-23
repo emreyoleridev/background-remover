@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site";
 import { GithubForkButton } from "@/components/common/github-fork-button";
 import { ThemeToggle } from "@/components/common/theme-toggle";
 import { getThemeClasses } from "@/lib/theme";
+import { ProjectBadge } from "@/components/layout/project-badge";
 
 export function SiteHeader() {
     const theme = getThemeClasses();
@@ -24,6 +25,7 @@ export function SiteHeader() {
                     </Link>
                 </div>
                 <div className="flex flex-1 items-center justify-end space-x-2">
+                    <ProjectBadge />
                     <GithubForkButton />
                     <ThemeToggle />
                 </div>

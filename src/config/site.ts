@@ -114,6 +114,16 @@ export const siteConfig = {
         enabled: true,
         text: "I build free tools every day. I build. I learn. I share. @emreyoleridev",
     },
+    // ---------------------------------------------------------------------------
+    // 9. Project & Build Meta
+    // ---------------------------------------------------------------------------
+    buildMeta: {
+        enabled: true,
+        projectNumber: 27,
+        buildDay: 42,
+        startedAt: "2025-01-01", // optional, for auto-calculation later
+        autoCalculateDay: false  // if true, calculate from startedAt
+    },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
