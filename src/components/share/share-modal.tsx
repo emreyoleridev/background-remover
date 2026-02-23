@@ -143,8 +143,9 @@ export function ShareModal() {
                                         type="text"
                                         readOnly
                                         value={shareUrl}
-                                        onFocus={(e) => e.target.select()}
-                                        className="w-full h-14 md:h-16 px-5 md:px-6 pr-16 md:pr-20 text-base md:text-lg font-medium rounded-2xl border border-border bg-muted/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground text-ellipsis transition-all"
+                                        onClick={handleCopy}
+                                        tabIndex={-1}
+                                        className="cursor-pointer select-none w-full h-14 md:h-16 px-5 md:px-6 pr-16 md:pr-20 text-base md:text-lg font-medium rounded-2xl border border-border bg-muted/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-foreground text-ellipsis transition-all"
                                         placeholder="Generating link..."
                                     />
                                     <button
