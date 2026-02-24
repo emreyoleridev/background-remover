@@ -15,8 +15,8 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 const imageFileSchema = z.object({
     name: z.string(),
     size: z.number().max(MAX_FILE_SIZE, "File must be under 5 MB"),
-    type: z.enum(ACCEPTED_TYPES, {
-        errorMap: () => ({ message: "Only JPG, PNG, and WEBP files are accepted" }),
+    type: z.string().refine((val) => (ACCEPTED_TYPES as readonly string[]).includes(val), {
+        message: "Only JPG, PNG, and WEBP files are accepted",
     }),
 });
 
@@ -126,7 +126,7 @@ export function UploadZone({ onFileAccepted, disabled = false }: UploadZoneProps
                             ? "Drop your image here"
                             : isDragReject
                                 ? "File not supported"
-                                : "Drop your image here"}
+                                : "Click or drag your image here"}
                     </p>
                     <p className="text-sm text-muted-foreground">
                         or{" "}

@@ -1,11 +1,6 @@
 import { siteConfig } from "@/config";
 
 export async function postSubscriptionEmail(email: string): Promise<void> {
-    const endpoint = siteConfig.integrations.subscribe.googleSheetsEndpoint;
-    if (!endpoint) {
-        throw new Error("Google Sheets endpoint not configured.");
-    }
-
     const payload = {
         email,
         source: window.location.href,
@@ -13,13 +8,15 @@ export async function postSubscriptionEmail(email: string): Promise<void> {
         timestamp: new Date().toISOString(),
     };
 
-    await fetch(endpoint, {
+    const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: {
-            "Content-Type": "text/plain;charset=utf-8", // JSON yerine text/plain güvenlik için daha iyidir
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
-        mode: "no-cors",
     });
 
+    if (!response.ok) {
+        throw new Error("Failed to subscribe");
+    }
 }

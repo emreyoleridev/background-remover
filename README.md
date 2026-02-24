@@ -67,7 +67,7 @@ Follow these steps to run the project locally:
 
 | Variable | Description |
 | --- | --- |
-| `NEXT_PUBLIC_GOOGLE_SHEETS_ENDPOINT` | API endpoint for the newsletter subscription form. |
+| `GOOGLE_SHEETS_ENDPOINT` | API endpoint for the newsletter subscription form (Server-side secret). |
 
 ## 📦 Deployment
 

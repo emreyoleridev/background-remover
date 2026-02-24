@@ -34,12 +34,6 @@ export function SubscribeSection() {
     const onSubmit = async (data: SubscribeInput) => {
         try {
             setIsSubmitting(true);
-            if (!config.googleSheetsEndpoint) {
-                toast.error("Subscribe endpoint not configured yet.");
-                setIsSubmitting(false);
-                return;
-            }
-
             await postSubscriptionEmail(data.email);
             setLocalStorage("bp_subscribe_submitted", "true");
             toast.success("Thanks for subscribing!");

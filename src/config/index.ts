@@ -63,7 +63,7 @@ export const siteConfig = {
         subscribe: {
             enabled: true,
             delaySecondsAfterSuccess: 2,
-            googleSheetsEndpoint: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_ENDPOINT || "",
+            googleSheetsEndpoint: process.env.GOOGLE_SHEETS_ENDPOINT || "",
         },
         share: {
             enabled: true,
