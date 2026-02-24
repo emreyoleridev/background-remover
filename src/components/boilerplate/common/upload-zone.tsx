@@ -47,7 +47,7 @@ export function UploadZone({ onFileAccepted, disabled = false }: UploadZoneProps
             });
 
             if (!result.success) {
-                setError(result.error.errors[0]?.message ?? "Invalid file");
+                setError(result.error.issues[0]?.message ?? "Invalid file");
                 return;
             }
 

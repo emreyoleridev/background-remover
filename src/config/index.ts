@@ -5,7 +5,7 @@ export const siteConfig = {
     // 1. Brand & Identity
     // ---------------------------------------------------------------------------
     pk: "background-remover",
-    siteName: "Background Remover Pro",
+    siteName: "Background_Remover Pro",
     headerIcon: ImageIcon,
 
     // ---------------------------------------------------------------------------

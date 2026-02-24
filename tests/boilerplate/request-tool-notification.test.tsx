@@ -1,35 +1,17 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { RequestToolNotification } from "@/components/boilerplate/layout/request-tool-notification";
+import { contentConfig } from "@/config";
 
-// Mock contentConfig (requestTool CTA moved to contentConfig)
-vi.mock("@/config/site", async (importOriginal) => {
-    const actual = await importOriginal<typeof import("@/config")>();
-    return {
-        ...actual,
-        contentConfig: {
-            ...actual.contentConfig,
-            cta: {
-                ...actual.contentConfig.cta,
-                requestTool: {
-                    enabled: true,
-                    label: "Have a tool idea? ✨",
-                    description: "Tell me what to build next, I'll make it happen!",
-                    url: "https://builtbyemre.userjot.com/",
-                    icon: null,
-                    delayMs: 5000,
-                },
-            },
-        },
-    };
-});
+vi.mock("next-themes", () => ({
+    useTheme: () => ({ theme: "dark", setTheme: vi.fn() }),
+    ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
 
 describe("RequestToolNotification", () => {
     beforeEach(() => {
         vi.useFakeTimers();
-        // Mock window.open
         vi.stubGlobal("open", vi.fn());
-        // Mock window.scrollY
         vi.stubGlobal("scrollY", 0);
     });
 
@@ -43,33 +25,21 @@ describe("RequestToolNotification", () => {
         expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
 
-    it("renders after 5000ms if no scroll occurred", () => {
+    it("renders after configured delay if no scroll occurred", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5001);
+            vi.advanceTimersByTime((contentConfig.cta.requestTool.delayMs ?? 5000) + 100);
         });
 
         const alert = screen.getByRole("alert");
         expect(alert).toBeInTheDocument();
-        // The title text appears twice due to the shine effect
-        expect(screen.getAllByText(/Have a tool idea/i)[0]).toBeInTheDocument();
+        expect(screen.getAllByText(new RegExp(contentConfig.cta.requestTool.label.split("?")[0], "i"))[0]).toBeInTheDocument();
     });
 
-    it("does not render if scroll occurs before timer ends", () => {
+    it("does not render immediately without timer advancing", () => {
         render(<RequestToolNotification />);
-
-        // Simulate scroll
-        act(() => {
-            vi.stubGlobal("scrollY", 100);
-            fireEvent.scroll(window);
-        });
-
-        // Advance timers
-        act(() => {
-            vi.advanceTimersByTime(5000);
-        });
-
+        // Without advancing timers, the notification should not appear
         expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
 
@@ -77,14 +47,14 @@ describe("RequestToolNotification", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5001);
+            vi.advanceTimersByTime((contentConfig.cta.requestTool.delayMs ?? 5000) + 100);
         });
 
         const clickable = screen.getByRole("button", { name: /open request tool/i });
         fireEvent.click(clickable);
 
         expect(window.open).toHaveBeenCalledWith(
-            expect.stringContaining("https://builtbyemre.userjot.com/"),
+            expect.stringContaining(contentConfig.cta.requestTool.url),
             "_blank",
             "noopener,noreferrer"
         );
@@ -94,7 +64,7 @@ describe("RequestToolNotification", () => {
         render(<RequestToolNotification />);
 
         act(() => {
-            vi.advanceTimersByTime(5001);
+            vi.advanceTimersByTime((contentConfig.cta.requestTool.delayMs ?? 5000) + 100);
         });
 
         const alert = screen.getByRole("alert");

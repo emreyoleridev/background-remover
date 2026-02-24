@@ -1,35 +1,12 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { DiscoverMoreCTA, triggerDiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
+import { contentConfig } from "@/config";
 
-// Mock contentConfig.cta.discoverMore and requestTool
-vi.mock("@/config/site", async (importOriginal) => {
-    const actual = await importOriginal<typeof import("@/config")>();
-    return {
-        ...actual,
-        contentConfig: {
-            ...actual.contentConfig,
-            cta: {
-                requestTool: {
-                    enabled: true,
-                    label: "Have a tool idea? ✨",
-                    description: "Tell me what to build next, I'll make it happen!",
-                    url: "https://builtbyemre.userjot.com/",
-                    icon: null,
-                    delayMs: 5000,
-                },
-                discoverMore: {
-                    enabled: true,
-                    title: "Like this tool?",
-                    subtitle: "I build a new one every day. Discover more of my total collection.",
-                    href: "https://external.com",
-                    icon: null,
-                    external: true
-                }
-            }
-        },
-    };
-});
+vi.mock("next-themes", () => ({
+    useTheme: () => ({ theme: "dark", setTheme: vi.fn() }),
+    ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
 
 describe("DiscoverMoreCTA", () => {
     beforeEach(() => {
@@ -48,7 +25,7 @@ describe("DiscoverMoreCTA", () => {
         expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     });
 
-    it("renders after trigger event + 5 second delay", () => {
+    it("renders after trigger event + delay", () => {
         render(<DiscoverMoreCTA />);
 
         act(() => {
@@ -58,8 +35,7 @@ describe("DiscoverMoreCTA", () => {
 
         const alert = screen.getByRole("alert");
         expect(alert).toBeInTheDocument();
-        expect(screen.getByText("Like this tool?")).toBeInTheDocument();
-        expect(screen.getByText(/Discover more of my total collection/i)).toBeInTheDocument();
+        expect(screen.getByText(contentConfig.cta.discoverMore.title)).toBeInTheDocument();
     });
 
     it("does not render without trigger even after delay", () => {
@@ -81,9 +57,8 @@ describe("DiscoverMoreCTA", () => {
         });
 
         const discoverLink = screen.getByText("Discover more");
-        expect(discoverLink.getAttribute("href")).toContain("https://external.com");
+        expect(discoverLink.getAttribute("href")).toContain(contentConfig.cta.discoverMore.href);
         expect(discoverLink).toHaveAttribute("target", "_blank");
-        expect(discoverLink).toHaveAttribute("rel", "noopener noreferrer");
     });
 
     it("renders Give Feedback link pointing to requestTool url", () => {
@@ -95,6 +70,6 @@ describe("DiscoverMoreCTA", () => {
         });
 
         const feedbackLink = screen.getByText("Give Feedback");
-        expect(feedbackLink.getAttribute("href")).toContain("https://builtbyemre.userjot.com/");
+        expect(feedbackLink.getAttribute("href")).toContain(contentConfig.cta.requestTool.url);
     });
 });

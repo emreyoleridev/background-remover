@@ -1,30 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { SiteFaq } from "@/components/boilerplate/layout/site-faq";
+import { contentConfig } from "@/config";
 
-vi.mock("@/config/site", async (importOriginal) => {
-    const actual = await importOriginal<typeof import("@/config")>();
-    return {
-        ...actual,
-        contentConfig: {
-            ...actual.contentConfig,
-            faqs: [
-                {
-                    question: "Is it really secure?",
-                    answer: "Yes! All processing happens locally in your browser.",
-                },
-                {
-                    question: "Is it free to use?",
-                    answer: "Absolutely. All tools are free to use.",
-                },
-                {
-                    question: "Do I need to create an account?",
-                    answer: "No accounts, no logins, no tracking.",
-                },
-            ],
-        },
-    };
-});
+vi.mock("next-themes", () => ({
+    useTheme: () => ({ theme: "dark", setTheme: vi.fn() }),
+    ThemeProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
 
 describe("SiteFaq", () => {
     it("renders FAQ section heading", () => {
@@ -33,46 +15,45 @@ describe("SiteFaq", () => {
         expect(screen.getByText(/Frequently Asked/i)).toBeInTheDocument();
     });
 
-    it("renders all FAQ questions", () => {
+    it("renders all FAQ questions from config", () => {
         render(<SiteFaq />);
-        expect(screen.getByText("Is it really secure?")).toBeInTheDocument();
-        expect(screen.getByText("Is it free to use?")).toBeInTheDocument();
-        expect(screen.getByText("Do I need to create an account?")).toBeInTheDocument();
+        contentConfig.faqs.forEach((faq) => {
+            expect(screen.getByText(faq.question)).toBeInTheDocument();
+        });
     });
 
     it("answers are present in DOM on initial render (collapsed via CSS, not removed)", () => {
         render(<SiteFaq />);
-        // Answers are in the DOM but collapsed via grid-rows CSS (JSDOM can't test CSS visibility)
-        expect(screen.getByText(/All processing happens locally/i)).toBeInTheDocument();
+        // At least the first answer exists somewhere in the DOM
+        expect(screen.getByText(contentConfig.faqs[0].answer)).toBeInTheDocument();
     });
 
     it("clicking a question keeps answer in DOM (still open state)", () => {
         render(<SiteFaq />);
-        const firstQuestion = screen.getByText("Is it really secure?");
+        const firstQuestion = screen.getByText(contentConfig.faqs[0].question);
         fireEvent.click(firstQuestion);
-        expect(screen.getByText(/All processing happens locally/i)).toBeInTheDocument();
+        expect(screen.getByText(contentConfig.faqs[0].answer)).toBeInTheDocument();
     });
 
     it("clicking an open question again toggles state back", () => {
         render(<SiteFaq />);
-        const firstQuestion = screen.getByText("Is it really secure?");
-        // Open
+        const firstQuestion = screen.getByText(contentConfig.faqs[0].question);
         fireEvent.click(firstQuestion);
-        // Close
         fireEvent.click(firstQuestion);
         // Still in DOM (collapsed by CSS)
-        expect(screen.getByText(/All processing happens locally/i)).toBeInTheDocument();
+        expect(screen.getByText(contentConfig.faqs[0].answer)).toBeInTheDocument();
     });
 
     it("renders the correct number of FAQ buttons (one per question)", () => {
         render(<SiteFaq />);
         const buttons = screen.getAllByRole("button");
-        expect(buttons).toHaveLength(3);
+        expect(buttons).toHaveLength(contentConfig.faqs.length);
     });
 
     it("renders all FAQ answers in the DOM", () => {
         render(<SiteFaq />);
-        expect(screen.getByText(/All tools are free to use/i)).toBeInTheDocument();
-        expect(screen.getByText(/No accounts, no logins/i)).toBeInTheDocument();
+        contentConfig.faqs.forEach((faq) => {
+            expect(screen.getByText(faq.answer)).toBeInTheDocument();
+        });
     });
 });
