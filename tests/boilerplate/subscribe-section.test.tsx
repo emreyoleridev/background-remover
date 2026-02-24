@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { SubscribeSection } from "@/components/layout/subscribe-section";
+import { SubscribeSection } from "@/components/boilerplate/layout/subscribe-section";
 
 vi.mock("@/config/site", async (importOriginal) => {
     const actual = await importOriginal<typeof import("@/config")>();

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { ProjectBadge } from "@/components/layout/project-badge";
+import { ProjectBadge } from "@/components/boilerplate/layout/project-badge";
 import { siteConfig } from "@/config";
 
 // Mock the siteConfig

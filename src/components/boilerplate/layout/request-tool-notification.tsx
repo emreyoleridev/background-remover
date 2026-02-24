@@ -13,40 +13,20 @@ import { getThemeClasses } from "@/lib/theme";
  */
 export function RequestToolNotification() {
     const [isVisible, setIsVisible] = useState(false);
-    const [hasScrolled, setHasScrolled] = useState(false);
     const [isDismissed, setIsDismissed] = useState(false);
 
     const theme = getThemeClasses();
     const config = contentConfig.cta.requestTool;
 
-    const handleScroll = useCallback(() => {
-        if (typeof window !== "undefined" && window.scrollY > 0) {
-            setHasScrolled(true);
-        }
-    }, []);
-
     useEffect(() => {
         if (!config.enabled || isDismissed) return;
 
-        if (typeof window !== "undefined" && window.scrollY > 0) {
-            setHasScrolled(true);
-            return;
-        }
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-
         const timer = setTimeout(() => {
-            if (!hasScrolled && window.scrollY === 0) {
-                setIsVisible(true);
-            }
-            window.removeEventListener("scroll", handleScroll);
+            setIsVisible(true);
         }, config.delayMs || 5000);
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            clearTimeout(timer);
-        };
-    }, [config.enabled, config.delayMs, hasScrolled, handleScroll, isDismissed]);
+        return () => clearTimeout(timer);
+    }, [config.enabled, config.delayMs, isDismissed]);
 
     const x = useMotionValue(0);
     const dragOpacity = useTransform(x, [0, 150], [1, 0]);
@@ -56,7 +36,7 @@ export function RequestToolNotification() {
         setIsDismissed(true);
     };
 
-    if (!config.enabled || isDismissed || (hasScrolled && !isVisible)) {
+    if (!config.enabled || isDismissed) {
         return null;
     }
 

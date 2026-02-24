@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/layout/site-header";
-import { MarqueeBanner } from "@/components/layout/marquee-banner";
-import { DevSignature } from "@/components/layout/dev-signature";
-import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/boilerplate/layout/site-header";
+import { MarqueeBanner } from "@/components/boilerplate/layout/marquee-banner";
+import { DevSignature } from "@/components/boilerplate/layout/dev-signature";
+import { SiteFooter } from "@/components/boilerplate/layout/site-footer";
 import { siteConfig } from "@/config";
-import { ThemeProvider } from "@/components/common/theme-provider";
-import { BuyMeACoffeeWidget } from "@/components/common/buymeacoffee-widget";
-import { ModalProvider } from "@/components/common/modal-provider";
+import { ThemeProvider } from "@/components/boilerplate/common/theme-provider";
+import { BuyMeACoffeeWidget } from "@/components/boilerplate/common/buymeacoffee-widget";
+import { ModalProvider } from "@/components/boilerplate/common/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { RequestToolNotification } from "@/components/layout/request-tool-notification";
-import { DiscoverMoreCTA } from "@/components/layout/discover-more-cta";
+import { RequestToolNotification } from "@/components/boilerplate/layout/request-tool-notification";
+import { DiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
 
 import { getThemeClasses } from "@/lib/theme";
 

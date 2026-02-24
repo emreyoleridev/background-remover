@@ -1,7 +1,7 @@
 import { siteConfig, contentConfig } from "@/config";
 import { getThemeClasses } from "@/lib/theme";
-import { Container } from "@/components/common/container";
-import { Section } from "@/components/common/section";
+import { Container } from "@/components/boilerplate/common/container";
+import { Section } from "@/components/boilerplate/common/section";
 import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 

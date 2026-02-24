@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { SiteFeatures } from "@/components/layout/site-features";
+import { SiteFeatures } from "@/components/boilerplate/layout/site-features";
 
 // contentConfig is used internally by SiteFeatures
 vi.mock("@/config/site", async (importOriginal) => {

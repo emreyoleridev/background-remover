@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { RequestToolNotification } from "@/components/layout/request-tool-notification";
+import { RequestToolNotification } from "@/components/boilerplate/layout/request-tool-notification";
 
 // Mock contentConfig (requestTool CTA moved to contentConfig)
 vi.mock("@/config/site", async (importOriginal) => {

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { DiscoverMoreCTA, triggerDiscoverMoreCTA } from "@/components/layout/discover-more-cta";
+import { DiscoverMoreCTA, triggerDiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
 
 // Mock contentConfig.cta.discoverMore and requestTool
 vi.mock("@/config/site", async (importOriginal) => {

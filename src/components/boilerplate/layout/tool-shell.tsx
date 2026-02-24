@@ -5,12 +5,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Container } from "@/components/common/container";
-import { Section } from "@/components/common/section";
+import { Container } from "@/components/boilerplate/common/container";
+import { Section } from "@/components/boilerplate/common/section";
 import { getThemeClasses } from "@/lib/theme";
-import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
-import { triggerShareModal } from "@/components/common/share-modal";
-import { triggerDiscoverMoreCTA } from "@/components/layout/discover-more-cta";
+import { triggerSubscribeModal } from "@/components/boilerplate/common/subscribe-modal";
+import { triggerShareModal } from "@/components/boilerplate/common/share-modal";
+import { triggerDiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
 import { cn } from "@/lib/utils";
 import { contentConfig } from "@/config";
 

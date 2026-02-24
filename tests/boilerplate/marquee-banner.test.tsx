@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { MarqueeBanner } from "@/components/layout/marquee-banner";
+import { MarqueeBanner } from "@/components/boilerplate/layout/marquee-banner";
 
 // Mock contentConfig (marquee moved to contentConfig)
 vi.mock("@/config/site", async (importOriginal) => {

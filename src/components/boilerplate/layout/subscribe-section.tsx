@@ -18,7 +18,7 @@ import { postSubscriptionEmail } from "@/lib/sheets";
 import { getThemeClasses } from "@/lib/theme";
 import { toast } from "sonner";
 import { Loader2, Send, Sparkle, Sparkles } from "lucide-react";
-import { Container } from "@/components/common/container";
+import { Container } from "@/components/boilerplate/common/container";
 import { cn } from "@/lib/utils";
 
 export function SubscribeSection() {

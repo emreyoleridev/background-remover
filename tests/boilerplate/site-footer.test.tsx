@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteFooter } from "@/components/boilerplate/layout/site-footer";
 import { siteConfig } from "@/config";
 
 // Mock next/link

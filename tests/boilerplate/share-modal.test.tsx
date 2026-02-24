@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { ShareModal, triggerShareModal } from "../../src/components/common/share-modal";
+import { ShareModal, triggerShareModal } from "../../src/components/boilerplate/common/share-modal";
 import { act } from "react";
 
 // Mock matchMedia for Dialog

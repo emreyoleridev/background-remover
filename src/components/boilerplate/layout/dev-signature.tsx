@@ -4,7 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import { getThemeClasses } from "@/lib/theme";
-import { Container } from "@/components/common/container";
+import { Container } from "@/components/boilerplate/common/container";
 
 /**
  * DevSignature Component

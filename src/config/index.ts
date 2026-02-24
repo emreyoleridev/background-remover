@@ -75,7 +75,6 @@ export const siteConfig = {
         share: {
             enabled: true,
             shareText: "Check out this free tool",
-            token: process.env.NEXT_PUBLIC_LOGODEV_TOKEN || "",
             platforms: [
                 { id: "facebook", name: "Facebook", domain: "facebook.com", template: "https://www.facebook.com/sharer/sharer.php?u={url}", enabled: true },
                 { id: "x", name: "X", domain: "x.com", template: "https://twitter.com/intent/tweet?text={text}&url={url}", enabled: true },

@@ -1,9 +1,9 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { SiteHeader } from '@/components/layout/site-header';
-import { SiteHero } from '@/components/layout/site-hero';
-import { SubscribeModal, triggerSubscribeModal } from '@/components/common/subscribe-modal';
-import { BuyMeACoffeeWidget } from '@/components/common/buymeacoffee-widget';
+import { SiteHeader } from '@/components/boilerplate/layout/site-header';
+import { SiteHero } from '@/components/boilerplate/layout/site-hero';
+import { SubscribeModal, triggerSubscribeModal } from '@/components/boilerplate/common/subscribe-modal';
+import { BuyMeACoffeeWidget } from '@/components/boilerplate/common/buymeacoffee-widget';
 import { siteConfig, contentConfig } from '@/config';
 
 vi.mock('next-themes', () => ({

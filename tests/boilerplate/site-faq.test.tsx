@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { SiteFaq } from "@/components/layout/site-faq";
+import { SiteFaq } from "@/components/boilerplate/layout/site-faq";
 
 vi.mock("@/config/site", async (importOriginal) => {
     const actual = await importOriginal<typeof import("@/config")>();

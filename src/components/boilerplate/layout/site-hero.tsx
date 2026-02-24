@@ -2,7 +2,7 @@ import { siteConfig, contentConfig } from "@/config";
 import { getThemeClasses } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { Sparkles } from "lucide-react";
-import { Container } from "@/components/common/container";
+import { Container } from "@/components/boilerplate/common/container";
 
 export function SiteHero() {
     const theme = getThemeClasses();
