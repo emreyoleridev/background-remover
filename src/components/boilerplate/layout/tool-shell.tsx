@@ -10,6 +10,8 @@ import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { triggerShareModal } from "@/components/boilerplate/common/share-modal";
 import { cn } from "@/lib/boilerplate/utils";
 import { contentConfig } from "@/config";
+import { triggerSubscribeModal } from "@/components/boilerplate/common/subscribe-modal";
+import { triggerDiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -22,25 +24,23 @@ type Stage = "idle" | "preview" | "processing" | "done";
 function CheckerboardImage({ src, alt }: { src: string; alt: string }) {
     return (
         <div
-            className="relative w-full rounded-xl overflow-hidden"
+            className="relative w-full aspect-square rounded-xl overflow-hidden border border-border/50 shadow-inner"
             style={{
+                backgroundColor: "#ffffff",
                 backgroundImage: `
-                    linear-gradient(45deg, #ccc 25%, transparent 25%),
-                    linear-gradient(-45deg, #ccc 25%, transparent 25%),
-                    linear-gradient(45deg, transparent 75%, #ccc 75%),
-                    linear-gradient(-45deg, transparent 75%, #ccc 75%)
+                    linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%)
                 `,
                 backgroundSize: "20px 20px",
                 backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-                backgroundColor: "#f0f0f0",
             }}
         >
-            {/* Dark mode overlay */}
-            <div className="absolute inset-0 dark:opacity-30 dark:[background-image:linear-gradient(45deg,#444_25%,transparent_25%),linear-gradient(-45deg,#444_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#444_75%),linear-gradient(-45deg,transparent_75%,#444_75%)] dark:bg-transparent opacity-0" />
             <img
                 src={src}
                 alt={alt}
-                className="relative w-full h-auto object-contain max-h-[480px]"
+                className="relative w-full h-full object-contain p-2"
             />
         </div>
     );
@@ -91,6 +91,7 @@ export function ToolShell() {
             const { removeBackground } = await import("@imgly/background-removal");
 
             const blob = await removeBackground(file, {
+                model: "isnet", // Higher precision model
                 progress: (key: string, current: number, total: number) => {
                     if (total > 0) {
                         setProgress(Math.round((current / total) * 100));
@@ -123,6 +124,12 @@ export function ToolShell() {
         a.href = resultUrl;
         a.download = `${baseName}-no-bg.png`;
         a.click();
+
+        // Trigger marketing CTAs after download
+        setTimeout(() => {
+            triggerSubscribeModal();
+            triggerDiscoverMoreCTA();
+        }, 1000);
     }, [resultUrl]);
 
     // -----------------------------------------------------------------------
@@ -245,7 +252,7 @@ export function ToolShell() {
                                     </div>
                                     <div className="bg-black/70 backdrop-blur-md rounded-xl px-4 py-2 text-center">
                                         <p className="text-white text-sm font-semibold">
-                                            {progress < 5 ? "Loading AI model…" : `Removing background… ${progress}%`}
+                                            {progress < 5 ? "Loading engine..." : `Removing background... ${progress}%`}
                                         </p>
                                     </div>
                                 </div>
@@ -278,30 +285,32 @@ export function ToolShell() {
                         </div>
 
                         {/* Before / After comparison */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
                             {/* Original */}
-                            <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
+                            <div className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm h-full">
                                 <div className="px-3 py-2 border-b border-border">
-                                    <span className="text-xs font-medium text-muted-foreground">Original</span>
+                                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Original</span>
                                 </div>
-                                <div className="p-3">
-                                    <img
-                                        src={originalUrl!}
-                                        alt="Original"
-                                        className="w-full h-auto max-h-[240px] object-contain rounded-lg bg-muted"
-                                    />
+                                <div className="flex-1 p-3 flex items-center justify-center bg-muted/20">
+                                    <div className="relative w-full aspect-square rounded-xl overflow-hidden border border-border/50 bg-white shadow-inner">
+                                        <img
+                                            src={originalUrl!}
+                                            alt="Original"
+                                            className="w-full h-full object-contain p-2"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Result */}
-                            <div className="rounded-2xl border border-violet-500/40 bg-card overflow-hidden shadow-sm ring-1 ring-violet-500/20">
-                                <div className="px-3 py-2 border-b border-border flex items-center gap-1.5">
-                                    <span className="text-xs font-medium text-muted-foreground">Result</span>
-                                    <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500">
+                            <div className="flex flex-col rounded-2xl border border-violet-500/40 bg-card overflow-hidden shadow-sm ring-1 ring-violet-500/20 h-full">
+                                <div className="px-3 py-2 border-b border-border flex items-center justify-between">
+                                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Result</span>
+                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 uppercase tracking-tight">
                                         Transparent PNG
                                     </span>
                                 </div>
-                                <div className="p-3">
+                                <div className="flex-1 p-3 flex items-center justify-center bg-muted/20">
                                     <CheckerboardImage src={resultUrl} alt="Result" />
                                 </div>
                             </div>
@@ -325,7 +334,7 @@ export function ToolShell() {
                                 size="lg"
                             >
                                 <RefreshCw className="w-4 h-4" />
-                                Remove Another
+                                New Upload
                             </Button>
                         </div>
                     </div>

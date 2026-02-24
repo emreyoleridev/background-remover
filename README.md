@@ -1,12 +1,12 @@
 # Background Remover Pro
 
-Background Remover Pro is a high-performance, privacy-focused image background removal tool that runs **100% in your browser**. Using AI powered by WebAssembly, your images never leave your device – no servers, no cloud uploads, and no privacy compromises.
+Background Remover Pro is a high-performance, privacy-focused image background removal tool that runs **100% in your browser**. Using high-performance WebAssembly, your images never leave your device – no servers, no cloud uploads, and no privacy compromises.
 
 ![Background Remover Pro Hero](/public/og-image.png)
 
 ## ✨ Key Features
 
-- **100% Client-Side AI**: Powered by `@imgly/background-removal` WASM engine. Processing happens locally on your hardware.
+- **100% Local Processing**: Powered by `@imgly/background-removal` WASM engine. Processing happens locally on your hardware.
 - **Zero Privacy Risk**: Images are never uploaded to any server. Your data stays with you.
 - **Instant Result**: Real-time processing with a scanning animation and progress tracking.
 - **High Quality**: Downloads as high-resolution transparent PNG.

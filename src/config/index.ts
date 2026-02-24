@@ -13,7 +13,6 @@ export const siteConfig = {
     // ---------------------------------------------------------------------------
     brand: {
         signatureEnabled: true,
-        signatureText: "// emreyoleri.dev",
         url: "https://emreyoleri.dev"
     },
 
@@ -21,9 +20,9 @@ export const siteConfig = {
     // 3. SEO & Metadata
     // ---------------------------------------------------------------------------
     seo: {
-        title: "Background Remover Pro – Free AI Background Removal, 100% In-Browser",
-        description: "Remove image backgrounds instantly with AI-powered WebAssembly. No uploads, no servers, no signups. Completely private and free.",
-        keywords: ["background remover", "remove background", "ai background removal", "transparent png", "free background remover", "browser-based", "no upload", "privacy"],
+        title: "Background Remover Pro – Free, 100% In-Browser Privacy-First Removal",
+        description: "Remove image backgrounds instantly with high-performance WebAssembly. No uploads, no servers, no signups. Completely private, secure and free.",
+        keywords: ["background remover", "remove background", "transparent png", "free background remover", "browser-based", "no upload", "privacy", "secure"],
         url: "https://bgremover.pro",
         twitterHandle: "@emreyoleridev",
     },
@@ -87,8 +86,8 @@ export const siteConfig = {
     // ---------------------------------------------------------------------------
     buildMeta: {
         enabled: true,
-        buildDay: 42,
-        startedAt: "2025-01-01",
+        buildDay: 1,
+        startedAt: "2026-03-01",
     },
 } as const;
 
@@ -98,8 +97,8 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     hero: {
         badgeText: "100% IN-BROWSER · NO UPLOADS · PRIVATE",
-        title: "Remove Backgrounds_Instantly with AI",
-        subtitle: "Drop any image and our AI — powered by WebAssembly — removes the background in seconds. No server, no account, no data ever leaves your device.",
+        title: "Remove Backgrounds_Instantly and Securely",
+        subtitle: "Drop any image and our engine — powered by WebAssembly — removes the background in seconds. No server, no account, no data ever leaves your device. 100% free and safe.",
     },
 
     // ---------------------------------------------------------------------------
@@ -108,10 +107,10 @@ export const contentConfig = {
     features: {
         badge: "Why It's Different",
         title: "Truly *Private* Background Removal",
-        subtitle: "All AI processing happens inside your browser.\nNo cloud uploads. No privacy risks. No subscriptions.",
+        subtitle: "All processing happens inside your browser.\nNo cloud uploads. No privacy risks. No subscriptions.",
         items: [
-            { title: "100% In-Browser AI", description: "Powered by WebAssembly, the AI model runs entirely on your device. Your images never leave your computer.", icon: Shield },
-            { title: "Instant Processing", description: "No waiting for server round-trips. The result is generated directly on your machine, as fast as your hardware allows.", icon: Zap },
+            { title: "100% Local Processing", description: "Powered by WebAssembly, the engine runs entirely on your device. Your images never leave your computer.", icon: Shield },
+            { title: "Instant & Secure", description: "No waiting for server round-trips. The result is generated directly on your machine, ensuring maximum security and speed.", icon: Zap },
             { title: "Free & Unlimited", description: "No account, no subscription, no watermarks. Remove as many backgrounds as you want, completely free.", icon: Lock },
         ],
     },
@@ -138,7 +137,7 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     marquee: {
         enabled: true,
-        text: "Remove backgrounds for free. No uploads. No servers. Just pure browser AI magic.",
+        text: "Remove backgrounds for free. No uploads. No servers. 100% private in-browser processing.",
         platform: {
             label: "@emreyoleridev",
             url: "https://x.com/emreyoleridev"
@@ -170,7 +169,7 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     tool: {
         demo: {
-            title: "AI Background Remover",
+            title: "Background Remover",
             description: "Upload your image and remove the background instantly — 100% in your browser.",
         },
         sharePrompt: {
