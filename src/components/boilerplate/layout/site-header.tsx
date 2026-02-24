@@ -3,7 +3,7 @@ import { Shield } from "lucide-react";
 import { siteConfig } from "@/config";
 import { GithubForkButton } from "@/components/boilerplate/common/github-fork-button";
 import { ThemeToggle } from "@/components/boilerplate/common/theme-toggle";
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { ProjectBadge } from "@/components/boilerplate/layout/project-badge";
 
 export function SiteHeader() {

@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 import { siteConfig, contentConfig } from "@/config";
-import { cn } from "@/lib/utils";
-import { getThemeClasses } from "@/lib/theme";
+import { cn } from "@/lib/boilerplate/utils";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 
 export const TRIGGER_DISCOVER_MORE_EVENT = "trigger-discover-more";
 

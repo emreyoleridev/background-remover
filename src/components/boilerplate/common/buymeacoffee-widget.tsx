@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config";
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 
 export function BuyMeACoffeeWidget() {
     const { id, message } = siteConfig.integrations.buyMeACoffee;

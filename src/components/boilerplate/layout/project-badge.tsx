@@ -1,8 +1,8 @@
 "use client";
 
 import { siteConfig } from "@/config";
-import { getThemeClasses } from "@/lib/theme";
-import { cn } from "@/lib/utils";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
+import { cn } from "@/lib/boilerplate/utils";
 
 export function ProjectBadge() {
     const { buildMeta } = siteConfig;

@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config";
 import { MetadataRoute } from "next";
-import { getThemeClasses, BRANDING } from "@/lib/theme";
+import { getThemeClasses, BRANDING } from "@/lib/boilerplate/theme";
 
 export default function manifest(): MetadataRoute.Manifest {
     const cleanName = siteConfig.siteName.replace("_", "");

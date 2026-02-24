@@ -7,11 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Container } from "@/components/boilerplate/common/container";
 import { Section } from "@/components/boilerplate/common/section";
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { triggerSubscribeModal } from "@/components/boilerplate/common/subscribe-modal";
 import { triggerShareModal } from "@/components/boilerplate/common/share-modal";
 import { triggerDiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/boilerplate/utils";
 import { contentConfig } from "@/config";
 
 export function ToolShell() {

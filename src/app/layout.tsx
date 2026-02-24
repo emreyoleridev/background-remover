@@ -14,7 +14,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { RequestToolNotification } from "@/components/boilerplate/layout/request-tool-notification";
 import { DiscoverMoreCTA } from "@/components/boilerplate/layout/discover-more-cta";
 
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

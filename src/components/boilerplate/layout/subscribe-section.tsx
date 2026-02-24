@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { siteConfig } from "@/config";
-import { setLocalStorage } from "@/lib/storage";
+import { setLocalStorage } from "@/lib/boilerplate/storage";
 import {
     Form,
     FormControl,
@@ -13,13 +13,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { subscribeSchema, SubscribeInput } from "@/lib/validators";
-import { postSubscriptionEmail } from "@/lib/sheets";
-import { getThemeClasses } from "@/lib/theme";
+import { subscribeSchema, SubscribeInput } from "@/lib/boilerplate/validators";
+import { postSubscriptionEmail } from "@/lib/boilerplate/sheets";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { toast } from "sonner";
 import { Loader2, Send, Sparkle, Sparkles } from "lucide-react";
 import { Container } from "@/components/boilerplate/common/container";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/boilerplate/utils";
 
 export function SubscribeSection() {
     const [isSubmitting, setIsSubmitting] = React.useState(false);

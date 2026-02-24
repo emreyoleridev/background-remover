@@ -30,10 +30,13 @@ src/
   config/
     index.ts       # Central configuration (siteConfig, contentConfig)
   lib/
-    share.ts       # Sharing logic and platform templates
-    theme.ts       # Theme-aware styling utilities
-    validators.ts  # Zod schemas for form validation
-    utils.ts       # General helper functions
+    boilerplate/
+      share.ts       # Sharing logic and platform templates
+      theme.ts       # Theme-aware styling utilities
+      validators.ts  # Zod schemas for form validation
+      utils.ts       # General helper functions
+      sheets.ts      # Google Sheets integration
+      storage.ts     # Local storage utilities
   tests/
     boilerplate/   # Component and utility tests
 ```
@@ -43,7 +46,7 @@ src/
 - **components/boilerplate/common/**: Functional components including `ShareModal`, `SubscribeModal`, and `ThemeProvider`.
 - **components/ui/**: Reusable shadcn primitives.
 - **config/**: Global configuration objects driving the entire UI and behavior.
-- **lib/**: Core utilities, sharing architecture, and validation logic.
+- **lib/boilerplate/**: Core utilities, sharing architecture, and validation logic.
 - **tests/**: Comprehensive testing suite using Vitest.
 
 ## Routing Architecture
@@ -86,7 +89,7 @@ Platforms are defined with URL templates using tokens:
 
 - **TailwindCSS 4**: Uses modern CSS logic and native CSS variables.
 - **Dark-First Design**: Optimized for dark mode by default, supported by `next-themes`.
-- **Accent Color**: Controlled via `siteConfig.accentColor`, dynamically mapped to CSS variables in `src/lib/theme.ts`.
+- **Accent Color**: Controlled via `siteConfig.accentColor`, dynamically mapped to CSS variables in `src/lib/boilerplate/theme.ts`.
 - **Consistent UI**: Uses a unified system for rounded corners, blurs, and borders.
 - **No Inline Styles**: All styling is handled via Tailwind utility classes.
 
@@ -99,7 +102,7 @@ Platforms are defined with URL templates using tokens:
 
 ## Form & Validation
 
-- **Zod**: Used for robust, type-safe validation schemas (see `src/lib/validators.ts`).
+- **Zod**: Used for robust, type-safe validation schemas (see `src/lib/boilerplate/validators.ts`).
 - **React Hook Form**: Handles form state and submission logic.
 - **Integration**: `SubscribeModal` integrates with a Google Sheets endpoint via `fetch`.
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { buildShareUrl, getShareData, openShare } from "@/lib/share";
-import { setLocalStorage, getLocalStorage } from "@/lib/storage";
-import { subscribeSchema } from "@/lib/validators";
+import { buildShareUrl, getShareData, openShare } from "@/lib/boilerplate/share";
+import { setLocalStorage, getLocalStorage } from "@/lib/boilerplate/storage";
+import { subscribeSchema } from "@/lib/boilerplate/validators";
 
 // ---------------------------------------------------------------------------
 // share.ts

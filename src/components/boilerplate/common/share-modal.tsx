@@ -9,10 +9,10 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { getThemeClasses } from "@/lib/theme";
-import { cn } from "@/lib/utils";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
+import { cn } from "@/lib/boilerplate/utils";
 import { Copy } from "lucide-react";
-import { buildShareUrl, openShare } from "@/lib/share";
+import { buildShareUrl, openShare } from "@/lib/boilerplate/share";
 import { toast } from "sonner";
 
 export const TRIGGER_SHARE_EVENT = "trigger-share";

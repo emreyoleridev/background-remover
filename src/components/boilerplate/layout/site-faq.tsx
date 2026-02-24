@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { siteConfig, contentConfig } from "@/config";
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { ChevronDown, HelpCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/boilerplate/utils";
 
 export function SiteFaq() {
     const theme = getThemeClasses();

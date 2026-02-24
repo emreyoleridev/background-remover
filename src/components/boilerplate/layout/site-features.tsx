@@ -1,9 +1,9 @@
 import { siteConfig, contentConfig } from "@/config";
-import { getThemeClasses } from "@/lib/theme";
+import { getThemeClasses } from "@/lib/boilerplate/theme";
 import { Container } from "@/components/boilerplate/common/container";
 import { Section } from "@/components/boilerplate/common/section";
 import { Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/boilerplate/utils";
 
 export function SiteFeatures() {
     const theme = getThemeClasses();

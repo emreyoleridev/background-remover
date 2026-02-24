@@ -80,13 +80,13 @@ describe("siteConfig branding fields (drive Next.js metadata)", () => {
     });
 
     it("has valid hex color in theme utility", async () => {
-        const { getThemeClasses } = await import("../../src/lib/theme");
+        const { getThemeClasses } = await import("../../src/lib/boilerplate/theme");
         const theme = getThemeClasses();
         expect(theme.hex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
     it("has valid background hex in branding constants", async () => {
-        const { BRANDING } = await import("../../src/lib/theme");
+        const { BRANDING } = await import("../../src/lib/boilerplate/theme");
         expect(BRANDING.backgroundHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
