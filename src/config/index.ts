@@ -23,7 +23,7 @@ export const siteConfig = {
         title: "Background Remover Pro – Free, 100% In-Browser Privacy-First Removal",
         description: "Remove image backgrounds instantly with high-performance WebAssembly. No uploads, no servers, no signups. Completely private, secure and free.",
         keywords: ["background remover", "remove background", "transparent png", "free background remover", "browser-based", "no upload", "privacy", "secure"],
-        url: "https://bgremover.pro",
+        url: "https://background-remover.tools.emreyoleri.dev",
         twitterHandle: "@emreyoleridev",
     },
 
@@ -43,10 +43,10 @@ export const siteConfig = {
         socials: {
             instagram: "https://instagram.com/emreyoleridev",
             tiktok: "https://tiktok.com/@emreyoleridev",
-            youtube: "https://youtube.com/@emreyoleridev",
-            linkedin: "https://linkedin.com/in/emreyoleridev",
+            // youtube: "https://youtube.com/@emreyoleridev",
+            linkedin: "https://linkedin.com/in/emreyoleri",
             twitter: "https://twitter.com/emreyoleridev",
-            reddit: "https://reddit.com/u/emreyoleridev",
+            reddit: "https://reddit.com/user/emreyoleridev",
             productHunt: "https://www.producthunt.com/@emreyoleridev",
             github: "https://github.com/emreyoleridev",
         },

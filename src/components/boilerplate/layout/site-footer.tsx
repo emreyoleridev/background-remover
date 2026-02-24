@@ -11,7 +11,7 @@ export function SiteFooter() {
         { name: "Reddit", href: author.socials.reddit },
         { name: "Instagram", href: author.socials.instagram },
         { name: "TikTok", href: author.socials.tiktok },
-        { name: "YouTube", href: author.socials.youtube },
+        // { name: "YouTube", href: author.socials.youtube },
         { name: "Product Hunt", href: author.socials.productHunt },
 
     ];
