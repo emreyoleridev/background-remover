@@ -137,7 +137,7 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     marquee: {
         enabled: true,
-        text: "Remove backgrounds for free. No uploads. No servers. 100% private in-browser processing.",
+        text: "I build free tools every day. I build. I learn. I share.",
         platform: {
             label: "@emreyoleridev",
             url: "https://x.com/emreyoleridev"
