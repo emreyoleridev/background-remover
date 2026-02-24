@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Shield } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 import { GithubForkButton } from "@/components/common/github-fork-button";
 import { ThemeToggle } from "@/components/common/theme-toggle";
 import { getThemeClasses } from "@/lib/theme";

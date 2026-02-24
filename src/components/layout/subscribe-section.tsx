@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 import { setLocalStorage } from "@/lib/storage";
 import {
     Form,

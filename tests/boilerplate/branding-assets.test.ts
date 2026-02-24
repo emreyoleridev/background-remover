@@ -1,5 +1,5 @@
 /**
- * tests/branding-assets.test.ts
+ * tests/boilerplate/branding-assets.test.ts
  *
  * Verifies that all required favicon / PWA / manifest files exist under /public,
  * the webmanifest is valid JSON with required PWA fields, and layout.tsx exports
@@ -42,7 +42,7 @@ describe("Branding asset presence", () => {
 // ---------------------------------------------------------------------------
 describe("manifest.ts content", () => {
     it("returns valid manifest object with required PWA fields", async () => {
-        const manifestModule = await import("../src/app/manifest");
+        const manifestModule = await import("../../src/app/manifest");
         const manifest = manifestModule.default();
 
         expect(manifest).toHaveProperty("name");
@@ -56,7 +56,7 @@ describe("manifest.ts content", () => {
     });
 
     it("references icons that actually exist on disk", async () => {
-        const manifestModule = await import("../src/app/manifest");
+        const manifestModule = await import("../../src/app/manifest");
         const manifest = manifestModule.default();
 
         for (const icon of manifest.icons as Array<{ src: string }>) {
@@ -74,19 +74,19 @@ describe("manifest.ts content", () => {
 // ---------------------------------------------------------------------------
 describe("siteConfig branding fields (drive Next.js metadata)", () => {
     it("has siteName field", async () => {
-        const { siteConfig } = await import("../src/config/site");
+        const { siteConfig } = await import("../../src/config");
         expect(typeof siteConfig.siteName).toBe("string");
         expect(siteConfig.siteName.length).toBeGreaterThan(0);
     });
 
     it("has valid hex color in theme utility", async () => {
-        const { getThemeClasses } = await import("../src/lib/theme");
+        const { getThemeClasses } = await import("../../src/lib/theme");
         const theme = getThemeClasses();
         expect(theme.hex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
     it("has valid background hex in branding constants", async () => {
-        const { BRANDING } = await import("../src/lib/theme");
+        const { BRANDING } = await import("../../src/lib/theme");
         expect(BRANDING.backgroundHex).toMatch(/^#[0-9a-fA-F]{3,6}$/);
     });
 
@@ -98,5 +98,3 @@ describe("siteConfig branding fields (drive Next.js metadata)", () => {
         expect(layoutSrc).toContain('"/favicon.ico"');
     });
 });
-
-

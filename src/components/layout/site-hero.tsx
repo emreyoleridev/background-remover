@@ -1,4 +1,4 @@
-import { siteConfig, contentConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config";
 import { getThemeClasses } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { Sparkles } from "lucide-react";

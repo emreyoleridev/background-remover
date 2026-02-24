@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { ProjectBadge } from "@/components/layout/project-badge";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 // Mock the siteConfig
 vi.mock("@/config/site", async (importOriginal) => {
-    const actual = await importOriginal<typeof import("@/config/site")>();
+    const actual = await importOriginal<typeof import("@/config")>();
     return {
         ...actual,
         siteConfig: {

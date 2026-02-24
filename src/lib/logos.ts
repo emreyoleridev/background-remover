@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export function getLogoDevToken(): string | null {
     return siteConfig.integrations.share.token || null;

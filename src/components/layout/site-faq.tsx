@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig, contentConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config";
 import { getThemeClasses } from "@/lib/theme";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";

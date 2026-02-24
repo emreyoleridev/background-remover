@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MarqueeBanner } from "@/components/layout/marquee-banner";
 import { DevSignature } from "@/components/layout/dev-signature";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { BuyMeACoffeeWidget } from "@/components/common/buymeacoffee-widget";
 import { ModalProvider } from "@/components/common/modal-provider";

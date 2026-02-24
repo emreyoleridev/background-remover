@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export async function postSubscriptionEmail(email: string): Promise<void> {
     const endpoint = siteConfig.integrations.subscribe.googleSheetsEndpoint;

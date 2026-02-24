@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 type ThemeColorMap = {
     text: string;

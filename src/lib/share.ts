@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export function getCurrentUrl(): string {
     if (typeof window === "undefined") return "";

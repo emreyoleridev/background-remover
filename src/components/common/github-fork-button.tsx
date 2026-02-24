@@ -1,5 +1,5 @@
 import { Github } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export function GithubForkButton() {
     return (

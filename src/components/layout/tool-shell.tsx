@@ -9,10 +9,10 @@ import { Container } from "@/components/common/container";
 import { Section } from "@/components/common/section";
 import { getThemeClasses } from "@/lib/theme";
 import { triggerSubscribeModal } from "@/components/common/subscribe-modal";
-import { triggerShareModal } from "@/components/share/share-modal";
+import { triggerShareModal } from "@/components/common/share-modal";
 import { triggerDiscoverMoreCTA } from "@/components/layout/discover-more-cta";
 import { cn } from "@/lib/utils";
-import { contentConfig } from "@/config/site";
+import { contentConfig } from "@/config";
 
 export function ToolShell() {
     const theme = getThemeClasses();

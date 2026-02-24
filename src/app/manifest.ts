@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 import { MetadataRoute } from "next";
 import { getThemeClasses, BRANDING } from "@/lib/theme";
 

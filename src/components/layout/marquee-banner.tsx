@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { siteConfig, contentConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import { getThemeClasses } from "@/lib/theme";
 

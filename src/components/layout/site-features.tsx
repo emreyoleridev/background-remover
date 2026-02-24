@@ -1,4 +1,4 @@
-import { siteConfig, contentConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config";
 import { getThemeClasses } from "@/lib/theme";
 import { Container } from "@/components/common/container";
 import { Section } from "@/components/common/section";

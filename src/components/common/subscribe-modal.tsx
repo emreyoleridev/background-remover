@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { siteConfig, contentConfig } from "@/config/site";
+import { siteConfig, contentConfig } from "@/config";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage";
 import {
     Dialog,

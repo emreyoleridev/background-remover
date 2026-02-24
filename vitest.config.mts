@@ -15,7 +15,8 @@ export default defineConfig({
     ],
     test: {
         environment: 'jsdom',
-        setupFiles: ['./tests/setup.ts'],
+        setupFiles: ['./tests/boilerplate/setup.ts'],
+        include: ['tests/boilerplate/**/*.test.{ts,tsx}'],
         globals: true,
     },
     resolve: {

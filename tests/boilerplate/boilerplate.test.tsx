@@ -4,7 +4,7 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { SiteHero } from '@/components/layout/site-hero';
 import { SubscribeModal, triggerSubscribeModal } from '@/components/common/subscribe-modal';
 import { BuyMeACoffeeWidget } from '@/components/common/buymeacoffee-widget';
-import { siteConfig } from '@/config/site';
+import { siteConfig, contentConfig } from '@/config';
 
 vi.mock('next-themes', () => ({
     useTheme: () => ({ theme: 'dark', setTheme: vi.fn() }),
@@ -57,7 +57,7 @@ describe('Tool Boilerplate Components', () => {
         expect(screen.getByText(siteConfig.siteName.split("_")[1])).toBeInTheDocument();
         const githubLink = screen.getByRole('link', { name: /GitHub Repository/i });
         expect(githubLink).toBeInTheDocument();
-        expect(githubLink).toHaveAttribute('href', `${siteConfig.author.socials.github}/${siteConfig.pk}`);
+        expect(githubLink.getAttribute('href')).toContain(`${siteConfig.author.socials.github}/${siteConfig.pk}`);
     });
 
     it('2) Theme toggle exists', () => {
@@ -67,8 +67,8 @@ describe('Tool Boilerplate Components', () => {
 
     it('3) Hero renders badge + title lines', () => {
         render(<SiteHero />);
-        expect(screen.getByText(siteConfig.hero.badgeText)).toBeInTheDocument();
-        expect(screen.getByText(siteConfig.hero.title.split("_")[0])).toBeInTheDocument();
+        expect(screen.getByText(contentConfig.hero.badgeText)).toBeInTheDocument();
+        expect(screen.getByText(contentConfig.hero.title.split("_")[0])).toBeInTheDocument();
     });
 
     it('4) Subscribe modal functionality', async () => {

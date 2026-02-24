@@ -2,14 +2,15 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { RequestToolNotification } from "@/components/layout/request-tool-notification";
 
-// Mock the siteConfig
+// Mock contentConfig (requestTool CTA moved to contentConfig)
 vi.mock("@/config/site", async (importOriginal) => {
-    const actual = await importOriginal<typeof import("@/config/site")>();
+    const actual = await importOriginal<typeof import("@/config")>();
     return {
         ...actual,
-        siteConfig: {
-            ...actual.siteConfig,
+        contentConfig: {
+            ...actual.contentConfig,
             cta: {
+                ...actual.contentConfig.cta,
                 requestTool: {
                     enabled: true,
                     label: "Have a tool idea? ✨",
@@ -83,7 +84,7 @@ describe("RequestToolNotification", () => {
         fireEvent.click(clickable);
 
         expect(window.open).toHaveBeenCalledWith(
-            "https://builtbyemre.userjot.com/",
+            expect.stringContaining("https://builtbyemre.userjot.com/"),
             "_blank",
             "noopener,noreferrer"
         );

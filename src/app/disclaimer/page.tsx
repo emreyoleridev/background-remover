@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export const metadata = {
     title: `Disclaimer | ${siteConfig.siteName.replace("_", "")}`,
