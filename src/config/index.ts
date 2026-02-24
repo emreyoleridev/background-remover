@@ -1,12 +1,12 @@
-import { Shield, Zap, Lock, Rocket, Wand2, Sparkle, Sparkles, Share2 } from "lucide-react";
+import { Shield, Zap, Lock, Rocket, ImageIcon, Sparkles, Share2, Download } from "lucide-react";
 
 export const siteConfig = {
     // ---------------------------------------------------------------------------
     // 1. Brand & Identity
     // ---------------------------------------------------------------------------
-    pk: "boilerplate",
-    siteName: "Secure_Studio",
-    headerIcon: Shield,
+    pk: "background-remover",
+    siteName: "Background Remover Pro",
+    headerIcon: ImageIcon,
 
     // ---------------------------------------------------------------------------
     // 2. Brand Identity
@@ -21,23 +21,17 @@ export const siteConfig = {
     // 3. SEO & Metadata
     // ---------------------------------------------------------------------------
     seo: {
-        title: "SecureStudio - Premium Client-Side Security Tools",
-        description: "Free, private, and 100% secure client-side tools. No data ever leaves your browser.",
-        keywords: ["security tools", "privacy", "client-side", "free tools", "developer toolkit"],
-        url: "https://securestudio.com",
+        title: "Background Remover Pro – Free AI Background Removal, 100% In-Browser",
+        description: "Remove image backgrounds instantly with AI-powered WebAssembly. No uploads, no servers, no signups. Completely private and free.",
+        keywords: ["background remover", "remove background", "ai background removal", "transparent png", "free background remover", "browser-based", "no upload", "privacy"],
+        url: "https://bgremover.pro",
         twitterHandle: "@emreyoleridev",
     },
-
-
 
     // ---------------------------------------------------------------------------
     // 5. Theme & Styling
     // ---------------------------------------------------------------------------
-    // Accent Color Options:
-    // - Neutrals: "slate", "gray", "zinc", "neutral", "stone"
-    // - Colors: "red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"
-    // Note: Ensure the color is defined in src/lib/theme.ts to apply specific styles.
-    accentColor: "cyan" as const,
+    accentColor: "violet" as const,
     defaultTheme: "dark" as "light" | "dark" | "system",
     toastPosition: "top-center" as "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center",
 
@@ -74,7 +68,7 @@ export const siteConfig = {
         },
         share: {
             enabled: true,
-            shareText: "Check out this free tool",
+            shareText: "Remove image backgrounds for free, right in your browser — no uploads needed!",
             platforms: [
                 { id: "facebook", name: "Facebook", domain: "facebook.com", template: "https://www.facebook.com/sharer/sharer.php?u={url}", enabled: true },
                 { id: "x", name: "X", domain: "x.com", template: "https://twitter.com/intent/tweet?text={text}&url={url}", enabled: true },
@@ -103,40 +97,40 @@ export const contentConfig = {
     // 4. Hero Section
     // ---------------------------------------------------------------------------
     hero: {
-        badgeText: "100% SECURE & CLIENT-SIDE",
-        title: "The Ultimate_Security Toolkit",
-        subtitle: "I build free tools every day. No signups, no tracking. Fast, private, and 100% secure client-side tools.",
+        badgeText: "100% IN-BROWSER · NO UPLOADS · PRIVATE",
+        title: "Remove Backgrounds_Instantly with AI",
+        subtitle: "Drop any image and our AI — powered by WebAssembly — removes the background in seconds. No server, no account, no data ever leaves your device.",
     },
 
     // ---------------------------------------------------------------------------
     // 8. Site Content (Features & FAQ)
     // ---------------------------------------------------------------------------
     features: {
-        badge: "Why Choose Us",
-        title: "Built for *Privacy*",
-        subtitle: "Every tool is engineered to run entirely in your browser\nno servers, no tracking, no compromises.",
+        badge: "Why It's Different",
+        title: "Truly *Private* Background Removal",
+        subtitle: "All AI processing happens inside your browser.\nNo cloud uploads. No privacy risks. No subscriptions.",
         items: [
-            { title: "Client-Side Only", description: "Everything runs entirely in your browser. No data is ever sent to a server, ensuring your privacy.", icon: Shield },
-            { title: "Lightning Fast", description: "No loading screens, no spinners. Instant execution the moment you click.", icon: Zap },
-            { title: "100% Private", description: "No accounts, no tracking cookies, and absolutely no data collection.", icon: Lock },
+            { title: "100% In-Browser AI", description: "Powered by WebAssembly, the AI model runs entirely on your device. Your images never leave your computer.", icon: Shield },
+            { title: "Instant Processing", description: "No waiting for server round-trips. The result is generated directly on your machine, as fast as your hardware allows.", icon: Zap },
+            { title: "Free & Unlimited", description: "No account, no subscription, no watermarks. Remove as many backgrounds as you want, completely free.", icon: Lock },
         ],
     },
     faqs: [
         {
-            question: "Is it really secure?",
-            answer: "Yes! All processing happens locally in your browser. We never see your data, and it never leaves your device.",
+            question: "Does my image get uploaded to a server?",
+            answer: "Absolutely not. All processing is done entirely in your browser using WebAssembly. Your image never leaves your device.",
         },
         {
-            question: "Is it free to use?",
-            answer: "Absolutely. All tools on SecureStudio are free to use, and they will stay that way forever.",
+            question: "What image formats are supported?",
+            answer: "You can upload JPG, PNG, and WEBP images. The result is always downloaded as a transparent PNG.",
         },
         {
-            question: "Do I need to create an account?",
-            answer: "No accounts, no logins, no tracking. Just open the tool and start using it instantly.",
+            question: "Is there a file size limit?",
+            answer: "For best performance in the browser, we recommend images under 5MB. Larger images may take longer to process.",
         },
         {
-            question: "Will you add more tools?",
-            answer: "Yes! I build and release a new tool every single day to make your digital life easier and more secure.",
+            question: "Is it really free?",
+            answer: "Yes. No paywalls, no watermarks, no sign-ups. Just open the page and start removing backgrounds.",
         },
     ],
     // ---------------------------------------------------------------------------
@@ -144,7 +138,7 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     marquee: {
         enabled: true,
-        text: "I build free tools every day. I build. I learn. I share.",
+        text: "Remove backgrounds for free. No uploads. No servers. Just pure browser AI magic.",
         platform: {
             label: "@emreyoleridev",
             url: "https://x.com/emreyoleridev"
@@ -166,7 +160,7 @@ export const contentConfig = {
             enabled: true,
             title: "Like this tool? 👀",
             subtitle: "I build a new one every day. Discover more of my total collection.",
-            href: "https://emreyoleri.dev", // MUST come from config
+            href: "https://emreyoleri.dev",
             icon: Rocket,
             external: true
         }
@@ -176,11 +170,11 @@ export const contentConfig = {
     // ---------------------------------------------------------------------------
     tool: {
         demo: {
-            title: "Interactive Tool Demo",
-            description: "Tool Content Goes Here. Replace this shell with your actual tool components.",
+            title: "AI Background Remover",
+            description: "Upload your image and remove the background instantly — 100% in your browser.",
         },
         sharePrompt: {
-            title: "Found it usefuls?",
+            title: "Found it useful?",
             description: "Share it with your friends and colleagues.",
             icon: Share2
         }
@@ -195,7 +189,7 @@ export const contentConfig = {
         },
         share: {
             title: "*SHARE* THIS TOOL WITH YOUR _FRIENDS_.",
-            description: "Everything is free, unlimited, and runs locally in your browser. Share it anywhere in seconds."
+            description: "Remove backgrounds for free, right in your browser. No uploads. No servers. Share with anyone!"
         }
     }
 } as const;
