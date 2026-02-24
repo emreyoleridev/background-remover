@@ -103,7 +103,6 @@ export function DiscoverMoreCTA() {
                         "hover:bg-zinc-200 dark:hover:bg-white/20",
                         "text-zinc-700 dark:text-zinc-300 text-xs font-semibold"
                     )}
-                    onClick={() => setIsDismissed(true)}
                 >
                     Give Feedback
                 </a>
@@ -118,7 +117,6 @@ export function DiscoverMoreCTA() {
                         "text-white hover:opacity-90",
                         "text-xs font-bold"
                     )}
-                    onClick={() => setIsDismissed(true)}
                 >
                     Discover more
                 </a>

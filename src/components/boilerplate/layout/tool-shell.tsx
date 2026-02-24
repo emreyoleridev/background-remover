@@ -321,10 +321,15 @@ export function ToolShell() {
                             <Button
                                 id="download-result-btn"
                                 onClick={handleDownload}
-                                className={`flex-1 gap-2 ${theme.bg} hover:opacity-90 text-white border-0 font-semibold shadow-lg`}
+                                className={cn(
+                                    "flex-1 gap-2 text-white border-0 font-bold shadow-xl transition-all duration-300",
+                                    "bg-gradient-to-r from-violet-600 to-violet-500",
+                                    "hover:from-violet-500 hover:to-violet-400 hover:shadow-violet-500/25 hover:-translate-y-0.5 hover:scale-[1.02]",
+                                    "active:scale-95 cursor-pointer"
+                                )}
                                 size="lg"
                             >
-                                <Download className="w-4 h-4" />
+                                <Download className="w-5 h-5" />
                                 Download PNG
                             </Button>
                             <Button
