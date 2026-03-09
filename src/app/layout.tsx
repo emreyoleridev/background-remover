@@ -29,6 +29,10 @@ const geistMono = Geist_Mono({
 const theme = getThemeClasses();
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.seo.url),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: siteConfig.seo.title,
     template: `%s — ${siteConfig.siteName.replace("_", "")}`,
@@ -49,12 +53,21 @@ export const metadata: Metadata = {
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
     siteName: siteConfig.siteName.replace("_", ""),
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.seo.title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
     creator: siteConfig.seo.twitterHandle,
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
