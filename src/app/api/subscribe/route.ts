@@ -2,35 +2,46 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     try {
-        const { email, source, toolName, timestamp } = await req.json();
+        const { email, source, toolName } = await req.json();
 
-        const endpoint = process.env.GOOGLE_SHEETS_ENDPOINT;
+        // Use Beehiiv V2 API
+        // https://developers.beehiiv.com/api-reference/subscriptions/create
+        const apiKey = process.env.BEEHIIV_API_KEY;
+        const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
 
-        if (!endpoint) {
-            console.error("GOOGLE_SHEETS_ENDPOINT is not configured");
+        if (!apiKey || !publicationId) {
+            console.error("Beehiiv configuration is missing (BEEHIIV_API_KEY or BEEHIIV_PUBLICATION_ID)");
             return NextResponse.json(
-                { error: "Subscription endpoint not configured" },
+                { error: "Subscription service not configured" },
                 { status: 500 }
             );
         }
 
+        const beehiivUrl = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
+
         const payload = {
             email,
-            source,
-            toolName,
-            timestamp,
+            reactivate_existing: true,
+            send_welcome_email: true,
+            utm_source: "image-background-remover",
+            utm_medium: "referral",
+            utm_campaign: toolName || "newsletter-signup",
+            referring_site: source || "https://background-remover.tools.emreyoleri.dev"
         };
 
-        const response = await fetch(endpoint, {
+        const response = await fetch(beehiivUrl, {
             method: "POST",
             headers: {
-                "Content-Type": "text/plain;charset=utf-8",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
             },
             body: JSON.stringify(payload),
         });
 
         if (!response.ok) {
-            throw new Error(`Google Sheets responded with ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            console.error("Beehiiv response error:", errorData);
+            throw new Error(`Beehiiv responded with ${response.status}`);
         }
 
         return NextResponse.json({ success: true });

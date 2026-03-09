@@ -5,7 +5,6 @@ export async function postSubscriptionEmail(email: string): Promise<void> {
         email,
         source: window.location.href,
         toolName: siteConfig.siteName.replace("_", ""),
-        timestamp: new Date().toISOString(),
     };
 
     const response = await fetch("/api/subscribe", {

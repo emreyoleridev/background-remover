@@ -67,7 +67,8 @@ Follow these steps to run the project locally:
 
 | Variable | Description |
 | --- | --- |
-| `GOOGLE_SHEETS_ENDPOINT` | API endpoint for the newsletter subscription form (Server-side secret). |
+| `BEEHIIV_API_KEY` | Your Beehiiv API Key ([Create one here](https://app.beehiiv.com/settings/api)). |
+| `BEEHIIV_PUBLICATION_ID` | Your Beehiiv Publication ID. |
 
 ## 📦 Deployment
 

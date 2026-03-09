@@ -63,7 +63,7 @@ export const siteConfig = {
         subscribe: {
             enabled: true,
             delaySecondsAfterSuccess: 2,
-            googleSheetsEndpoint: process.env.GOOGLE_SHEETS_ENDPOINT || "",
+            // Beehiiv configuration is managed via BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID environment variables
         },
         share: {
             enabled: true,
